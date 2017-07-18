@@ -18,7 +18,7 @@
   "homepage": "https://github.com/marcog83/stonebridgestudio#readme",
   "dependencies": {
     "express": "^4.15.3",
-    "express-handlebars": "^3.0.0",
+    "glob": "^7.1.2",
     "handlebars": "^4.0.10"
   }
 }

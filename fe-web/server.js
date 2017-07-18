@@ -4,6 +4,7 @@ const handlebars = require('./render/handlebars-config');
 
 const homepage = require("./routers/homepage/homepage");
 var app = express();
+
 handlebars(app);
 app.use('/static', express.static(__dirname + '/../static',{
     maxAge: '5d'
