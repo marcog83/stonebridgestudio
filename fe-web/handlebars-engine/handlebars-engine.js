@@ -22,7 +22,7 @@ function registerIncludes() {
     return new Promise(resolve => {
         // options is optional
         var options = {};
-        glob(INCLUDE_DIR + "**/*.hbs", options, function (er, files) {
+        glob(INCLUDE_DIR + "**/*.hbs", options,  (er, files)=> {
             // files is an array of filenames.
             // If the `nonull` option is set, and nothing
             // was found, then files is ["**/*.js"]
@@ -51,46 +51,35 @@ module.exports = function (options) {
     const cache = {};
     const includes = registerIncludes();
     return function engine(filePath, options, callback) { // define the template engine
-        var key = this.name;
-        var page = pages[key] === true ? {} : pages[key];
+        const key = this.name;
+        const page = pages[key] === true ? {} : pages[key];
         const {layout = "index", body = key, scripts = "scripts", stylesheet = "stylesheet", data = key} = page;
         if (!cache[key]) {
-            cache[key] = {
-                layout: getFile(`${LAYOUT_DIR}${layout}.hbs`),
-                body: getFile(`${BODY_DIR}${body}.hbs`),
-                scripts: getFile(`${INCLUDE_DIR}${scripts}.hbs`),
-                stylesheet: getFile(`${INCLUDE_DIR}${stylesheet}.hbs`)
-            };
-            cache[key].data = {};
-            /*if (fs.existsSync(`${DATA_DIR}${data}.json`)) {
-             cache[key].data = require(`${DATA_DIR}${data}`);
-             }*/
-            //cache[key].data = mergeDeep(cache[key].data, options.data);
-        }
-        includes.then(_ => {
-            return Promise.all([
-                cache[key].layout
-                , cache[key].body
-                , cache[key].scripts
-                , cache[key].stylesheet
+            cache[key] = Promise.all([
+                getFile(`${LAYOUT_DIR}${layout}.hbs`)
+                , getFile(`${BODY_DIR}${body}.hbs`)
+                , getFile(`${INCLUDE_DIR}${scripts}.hbs`)
+                , getFile(`${INCLUDE_DIR}${stylesheet}.hbs`)
 
-            ]);
-        }).then(([layout, body, scripts, stylesheet]) => {
-            Handlebars.registerPartial('body', body);
-            Handlebars.registerPartial('scripts', scripts);
-            Handlebars.registerPartial('stylesheet', stylesheet);
-            return Handlebars.compile(layout);
-        }).then(template => {
-                const {data = {}} = options.data||{};
+            ]).then(([layout, body, scripts, stylesheet]) => {
+                Handlebars.registerPartial('body', body);
+                Handlebars.registerPartial('scripts', scripts);
+                Handlebars.registerPartial('stylesheet', stylesheet);
+                return Handlebars.compile(layout);
+            });
+
+        }
+        includes.then(_ => cache[key]).then(template => {
+                const {data = {}} = options.data || {};
                 data.__pagename__ = key;
                 return callback(null, template(data));
             })
-            .catch(err => {
+            .catch(err =>{
+                delete cache[key];
                 callback(err);
-            })
-        // getFile.then(content => {
-        //     return callback(null, rendered);
-        // })
+            } )
+
+
 
     }
 };
