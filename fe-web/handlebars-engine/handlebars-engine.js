@@ -19,66 +19,71 @@ function getFile(filePath) {
     })
 };
 function registerIncludes() {
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
         // options is optional
-        var options = {};
-        glob(INCLUDE_DIR + "**/*.hbs", options,  (er, files)=> {
-            // files is an array of filenames.
-            // If the `nonull` option is set, and nothing
-            // was found, then files is ["**/*.js"]
-            // er is an error object or null.
+
+        glob(INCLUDE_DIR + "**/*.hbs", {}, (err, files) => {
+            if (err) reject(err);
             resolve(files);
         })
     }).then(filenames => {
-        filenames.forEach(function (filename) {
+        const promises = filenames.map(function (filename) {
+            const nameParsed = path.parse(filename);
+            const name = path.normalize(nameParsed.name);
+            return new Promise((resolve, reject) => {
+                fs.readFile(filename, 'utf8', (err, include) => {
+                    if (err) throw err;
+                    resolve({
+                        include
+                        , name
+                    });
+                });
 
-            var nameParsed = path.parse(filename);
-            var name = path.normalize(nameParsed.name);
+            });
 
-
-            if (name.match(/{scripts|stylesheet}/gim)) {
-                return;
-            }
-            var include = fs.readFileSync(filename, 'utf8');
-            Handlebars.registerPartial(name, include);
         });
-        return true;
-    });
+        return Promise.all(promises)
+    }).then(includes => {
+        includes.forEach(({include, name}) => {
+            Handlebars.registerPartial(name, include);
+        })
+    })
 
 }
+function isObject(x) {
+    return Object.prototype.toString.call(x) === '[object Object]';
+};
 module.exports = function (options) {
     const {pages} = options;
     const cache = {};
     const includes = registerIncludes();
     return function engine(filePath, options, callback) { // define the template engine
         const key = this.name;
-        const page = pages[key] === true ? {} : pages[key];
-        const {layout = "index", body = key, scripts = "scripts", stylesheet = "stylesheet", data = key} = page;
+        const page = (pages[key] && isObject(pages[key])) ? pages[key] : {};
+        const {layout = "index", body = key, data = key} = page;
         if (!cache[key]) {
             cache[key] = Promise.all([
                 getFile(`${LAYOUT_DIR}${layout}.hbs`)
                 , getFile(`${BODY_DIR}${body}.hbs`)
-                , getFile(`${INCLUDE_DIR}${scripts}.hbs`)
-                , getFile(`${INCLUDE_DIR}${stylesheet}.hbs`)
-
-            ]).then(([layout, body, scripts, stylesheet]) => {
-                Handlebars.registerPartial('body', body);
-                Handlebars.registerPartial('scripts', scripts);
-                Handlebars.registerPartial('stylesheet', stylesheet);
-                return Handlebars.compile(layout);
+            ]).then(([layout, body]) => {
+                const precompiled = Handlebars.precompile(layout);
+                return {
+                    template:Handlebars.template((new Function('return ' + precompiled))())
+                    ,body
+                }
             });
 
         }
-        includes.then(_ => cache[key]).then(template => {
+        includes.then(_ => cache[key]).then(({template,body} )=> {
+                Handlebars.registerPartial('body', body);
                 const {data = {}} = options.data || {};
                 data.__pagename__ = key;
                 return callback(null, template(data));
             })
-            .catch(err =>{
+            .catch(err => {
                 delete cache[key];
                 callback(err);
-            } )
-
+            })
 
 
     }
