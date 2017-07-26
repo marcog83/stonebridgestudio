@@ -76,7 +76,7 @@ module.exports = function (options) {
         }
         includes.then(_ => cache[key]).then(({template,body} )=> {
                 Handlebars.registerPartial('body', body);
-                const {data = {}} = options.data || {};
+                const {data = {}} = options || {};
                 data.__pagename__ = key;
                 return callback(null, template(data));
             })
