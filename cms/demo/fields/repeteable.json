@@ -1,0 +1,13 @@
+{
+  "type": "repeteable",
+  "schema": [
+    "text",
+    "boolean"
+  ],
+  "value": [
+    {},
+    {},
+    {},
+    {}
+  ]
+}

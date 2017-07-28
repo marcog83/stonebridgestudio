@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/marcog83/stonebridgestudio#readme",
   "dependencies": {
+    "barba.js": "^1.0.0",
     "express": "^4.15.3",
     "glob": "^7.1.2",
     "handlebars": "^4.0.10",

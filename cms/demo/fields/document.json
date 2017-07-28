@@ -1,0 +1,8 @@
+{
+  "type": "document"
+  ,"label": "immagine di sfondo"
+ , "value": {
+    "type": "image/image",
+    "value": ""
+  }
+}

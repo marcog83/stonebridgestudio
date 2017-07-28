@@ -1,0 +1,15 @@
+{
+  "type": "link"
+,"label": "link contatti"
+ , "value": {
+    "type": "string",
+    "value": "http://link-to-page"
+  }
+}
+
+/**
+"value": {
+    "type": "internal",
+    "value": "id-page-interna"
+  }
+*/

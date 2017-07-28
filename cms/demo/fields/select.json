@@ -1,0 +1,9 @@
+{
+  "type": "select"
+  ,"label":"tipo di scelta"
+  ,"input":{
+    "type":"radio"//checkbox, select, radio
+    ,"multiple":true
+  },
+  "value": [1]
+}

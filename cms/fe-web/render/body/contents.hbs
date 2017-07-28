@@ -1,0 +1,20 @@
+<div class="contents">
+<ul>
+{{#each  entities}}
+    <li>
+        <h2>{{name}}</h2>
+        <ul>
+            {{#each records}}
+                <li>
+                    <a href="/contents/{{id}}">
+                        {{name}}
+                    </a>
+                </li>
+            {{/each}}
+        </ul>
+    </li>
+{{/each }}
+
+
+</ul>
+</div>
