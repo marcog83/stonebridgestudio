@@ -1,0 +1,30 @@
+@import "_dirty";
+
+.header {
+  height: 54px;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  background: #463c44;
+  display: flex;
+  justify-content: center;
+  .text-ctr {
+
+    font-size: 20px;
+    color: white;
+
+    text-transform: uppercase;
+    h1 {
+      padding: 0 5px;
+      line-height: 17px;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .header {
+    .text-ctr {
+      font-size: 15px;
+    }
+  }
+}

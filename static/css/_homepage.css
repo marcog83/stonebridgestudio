@@ -1,0 +1,23 @@
+.homepage__visual {
+  background: url("/static/img/bg.jpg") 50% 50% no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: calc(100vh - 54px);
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+}
+.homepage .visual__text {
+  color: white;
+  padding: 90px 13px;
+  font-size: 52px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0.8) 100%);
+  width: 100%;
+  font-family: "Raleway";
+}
+@media (max-width: 767px) {
+  .homepage .visual__text {
+    padding: 35px 13px;
+    font-size: 40px;
+  }
+}

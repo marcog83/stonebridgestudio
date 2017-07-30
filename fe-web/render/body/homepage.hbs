@@ -1,33 +1,20 @@
-<a href="/contacts">contatti</a>
-<a href="https://www.facebook.com/Stonebridgerecords/">
-    <div class="home">
-        <div class="equalizer-CTR">
-            <div class="center-me">
-                <div class="equalizer"></div>
-                <img src="/static/img/facebook-inverse.svg" class="fb-icon">
-            </div>
+<div class="homepage">
+    <div class="homepage__visual">
+        <div class="visual__text">
+            <p>This place got something</p>
         </div>
 
     </div>
-</a>
-<script>
-    // Google Music Equalizer
-    // https://ssl.gstatic.com/music/fe/1c1abd24f4bdc2a3cc124f6e9928d13b/ani_equalizer_black.gif
+    <div class="posts">
 
-    // A pen by @Vestride
+        {{#each posts}}
+            {{> post}}
+        {{/each}}
+    </div>
+    <div class="post-image-zoomed">
+        <div class="post-image-zoomed__text-panel">
+            <p class="text-js"></p>
+        </div>
+    </div>
 
-    // Stop animation events from propagating to the body,
-    // which stops codepen from pausing them... o_0
-    (function () {
-        var animation = document.querySelector('.equalizer');
-
-        function onAnimation(evt) {
-            evt.stopPropagation();
-        }
-
-        animation.addEventListener('webkitAnimationStart', onAnimation, false);
-        animation.addEventListener('webkitAnimationIteration', onAnimation, false);
-        animation.addEventListener('animationStart', onAnimation, false);
-        animation.addEventListener('animationIteration', onAnimation, false);
-    }());
-</script>
+</div>

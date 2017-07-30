@@ -4,6 +4,7 @@ const http2 = require('spdy');
 
 const handlebars = require('./render/handlebars-config');
 
+const photoGallery = require("./routers/photo-gallery");
 const homepage = require("./routers/homepage");
 const contacts = require("./routers/contacts");
 const app = express();
@@ -16,6 +17,7 @@ app.use('/static', express.static(__dirname + '/../static', {
 
 app.use('/', homepage);
 app.use('/contacts', contacts);
+app.use('/photo-gallery', photoGallery);
 //
 const PORT = process.env.PORT || 5000;
 
