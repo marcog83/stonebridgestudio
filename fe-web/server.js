@@ -26,8 +26,8 @@ const options = {
     cert: fs.readFileSync('./fe-web/server.crt')
 };
 
-http2.createServer(options, app)
-    .listen(PORT, () => {
+// http2.createServer(options, app)
+app.listen(PORT, () => {
             console.log(`Server is listening on https://localhost:${PORT}.
 You can open the URL in the browser.`)
         }
