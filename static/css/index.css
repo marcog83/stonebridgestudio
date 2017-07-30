@@ -422,6 +422,27 @@ table {
   height: 300px;
   margin-top: 50px;
 }
+.footer .buttons {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;
+}
+.footer .footer-social-button a {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 30px;
+  height: 30px;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  background: white;
+  transition: background 0.5s ease-out;
+  margin: 0 10px;
+}
 .bar-c {
   overflow: hidden;
   height: 30px;
@@ -552,7 +573,6 @@ body,
 html {
   font-family: 'Open Sans', sans-serif;
   width: 100%;
-  overflow-x: hidden;
 }
 a {
   text-decoration: none;
