@@ -22,8 +22,9 @@
     "glob": "^7.1.2",
     "handlebars": "^4.0.10",
     "spdy": "^3.4.7"
+    ,  "fb": "^2.0.0"
   },
   "devDependencies": {
-    "fb": "^2.0.0"
+
   }
 }
