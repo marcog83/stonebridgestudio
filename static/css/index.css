@@ -443,6 +443,12 @@ table {
   transition: background 0.5s ease-out;
   margin: 0 10px;
 }
+.footer .footer-social-button.email a {
+  width: auto;
+  background: transparent;
+  color: white;
+  font-size: 12px;
+}
 .bar-c {
   overflow: hidden;
   height: 30px;
