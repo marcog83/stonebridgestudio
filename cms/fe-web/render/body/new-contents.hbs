@@ -1,0 +1,11 @@
+<form action="/contents/save" method="post">
+    <input type="hidden" name="contentId" value="{{contentId}}">
+    <ul class="fields">
+        {{#fields}}
+            {{> field-builder this}}
+        {{/fields}}
+
+    </ul>
+    <button>SAVE</button>
+    <a href="">BACK</a>
+</form>

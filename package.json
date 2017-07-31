@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build-css": "lessc static/less/index.less > static/css/index.css",
-    "watch-css": "catw -w 'static/less/**/*.less' -c 'npm run build-css'"
-    ,"build-css-prod":"postcss  static/css/index.css --use autoprefixer --autoprefixer.browsers '> 5%' -o static/css/index.css"
- ,"mongo-win": "cd mongo-db & \"C:/Program Files/MongoDB/Server/3.4/bin/mongod.exe\" --dbpath C:/Users/marcogobbi/WebstormProjects/stonebridgestudio/mongo-db"
+    "watch-css": "catw -w 'static/less/**/*.less' -c 'npm run build-css'",
+    "build-css-prod": "postcss  static/css/index.css --use autoprefixer --autoprefixer.browsers '> 5%' -o static/css/index.css",
+    "mongo-win": "cd mongo-db & \"C:/Program Files/MongoDB/Server/3.4/bin/mongod.exe\" --dbpath C:/Users/marcogobbi/WebstormProjects/stonebridgestudio/mongo-db"
   },
   "repository": {
     "type": "git",
@@ -21,11 +21,12 @@
   "homepage": "https://github.com/marcog83/stonebridgestudio#readme",
   "dependencies": {
     "barba.js": "^1.0.0",
+    "body-parser": "^1.17.2",
     "express": "^4.15.3",
+    "fb": "^2.0.0",
     "glob": "^7.1.2",
     "handlebars": "^4.0.10",
-    "spdy": "^3.4.7",
-    "fb": "^2.0.0"
+    "spdy": "^3.4.7"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

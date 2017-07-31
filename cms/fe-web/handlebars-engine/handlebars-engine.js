@@ -1,5 +1,6 @@
 const fs = require('fs');
 const mergeDeep = require('./merge-deep');
+const switchHelper = require('./switch-helper');
 var glob = require("glob");
 var path = require("path");
 var Handlebars = require("handlebars");
@@ -8,6 +9,7 @@ const LAYOUT_DIR = 'fe-web/render/layout/';
 const DATA_DIR = 'fe-web/render/data/';
 const INCLUDE_DIR = 'fe-web/render/include/';
 const BODY_DIR = `fe-web/render/body/`;
+switchHelper(Handlebars);
 function getFile(filePath) {
     return new Promise(function (resolve, reject) {
         fs.readFile(filePath, function (err, content) {
@@ -68,18 +70,18 @@ module.exports = function (options) {
             ]).then(([layout, body]) => {
                 const precompiled = Handlebars.precompile(layout);
                 return {
-                    template:Handlebars.template((new Function('return ' + precompiled))())
-                    ,body
+                    template: Handlebars.template((new Function('return ' + precompiled))())
+                    , body
                 }
             });
 
         }
-        includes.then(_ => cache[key]).then(({template,body} )=> {
-                Handlebars.registerPartial('body', body);
-                const {data = {}} = options || {};
-                data.__pagename__ = key;
-                return callback(null, template(data));
-            })
+        includes.then(_ => cache[key]).then(({template, body}) => {
+            Handlebars.registerPartial('body', body);
+            const {data = {}} = options || {};
+            data.__pagename__ = key;
+            return callback(null, template(data));
+        })
             .catch(err => {
                 delete cache[key];
                 callback(err);

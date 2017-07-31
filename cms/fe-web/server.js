@@ -1,13 +1,15 @@
 const express = require('express');
 const fs = require('fs');
 const http2 = require('spdy');
-
+var bodyParser = require('body-parser');
 const handlebars = require('./render/handlebars-config');
 
 const index = require("./routers/index");
+const contents = require("./routers/contents");
 
 const app = express();
-
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 handlebars(app);
 app.use('/static', express.static(__dirname + '/../static', {
     maxAge: '5d'
@@ -15,6 +17,7 @@ app.use('/static', express.static(__dirname + '/../static', {
 }));
 
 app.use('/', index);
+app.use('/contents', contents);
 
 //
 const PORT = process.env.PORT || 5000;
