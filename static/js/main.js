@@ -13,13 +13,12 @@ var posts = document.querySelector('.post-image-zoomed');
 posts.addEventListener("click", function (e) {
 
     TweenMax.to(posts.querySelector("img"), .2, {
-        ease: Expo.easeOut
-        , autoAlpha: 0
+          autoAlpha: 0
     });
     TweenMax.to(posts, .5, {
         backgroundColor: 'rgba(0, 0, 0, 0)'
         // backgroundColor: 'rgba(255, 255, 255, 0)'
-        , ease: Circ.easeOut
+
         , onComplete: function () {
             posts.style.visibility = "hidden";
             posts.innerHTML = '<div class="post-image-zoomed__text-panel"> <p class="text-js"></p> </div>'
@@ -59,11 +58,7 @@ posts.addEventListener("click", function (e) {
             left: "50%",
             x: "-50%",
             width: isMobile ? "100%" : "auto",
-            height: isMobile ? "auto" : window.innerHeight - 54,
-            ease: Circ.easeOut,
-            onComplete: function () {
-                // document.body.classList.add("fixed")
-            }
+            height: isMobile ? "auto" : window.innerHeight - 54
         });
     })
 })
