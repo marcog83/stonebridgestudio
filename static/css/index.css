@@ -300,6 +300,54 @@ table {
   padding: 20px 120px 20px 40px;
   transition: all 0.3s ease-out;
 }
+.homepage .menu__item.homepage {
+  pointer-events: none;
+}
+.homepage .menu__item.homepage .line-3 i {
+  width: 100%;
+  height: 100%;
+  transition: width 0.2s ease-out 0.2s;
+}
+.homepage .menu__item.homepage .line-2 i {
+  width: 100%;
+  height: 100%;
+  transition: height 0.2s ease-out 0s;
+}
+.homepage .menu__item.homepage a {
+  color: #CCA684;
+}
+.artists .menu__item.artists {
+  pointer-events: none;
+}
+.artists .menu__item.artists .line-3 i {
+  width: 100%;
+  height: 100%;
+  transition: width 0.2s ease-out 0.2s;
+}
+.artists .menu__item.artists .line-2 i {
+  width: 100%;
+  height: 100%;
+  transition: height 0.2s ease-out 0s;
+}
+.artists .menu__item.artists a {
+  color: #CCA684;
+}
+.who-we-are .menu__item.who-we-are {
+  pointer-events: none;
+}
+.who-we-are .menu__item.who-we-are .line-3 i {
+  width: 100%;
+  height: 100%;
+  transition: width 0.2s ease-out 0.2s;
+}
+.who-we-are .menu__item.who-we-are .line-2 i {
+  width: 100%;
+  height: 100%;
+  transition: height 0.2s ease-out 0s;
+}
+.who-we-are .menu__item.who-we-are a {
+  color: #CCA684;
+}
 .menu__item .line-3 i {
   left: 0;
   transition: width 0.2s ease-out 0s;
@@ -315,9 +363,13 @@ table {
   background: #CCA684;
 }
 .menu__item:hover .line-3 i {
+  width: 100%;
+  height: 100%;
   transition: width 0.2s ease-out 0.2s;
 }
 .menu__item:hover .line-2 i {
+  width: 100%;
+  height: 100%;
   transition: height 0.2s ease-out 0s;
 }
 .menu__item:hover a {
