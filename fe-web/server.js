@@ -7,6 +7,9 @@ const handlebars = require('./render/handlebars-config');
 const photoGallery = require("./routers/photo-gallery");
 const homepage = require("./routers/homepage");
 const contacts = require("./routers/contacts");
+const whoWeAre = require("./routers/who-we-are");
+const artists = require("./routers/artists");
+
 const app = express();
 
 handlebars(app);
@@ -18,6 +21,8 @@ app.use('/static', express.static(__dirname + '/../static', {
 app.use('/', homepage);
 app.use('/contacts', contacts);
 app.use('/photo-gallery', photoGallery);
+app.use('/who-we-are', whoWeAre);
+app.use('/artists', artists);
 //
 const PORT = process.env.PORT || 5000;
 
