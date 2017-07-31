@@ -50,6 +50,18 @@
   height: 0;
   background: white;
 }
+.line-effect.brick-red .line-2 i,
+.line-effect.brick-red .line-4 i,
+.line-effect.brick-red .line-3 i,
+.line-effect.brick-red .line-1 i {
+  background: #C71F49;
+}
+.line-effect.tan .line-2 i,
+.line-effect.tan .line-4 i,
+.line-effect.tan .line-3 i,
+.line-effect.tan .line-1 i {
+  background: #CCA684;
+}
 .line-1,
 .line-3 {
   width: 100%;

@@ -192,5 +192,6 @@ extend ' .animated' has no matches
   }
   .menu__item {
     font-size: 24px;
+    padding: 10px 0 10px 40px;
   }
 }

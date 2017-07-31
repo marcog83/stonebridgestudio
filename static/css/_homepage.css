@@ -30,15 +30,43 @@
   font-family: "Raleway";
 }
 .homepage .posts-ctr {
-  margin-top: 30px;
+  padding: 50px 0;
+  background: rgba(204, 166, 132, 0.1);
+  margin: 50px 0 0;
 }
 .homepage .posts-ctr .btn-ctr {
   text-align: center;
   margin: 20px 0;
 }
+.homepage .last-artists {
+  display: flex;
+  justify-content: space-between;
+}
+.homepage .last-artists-ctr {
+  margin-top: 50px;
+}
+.homepage .last-artists-ctr .btn-ctr {
+  text-align: center;
+  margin-top: 20px;
+}
+.homepage .last-artists-title {
+  margin-bottom: 30px;
+  font-size: 30px;
+  font-weight: bold;
+}
 @media (max-width: 767px) {
   .homepage .visual__text {
     padding: 35px 0;
     font-size: 40px;
+  }
+  .homepage .last-artists {
+    display: block;
+  }
+  .homepage .last-artists-ctr {
+    margin-top: 30px;
+  }
+  .homepage .posts-ctr {
+    padding: 30px 0;
+    margin: 30px 0 0;
   }
 }

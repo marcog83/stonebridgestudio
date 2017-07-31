@@ -1,4 +1,5 @@
 @import "_variables";
+
 .line-1 i, .line-3 i {
   display: block;
   position: absolute;
@@ -60,6 +61,20 @@
   width: 100%;
   height: 0;
   background: white;
+
+}
+
+.line-effect{
+  &.brick-red{
+    .line-2 i, .line-4 i,.line-3 i, .line-1 i{
+      background: @brick-red;
+    }
+  }
+  &.tan{
+    .line-2 i, .line-4 i,.line-3 i, .line-1 i{
+      background: @tan;
+    }
+  }
 }
 
 .line-1, .line-3 {

@@ -85,12 +85,15 @@
   overflow: hidden;
 }
 .posts-title {
-  margin-bottom: 30px;
+  margin-bottom: 50px;
   font-size: 30px;
   font-weight: bold;
 }
 @media (max-width: 767px) {
   .posts {
     column-count: 2;
+  }
+  .posts-title {
+    margin-bottom: 30px;
   }
 }

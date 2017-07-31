@@ -153,6 +153,7 @@ table {
   color: #1B0617;
   font-weight: bold;
   transition: color 0.4s ease-out;
+  background: rgba(204, 166, 132, 0.2);
 }
 .btn.line-effect i {
   background: #C71F49;
@@ -211,6 +212,18 @@ table {
   width: 100%;
   height: 0;
   background: white;
+}
+.line-effect.brick-red .line-2 i,
+.line-effect.brick-red .line-4 i,
+.line-effect.brick-red .line-3 i,
+.line-effect.brick-red .line-1 i {
+  background: #C71F49;
+}
+.line-effect.tan .line-2 i,
+.line-effect.tan .line-4 i,
+.line-effect.tan .line-3 i,
+.line-effect.tan .line-1 i {
+  background: #CCA684;
 }
 .line-1,
 .line-3 {
@@ -445,6 +458,7 @@ table {
   }
   .menu__item {
     font-size: 24px;
+    padding: 10px 0 10px 40px;
   }
 }
 .homepage__visual {
@@ -479,16 +493,44 @@ table {
   font-family: "Raleway";
 }
 .homepage .posts-ctr {
-  margin-top: 30px;
+  padding: 50px 0;
+  background: rgba(204, 166, 132, 0.1);
+  margin: 50px 0 0;
 }
 .homepage .posts-ctr .btn-ctr {
   text-align: center;
   margin: 20px 0;
 }
+.homepage .last-artists {
+  display: flex;
+  justify-content: space-between;
+}
+.homepage .last-artists-ctr {
+  margin-top: 50px;
+}
+.homepage .last-artists-ctr .btn-ctr {
+  text-align: center;
+  margin-top: 20px;
+}
+.homepage .last-artists-title {
+  margin-bottom: 30px;
+  font-size: 30px;
+  font-weight: bold;
+}
 @media (max-width: 767px) {
   .homepage .visual__text {
     padding: 35px 0;
     font-size: 40px;
+  }
+  .homepage .last-artists {
+    display: block;
+  }
+  .homepage .last-artists-ctr {
+    margin-top: 30px;
+  }
+  .homepage .posts-ctr {
+    padding: 30px 0;
+    margin: 30px 0 0;
   }
 }
 .post {
@@ -578,7 +620,7 @@ table {
   overflow: hidden;
 }
 .posts-title {
-  margin-bottom: 30px;
+  margin-bottom: 50px;
   font-size: 30px;
   font-weight: bold;
 }
@@ -586,11 +628,13 @@ table {
   .posts {
     column-count: 2;
   }
+  .posts-title {
+    margin-bottom: 30px;
+  }
 }
 .footer {
   background: #422030;
   height: 300px;
-  margin-top: 50px;
 }
 .footer .buttons {
   display: flex;
@@ -786,6 +830,40 @@ table {
   height: 30px;
   fill: #422030;
 }
+.artist-thumb {
+  flex-grow: 1;
+  max-width: 32.5%;
+}
+.artist-thumb:hover .artist__image {
+  filter: saturate(1);
+}
+.artist__name {
+  margin: 20px 0 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 20px;
+  font-family: "Raleway";
+}
+.artist__image {
+  width: 100%;
+  height: 300px;
+  background-size: cover;
+  filter: saturate(0);
+  transition: all .5s;
+}
+.artist__description {
+  line-height: 1.2;
+  height: 2.4em;
+}
+@media (max-width: 767px) {
+  .artist-thumb {
+    max-width: 100%;
+    margin-bottom: 60px;
+  }
+  .artist-thumb:last-child {
+    margin-bottom: 0;
+  }
+}
 body,
 html {
   font-family: 'Open Sans', sans-serif;
@@ -794,6 +872,7 @@ html {
 }
 a {
   text-decoration: none;
+  color: #1B0617;
 }
 .content-wrapper {
   max-width: 1306px;
@@ -804,4 +883,24 @@ a {
   position: relative;
   z-index: 0;
   padding-top: 54px;
+}
+.empty {
+  height: calc(100vh - 54px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.empty p {
+  font-size: 55px;
+  text-transform: uppercase;
+  font-family: "Raleway";
+  font-weight: bold;
+}
+@media (max-width: 767px) {
+  .content-wrapper {
+    padding: 0 7px;
+  }
+  .empty p {
+    font-size: 23px;
+  }
 }

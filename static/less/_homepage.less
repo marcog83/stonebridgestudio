@@ -1,3 +1,4 @@
+@import "_variables";
 .homepage {
   &__visual {
     background: url("/static/img/bg.jpg") 50% 50% no-repeat;
@@ -19,7 +20,7 @@
       left: 0;
       z-index: 0;
     }
-    .content-wrapper{
+    .content-wrapper {
       position: relative;
       z-index: 1;
       width: 100%;
@@ -33,11 +34,31 @@
     font-family: "Raleway";
   }
   .posts-ctr {
-    margin-top: 30px;
+    padding: 50px 0;
+    background: fade(@tan,10);
+    margin: 50px 0 0;
     .btn-ctr {
       text-align: center;
       margin: 20px 0;
     }
+  }
+  .last-artists {
+    display: flex;
+    justify-content: space-between;
+    &-ctr {
+      margin-top: 50px;
+      .btn-ctr {
+        text-align: center;
+        margin-top: 20px;
+
+      }
+    }
+    &-title{
+      margin-bottom: 30px;
+      font-size: 30px;
+      font-weight: bold;
+    }
+
   }
 }
 
@@ -49,5 +70,17 @@
       font-size: 40px;
 
     }
+    .last-artists{
+      display: block;
+      &-ctr{
+        margin-top: 30px;
+      }
+    }
+    .posts-ctr {
+      padding: 30px 0;
+      margin: 30px 0 0;
+
+    }
+
   }
 }

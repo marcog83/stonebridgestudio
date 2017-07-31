@@ -1,0 +1,43 @@
+.artist {
+
+  &-thumb {
+    flex-grow: 1;
+    max-width: 32.5%;
+    &:hover {
+      .artist__image {
+        filter: saturate(1);
+      }
+    }
+  }
+  &__name {
+    margin: 20px 0 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-family: "Raleway";
+  }
+  &__image {
+    width: 100%;
+    height: 300px;
+    background-size: cover;
+    filter: saturate(0);
+    transition: all .5s;
+
+  }
+  &__description {
+    line-height: 1.2;
+    height: 2.4em;
+  }
+}
+@media (max-width: 767px) {
+  .artist{
+    &-thumb {
+
+      max-width: 100%;
+      margin-bottom: 60px;
+      &:last-child{
+        margin-bottom: 0;
+      }
+    }
+  }
+}
