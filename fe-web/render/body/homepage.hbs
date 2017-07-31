@@ -1,15 +1,37 @@
 <div class="homepage">
     <div class="homepage__visual">
+        <div class="content-wrapper">
         <div class="visual__text">
             <p>This place got something</p>
         </div>
+        </div>
 
     </div>
-    <div class="posts">
 
-        {{#each posts}}
-            {{> post}}
-        {{/each}}
+    <div class="posts-ctr">
+        <div class="content-wrapper">
+            <h2 class="title posts-title">
+                @Stonebridgerecords
+            </h2>
+        </div>
+
+        <div class="posts">
+
+            {{#each posts}}
+                {{> post}}
+            {{/each}}
+
+        </div>
+        <div class="btn-ctr">
+
+            <a href="/posts" class="btn line-effect">
+                <div class="line-1"><i></i></div>
+                <div class="line-2"><i></i></div>
+                <div class="line-3"><i></i></div>
+                <div class="line-4"><i></i></div>
+                <p>MOSTRA ALTRI</p>
+            </a>
+        </div>
     </div>
     <div class="post-image-zoomed">
         <div class="post-image-zoomed__text-panel">

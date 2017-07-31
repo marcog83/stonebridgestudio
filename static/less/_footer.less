@@ -5,9 +5,23 @@
   .buttons {
     display: flex;
     justify-content: flex-end;
-    padding: 20px;
-  }
+    padding: 13px;
 
+    align-items: flex-end;
+  }
+  .footer-button {
+
+    text-align: right;
+    &.text-only{
+      margin: 0 10px;
+    }
+    a {
+      width: auto;
+      background: transparent;
+      color: white;
+      font-size: 12px;
+    }
+  }
   .footer-social-button a {
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -24,10 +38,23 @@
     transition: background .5s ease-out;
     margin: 0 10px;
   }
-  .footer-social-button.email a{
-    width: auto;
-    background: transparent;
-    color: white;
-    font-size: 12px;
+  .social-buttons{
+    display: flex;
+    justify-content: flex-end;
+    padding: 0;
+    margin-top: 10px;
   }
 }
+ @media (max-width:767px) {
+   .footer{
+     .buttons{
+       display: block;
+     }
+     &-button{
+       padding: 5px 0;
+     }
+     .social-buttons{
+        margin-top: 10px;
+     }
+   }
+ }

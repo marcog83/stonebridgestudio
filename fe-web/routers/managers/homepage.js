@@ -9,7 +9,7 @@ exports.getData = () => {
                 title: "Homepage | Stonebridge Studio"
                 , posts: posts.filter(({full_picture, message}) => {
                     return full_picture && message
-                }).slice(0, 30)
+                }).slice(0, 5)
             }
         }
     })
