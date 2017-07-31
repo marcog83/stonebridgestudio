@@ -10,7 +10,7 @@
   height: 1px;
   width: 3px;
   display: inline-block;
-  background-color: #ffffd2;
+  background-color: #CCA684;
   bottom: 0;
   position: absolute;
   -webkit-animation-duration: 500ms;
@@ -106,13 +106,13 @@
   position: fixed;
   width: 100%;
   z-index: 1;
-  background: #463c44;
+  background: #422030;
   display: flex;
   justify-content: center;
 }
 .header .text-ctr {
   font-size: 20px;
-  color: white;
+  color: #CCA684;
   text-transform: uppercase;
 }
 .header .text-ctr h1 {

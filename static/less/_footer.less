@@ -1,5 +1,6 @@
+@import "_variables";
 .footer {
-  background: #463c44;
+  background:@dark-olive-green;
   height: 300px;
   margin-top: 50px;
   .buttons {
@@ -18,8 +19,12 @@
     a {
       width: auto;
       background: transparent;
-      color: white;
+      color: @tan;
       font-size: 12px;
+      transition: color .4s ease-out;
+      &:hover{
+        color: @dim-gray;
+      }
     }
   }
   .footer-social-button a {
@@ -34,9 +39,12 @@
     -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center;
-    background: white;
+    background: @tan;
     transition: background .5s ease-out;
     margin: 0 10px;
+    &:hover{
+      background: @dim-gray;
+    }
   }
   .social-buttons{
     display: flex;

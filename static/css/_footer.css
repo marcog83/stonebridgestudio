@@ -1,5 +1,5 @@
 .footer {
-  background: #463c44;
+  background: #422030;
   height: 300px;
   margin-top: 50px;
 }
@@ -18,8 +18,12 @@
 .footer .footer-button a {
   width: auto;
   background: transparent;
-  color: white;
+  color: #CCA684;
   font-size: 12px;
+  transition: color 0.4s ease-out;
+}
+.footer .footer-button a:hover {
+  color: #8D615B;
 }
 .footer .footer-social-button a {
   display: -webkit-flex;
@@ -33,9 +37,12 @@
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  background: white;
+  background: #CCA684;
   transition: background 0.5s ease-out;
   margin: 0 10px;
+}
+.footer .footer-social-button a:hover {
+  background: #8D615B;
 }
 .footer .social-buttons {
   display: flex;

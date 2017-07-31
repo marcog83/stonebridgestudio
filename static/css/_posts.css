@@ -24,7 +24,7 @@
   font-size: 0;
 }
 .post:hover .post__image {
-  transform: scale(1.05);
+  transform: scale(1.02);
   filter: saturate(1);
 }
 .post:hover .post__text {
@@ -64,7 +64,7 @@
   width: 100%;
   background: rgba(0, 0, 0, 0.4);
   transform: translateY(100%);
-  transition: all 0.3s ease-out;
+  transition: all 0.5s ease-out;
 }
 .post__text p {
   max-height: 4.2em;
