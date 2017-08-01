@@ -2,6 +2,7 @@ const fs = require('fs');
 const mergeDeep = require('./merge-deep');
 const switchHelper = require('./switch-helper');
 const jsonHelper = require('./json-helper');
+const rawHelper = require('./raw-helper');
 var glob = require("glob");
 var path = require("path");
 var Handlebars = require("handlebars");
@@ -12,6 +13,7 @@ const INCLUDE_DIR = 'fe-web/render/include/';
 const BODY_DIR = `fe-web/render/body/`;
 switchHelper(Handlebars);
 jsonHelper(Handlebars);
+rawHelper(Handlebars);
 function getFile(filePath) {
     return new Promise(function (resolve, reject) {
         fs.readFile(filePath, function (err, content) {
@@ -60,19 +62,20 @@ function isObject(x) {
 module.exports = function (options) {
     const {pages} = options;
     const cache = {};
-    const includes = registerIncludes();
+
     return function engine(filePath, options, callback) { // define the template engine
         const key = this.name;
         const page = (pages[key] && isObject(pages[key])) ? pages[key] : {};
+        const includes = registerIncludes();
         const {layout = "index", body = key, data = key} = page;
         if (!cache[key]) {
             cache[key] = Promise.all([
                 getFile(`${LAYOUT_DIR}${layout}.hbs`)
                 , getFile(`${BODY_DIR}${body}.hbs`)
             ]).then(([layout, body]) => {
-                const precompiled = Handlebars.precompile(layout);
+                const precompiled =Handlebars.compile(layout)// Handlebars.precompile(layout);
                 return {
-                    template: Handlebars.template((new Function('return ' + precompiled))())
+                    template: precompiled//Handlebars.template((new Function('return ' + precompiled))())
                     , body
                 }
             });

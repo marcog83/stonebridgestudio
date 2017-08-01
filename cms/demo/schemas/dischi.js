@@ -8,9 +8,10 @@ module.exports = [
         , label: "Titolo Disco"
     }
     , {
-        type: "number"
+        type: "date"
         , name: "publication_date"
         , label: "Data di Pubblicazione"
+        , date_type: "month"
     }
     , {
         type: "repeatable"
@@ -18,6 +19,7 @@ module.exports = [
         , label: "Gruppo"
         , fields: [{
             type: "relation"
+            , name: "gruppi[]"
             , to: "gruppi"
             , label: "Gruppo"
         }]

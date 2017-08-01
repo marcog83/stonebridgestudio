@@ -3,7 +3,9 @@
  */
 !(function (factory) {
     if ('define' in this && define.amd) {
-        define(["handlebars"], factory);
+        define([], function(){
+            return factory
+        });
     } else {
         module.exports = factory;
     }

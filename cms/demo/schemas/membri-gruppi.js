@@ -11,6 +11,7 @@ module.exports = [
         type: "date"
         , name: "birth"
         , label: "Anno di nascita"
+        , date_type: "date"
     }
     , {
         type: "html"

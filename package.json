@@ -26,6 +26,8 @@
     "fb": "^2.0.0",
     "glob": "^7.1.2",
     "handlebars": "^4.0.10",
+    "requirejs": "^2.3.4",
+    "robojs": "^5.2.0",
     "spdy": "^3.4.7"
   },
   "devDependencies": {

@@ -1,14 +1,15 @@
-<div class="field">
-    <script data-json type="application/json">
+<div class="field" data-mediator="repeatable-field">
+    <span data-json type="application/json">
         {{{json fields}}}
-    </script>
+    </span>
     <fieldset>
         <legend>
-            <button>add</button>
+            <a href="#" class="js-add">add</a>
             <span>{{label}}</span>
-
         </legend>
+        <ul class="js-fields-ctr fields">
 
+        </ul>
 
     </fieldset>
 </div>

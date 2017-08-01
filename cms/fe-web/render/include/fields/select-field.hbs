@@ -1,7 +1,7 @@
 <div class="field">
     <fieldset>
         <legend>{{label}}</legend>
-        <select>
+        <select name="{{name}}" {{#multiple}}multiple{{/multiple}}>
             <option>select an option</option>
             {{#each options}}
                 <option value="{{value}}">{{label}}</option>
