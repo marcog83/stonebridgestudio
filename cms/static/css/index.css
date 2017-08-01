@@ -138,3 +138,37 @@ table {
 .content__actions {
   display: flex;
 }
+body,
+html {
+  font-family: 'Roboto', sans-serif;
+}
+.content-wrapper {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+fieldset {
+  background: lightcyan;
+  padding: 10px;
+}
+input[type=text] {
+  width: 100%;
+  display: block;
+  border: 0;
+  padding: 7px;
+  margin: 0;
+  box-sizing: border-box;
+  border-bottom: 1px solid silver;
+  background: lightcyan;
+  outline: none!important;
+}
+legend {
+  padding: 10px 0 0;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: gray;
+}
+legend span,
+legend button {
+  display: inline-block;
+  vertical-align: middle;
+}

@@ -1,6 +1,11 @@
 /**
  * Created by marcogobbi on 31/07/2017.
  */
+var Schemas = {
+    dischi: require("../../../demo/schemas/dischi")
+    , gruppi: require("../../../demo/schemas/gruppi")
+    , membro_gruppo: require("../../../demo/schemas/membri-gruppi")
+}
 function getData() {
     var data = {
         data: {
@@ -17,7 +22,7 @@ function getData() {
                 }
                 , {
                     name: "membro-gruppo"
-                    , _id: "membro-gruppo"
+                    , _id: "membro_gruppo"
                     , data: []
                 }
             ]
@@ -27,19 +32,12 @@ function getData() {
 }
 function setNew(contentId) {
     console.log(contentId);
-    const response= {
-        data:{
+    const response = {
+        data: {
             contentId,
-            fields: [
-                {
-                    "type": "text"
-                    , "label": "titolo"
-                    , "name": "titolo"
-                    , "value": "questo è un titolo"
-                }
-            ]
+            fields: Schemas[contentId]
         }
-    }
+    };
     return Promise.resolve(response);
 }
 function search(contentId) {
