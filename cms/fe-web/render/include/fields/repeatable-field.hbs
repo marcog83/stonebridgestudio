@@ -1,15 +1,15 @@
 <div class="field">
     <fieldset>
         <legend>
-            <button>add new</button>
+            <button>add</button>
             <span>{{label}}</span>
 
         </legend>
 
-        <!--<ul class="fields">-->
-            <!--{{#fields}}-->
-                <!--{{> field-builder this}}-->
-            <!--{{/fields}}-->
-        <!--</ul>-->
+        <ul class="fields">
+            {{#fields}}
+                {{> field-builder this}}
+            {{/fields}}
+        </ul>
     </fieldset>
 </div>
