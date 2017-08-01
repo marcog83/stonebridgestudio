@@ -1,9 +1,5 @@
 {
   "type": "relation",
   "label": "artista associato",
-  "value": [
-    {
-      "id": "id-relazione"
-    }
-  ]
+  "value":"id-relazione"
 }

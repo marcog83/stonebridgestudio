@@ -1,9 +1,17 @@
 {
-  "type": "select"
-  ,"label":"tipo di scelta"
-  ,"input":{
-    "type":"radio"//checkbox, select, radio
-    ,"multiple":true
+  "type": "select",
+  "label": "tipo di scelta",
+  "input": {
+    "type": "radio"  //checkbox, select, radio,
+    "multiple": true
   },
-  "value": [1]
+  "options": [
+    {
+      "value": "1",
+      "label": "LABEL"
+    }
+  ],
+  "value": [
+    1
+  ]
 }

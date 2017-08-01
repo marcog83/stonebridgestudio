@@ -1,0 +1,12 @@
+{
+  type: "repeatable",
+  name: "gruppi",
+  label: "Gruppo",
+  fields: [
+    {
+      type: "relation",
+      to: "gruppi",
+      label: "Gruppo"
+    }
+  ]
+}

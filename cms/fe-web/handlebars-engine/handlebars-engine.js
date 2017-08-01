@@ -1,6 +1,7 @@
 const fs = require('fs');
 const mergeDeep = require('./merge-deep');
 const switchHelper = require('./switch-helper');
+const jsonHelper = require('./json-helper');
 var glob = require("glob");
 var path = require("path");
 var Handlebars = require("handlebars");
@@ -10,6 +11,7 @@ const DATA_DIR = 'fe-web/render/data/';
 const INCLUDE_DIR = 'fe-web/render/include/';
 const BODY_DIR = `fe-web/render/body/`;
 switchHelper(Handlebars);
+jsonHelper(Handlebars);
 function getFile(filePath) {
     return new Promise(function (resolve, reject) {
         fs.readFile(filePath, function (err, content) {

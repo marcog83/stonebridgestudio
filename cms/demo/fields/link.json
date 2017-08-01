@@ -2,7 +2,7 @@
   "type": "link"
 ,"label": "link contatti"
  , "value": {
-    "type": "string",
+    "type": "text",
     "value": "http://link-to-page"
   }
 }
