@@ -7,7 +7,7 @@ var Schemas = {
     , membro_gruppo: require("./membri-gruppi")
 };
 module.exports = function (contentId) {
-    var schema = Schemas[contentId];
+    var schema = Schemas[contentId]();
 
     return schema;
 };

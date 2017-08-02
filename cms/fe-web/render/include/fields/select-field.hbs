@@ -1,10 +1,10 @@
 <div class="field">
     <fieldset>
         {{#if label}}<legend>{{label}}</legend>{{/if}}
-        <select name="{{name}}" {{#multiple}}multiple{{/multiple}}>
-            <option>select an option</option>
+        <select name="{{name}}">
+            <option value="" disabled>select an option</option>
             {{#each options}}
-                <option value="{{value}}">{{label}}</option>
+                <option value="{{value}}" {{#if selected}}selected{{/if}}>{{label}}</option>
             {{/each}}
         </select>
     </fieldset>

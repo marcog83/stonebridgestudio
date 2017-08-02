@@ -8,7 +8,14 @@
             <span>{{label}}</span>
         </legend>
         <div class="js-fields-ctr fields">
-
+            {{#if value}}
+                {{#value}}
+                    <div>
+                    {{> field-builder this}}
+                    <button class='js-delete'>DELETE</button>
+                    </div>
+                {{/value}}
+            {{/if}}
         </div>
 
     </fieldset>

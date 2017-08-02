@@ -29,10 +29,7 @@ function getData() {
 function setNew(contentId) {
     console.log(contentId);
     const response = {
-        data: {
-            contentId,
-            fields: Schemas(contentId)
-        }
+        data: Schemas(contentId)
     };
     return Promise.resolve(response);
 }
