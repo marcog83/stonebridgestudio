@@ -1,17 +1,22 @@
-body,html{
+@import (less) "typicons.css";
+
+body, html {
   font-family: 'Roboto', sans-serif;
 }
+
 .content-wrapper {
   max-width: 1280px;
   margin: 0 auto;
 }
+
 fieldset {
   background: lightcyan;
   padding: 10px;
 }
+
 select,
 textarea,
-input  {
+input {
   width: 100%;
   display: block;
   border: 0;
@@ -20,28 +25,58 @@ input  {
   box-sizing: border-box;
   border-bottom: 1px solid silver;
   background: lightcyan;
-  outline: none!important;
+  outline: none !important;
 }
+
 legend {
   padding: 10px 0 0;
   font-weight: 700;
   text-transform: uppercase;
   color: gray;
-   span,button {
+  span, button {
     display: inline-block;
     vertical-align: middle;
   }
+  a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    background: silver;
+    color: white;
+    border-radius: 50%;
+    font-size: 12px;
+  }
 }
-[data-json]{
-  display: none!important;
+
+[data-json] {
+  display: none !important;
 }
+
 .fields > div {
+  .js-delete {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    background: silver;
+    color: white;
+    border-radius: 50%;
+    font-size: 12px;
+    flex-grow: 1;
+    width: 22px;
+    height: 22px;
+    border: none;
+  }
   display: flex;
+  align-items: center;
 
 }
-.field{
+
+.field {
   width: 100%;
 }
-textarea{
+
+textarea {
   min-height: 150px;
 }

@@ -1,6 +1,6 @@
-module.exports = function(){
+module.exports = function () {
     return {
-        fields:[
+        fields: [
             {
                 type: "text"
                 , label: "Nome"
@@ -40,7 +40,7 @@ module.exports = function(){
             },
             {
                 type: "repeatable"
-                , label: "Aggiungi uno o più generi"
+                , label: "genere musicale"
                 , name: "genere"
                 , fields: [{
                 type: "text"
@@ -50,7 +50,7 @@ module.exports = function(){
             },
             {
                 type: "repeatable"
-                , label: "Aggiungi uno o più membri"
+                , label: "componente gruppo"
                 , name: "membri"
                 , fields: [{
                 type: "relation"
@@ -61,7 +61,7 @@ module.exports = function(){
             },
             {
                 type: "repeatable"
-                , label: "Aggiungi uno o più dischi"
+                , label: "dischi pubblicati"
                 , name: "dischi"
                 , fields: [{
                 type: "relation"
@@ -74,4 +74,4 @@ module.exports = function(){
 
         ]
     }
-}
+};

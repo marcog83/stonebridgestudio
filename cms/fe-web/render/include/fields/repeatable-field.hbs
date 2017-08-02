@@ -4,7 +4,9 @@
     </span>
     <fieldset>
         <legend>
-            <a href="javascript:void(0);" class="js-add">add</a>
+            <a href="javascript:void(0);" class="js-add">
+                <span class="typcn typcn-plus"></span>
+            </a>
             <span>{{label}}</span>
         </legend>
         <div class="js-fields-ctr fields">
@@ -12,7 +14,9 @@
                 {{#value}}
                     <div>
                     {{> field-builder this}}
-                    <button class='js-delete'>DELETE</button>
+                    <a href="javascript:void(0);" class='js-delete'>
+                        <span class="typcn typcn-minus"></span>
+                    </a>
                     </div>
                 {{/value}}
             {{/if}}

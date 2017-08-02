@@ -14,7 +14,7 @@ define(function (require) {
         Handlebars.registerPartial(name, node.innerHTML);
     });
     return function (data) {
-        var template = Handlebars.compile("{{#fields}} {{> field-builder this}}<button class='js-delete'>DELETE</button> {{/fields}}");
+        var template = Handlebars.compile("{{#fields}} {{> field-builder this}}<a href='javascript:void(0);' class='js-delete'> <span class='typcn typcn-minus'></span></a> {{/fields}}");
         return template(data)
     };
 });
