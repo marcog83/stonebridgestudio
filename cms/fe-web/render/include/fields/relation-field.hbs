@@ -1,8 +1,8 @@
-<div class="field">
+<div class="relation-field">
     <fieldset>
-        <legend>{{label}}</legend>
+        {{#if label}}<legend>{{label}}</legend>{{/if}}
         <select name="{{name}}">
-            <option value="456">select an option</option>
+            <option >select an option</option>
             {{#each options}}
                 <option value="{{value}}">{{label}}</option>
             {{/each}}

@@ -1,10 +1,11 @@
-<form name="newContent" method="post" action="/contents/save">
-<input type="hidden" name="contentId" value="{{contentId}}">
-<ul class="fields">
-    {{#fields}}
-        {{> field-builder this}}
-    {{/fields}}
+<form name="newContent" method="post" action="/contents/save" enctype="multipart/form-data">
+    <input type="hidden" name="contentId" value="{{contentId}}">
+    <div class="fields">
+        {{#fields}}
+            {{> field-builder this}}
+        {{/fields}}
 
-</ul>
-<button>SAVE</button>
-<a href="">BACK</a></form>
+    </div>
+    <button type="submit">SAVE</button>
+    <a href="">BACK</a>
+</form>

@@ -1,6 +1,6 @@
 <div class="field">
     <fieldset>
-        <legend>{{label}}</legend>
+        {{#if label}}<legend>{{label}}</legend>{{/if}}
         <textarea name="{{name}}">{{value}}</textarea>
     </fieldset>
 </div>

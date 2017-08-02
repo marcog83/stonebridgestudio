@@ -1,11 +1,7 @@
 /**
  * Created by marcogobbi on 31/07/2017.
  */
-var Schemas = {
-    dischi: require("../../../demo/schemas/dischi")
-    , gruppi: require("../../../demo/schemas/gruppi")
-    , membro_gruppo: require("../../../demo/schemas/membri-gruppi")
-}
+const Schemas = require("../../../demo/schemas/schemas");
 function getData() {
     var data = {
         data: {
@@ -35,7 +31,7 @@ function setNew(contentId) {
     const response = {
         data: {
             contentId,
-            fields: Schemas[contentId]
+            fields: Schemas(contentId)
         }
     };
     return Promise.resolve(response);
@@ -44,6 +40,20 @@ function search(contentId) {
     console.log(contentId)
 
 }
+function save(files, body) {
+
+    files.forEach(file => {
+        body[file.fieldname] = {
+            path: file.path
+            , mimetype: file.mimetype
+            , filename: file.filename
+        }
+    })
+    console.log(body);
+    console.log(files);
+return Promise.resolve(1)
+}
 exports.setNew = setNew;
 exports.search = search;
 exports.getData = getData;
+exports.save = save;

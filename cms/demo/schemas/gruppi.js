@@ -18,13 +18,13 @@ module.exports = [
         type: "document"
         , label: "Cover Image"
         , name: "coverImage"
-        , mimeTypes: ["image/*"]
+        , mimetype: "image/*"
     },
     {
         type: "document"
         , label: "Profile Image"
         , name: "profileImage"
-        , mimeTypes: ["image/*"]
+        , mimetype: "image/*"
     },
     {
         type: "text"
@@ -42,8 +42,8 @@ module.exports = [
         , name: "genere"
         , fields: [{
         type: "text"
-        , label: "Genere"
-        , name: "genere"
+        , label: ""
+        , name: "genere[]"
     }]
     },
     {
@@ -53,8 +53,8 @@ module.exports = [
         , fields: [{
         type: "relation"
         , to: "membro-gruppo"
-        , label: "membro"
-        , name: "membro"
+        , label: ""
+        , name: "membri[]"
     }]
     },
     {
@@ -64,8 +64,8 @@ module.exports = [
         , fields: [{
         type: "relation"
         , to: "dischi"
-        , label: "disco"
-        , name: "disco"
+        , label: ""
+        , name: "dischi[]"
     }]
     }
 

@@ -1,6 +1,6 @@
 <div class="field">
     <fieldset>
-        <legend>{{label}}</legend>
+        {{#if label}}<legend>{{label}}</legend>{{/if}}
         <input placeholder="{{label}}" name="{{name}}" type="text" value="{{value}}">
     </fieldset>
 </div>

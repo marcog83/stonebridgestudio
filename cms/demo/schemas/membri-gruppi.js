@@ -30,7 +30,7 @@ module.exports = [
         , fields: [{
             type: "relation"
             , name: "gruppo"
-            , label: "Gruppo"
+            , label: ""
         }]
     }
     , {
@@ -40,7 +40,7 @@ module.exports = [
         , fields: [{
             type: "text"
             , name: "strumento"
-            , label: "Strumento"
+            , label: ""
         }]
     }
 ];

@@ -150,7 +150,9 @@ fieldset {
   background: lightcyan;
   padding: 10px;
 }
-input[type=text] {
+select,
+textarea,
+input {
   width: 100%;
   display: block;
   border: 0;
@@ -174,4 +176,13 @@ legend button {
 }
 [data-json] {
   display: none!important;
+}
+.fields > div {
+  display: flex;
+}
+.field {
+  width: 100%;
+}
+textarea {
+  min-height: 150px;
 }
