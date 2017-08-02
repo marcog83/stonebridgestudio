@@ -2,6 +2,7 @@
  * Created by marcogobbi on 31/07/2017.
  */
 const Schemas = require("../../../demo/schemas/schemas");
+const contentsManager = require("../../../demo/contents/manager");
 function getData() {
     var data = {
         data: {
@@ -48,8 +49,18 @@ function save(files, body) {
     })
     console.log(body);
     console.log(files);
-return Promise.resolve(1)
+    return Promise.resolve(1)
 }
+
+
+function fromId(collectionId,entityId){
+    return new Promise(resolve=>{
+        resolve(contentsManager.fromId(collectionId,entityId))
+    })
+}
+
+
+exports.fromId = fromId;
 exports.setNew = setNew;
 exports.search = search;
 exports.getData = getData;

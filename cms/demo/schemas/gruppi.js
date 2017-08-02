@@ -1,5 +1,6 @@
 module.exports = function () {
     return {
+        contentId:"gruppi",
         fields: [
             {
                 type: "text"

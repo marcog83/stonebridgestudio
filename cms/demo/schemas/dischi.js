@@ -53,20 +53,7 @@ module.exports = function () {
                     , options: getRelation("gruppi")
 
                 }]
-                , value: [1, 2, 3].map(v => {
-                    return {
-                        type: "relation"
-                        , name: "gruppi[]"
-                        , to: "gruppi"
-                        , label: ""
-                        , options: getRelation("gruppi",v)
-                        , value: {
-                            value: v
-                            , label: "Chronics"
-                        }
 
-                    }
-                })
             }
         ]
     }

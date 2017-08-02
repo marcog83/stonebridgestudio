@@ -24,9 +24,9 @@ router.get('/', function (req, res) {
         res.render("contents", data);
     })
 });
-router.get('/:id', function (req, res) {
-    contents.getData().then(data => {
-        res.render("detail-contents", data);
+router.get('/new/:collectionId/:entityId', function (req, res) {
+    contents.fromId(req.params.collectionId,req.params.entityId).then(data => {
+        res.render("new-contents", data);
     })
 });
 router.get('/new/:id', function (req, res) {
@@ -42,7 +42,7 @@ router.get('/search/:id', function (req, res) {
 router.post("/save", upload.any(), function (req, res) {
     contents.save(req.files, req.body).then(contentId => {
         contentId = "contentId";
-        res.redirect(`/contents/${contentId}`);
+        res.redirect(`/contents/new/${req.body.contentId}/${contentId}`);
     });
 
 
