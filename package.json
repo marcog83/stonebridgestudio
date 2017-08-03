@@ -8,6 +8,7 @@
     "watch-css": "catw -w 'static/less/**/*.less' -c 'npm run build-css'",
     "build-css-prod": "postcss  static/css/index.css --use autoprefixer --autoprefixer.browsers '> 5%' -o static/css/index.css",
     "mongo-win": "cd mongo-db & \"C:/Program Files/MongoDB/Server/3.4/bin/mongod.exe\" --dbpath C:/Users/marcogobbi/WebstormProjects/stonebridgestudio/mongo-db"
+    ,"mongo-win-office": "cd mongo-db & \"C:/Program Files/MongoDB/Server/3.4/bin/mongod.exe\" --dbpath C:/workspace/experiments/stonebridgestudio/mongo-db"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,7 @@
     "fb": "^2.0.0",
     "glob": "^7.1.2",
     "handlebars": "^4.0.10",
+    "mongodb": "^2.2.30",
     "multer": "^1.3.0",
     "requirejs": "^2.3.4",
     "robojs": "^5.2.0",

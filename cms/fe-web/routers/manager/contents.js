@@ -70,30 +70,36 @@ const MembriGruppo = require("../../entities/MembriGruppo");
 // exports.getData = getData;
 // exports.save = save;
 
-
+function mapResponse(entityId, recordId) {
+    return record => {
+        const fields = Object.keys(record).map(key => record[key]);
+        return {
+            entityId
+            , recordId
+            , fields
+        }
+    }
+}
 module.exports = class ContentsManager {
     constructor() {
         this._entities = [
-            new Gruppi()
-            , new MembriGruppo()
-            , new Dischi()
+            {name: "GRUPPI", entity: new Gruppi()}
+            , {name: "MEMBRI GRUPPI", entity: new MembriGruppo()}
+            , {name: "DISCHI", entity: new Dischi()}
+
         ];
     }
 
-    fromId() {
-
+    fromId(entityId, recordId) {
+        console.log(entityId);
+        const entity = this._entities.filter(({entity}) => entity.id === entityId)[0].entity;
+        return entity.findById(recordId).then(mapResponse(entityId, recordId));
     }
 
     create(entityId) {
         console.log(entityId);
-        const entity = this._entities.filter(ent => ent.id === entityId)[0];
-        return entity.schema().then(_schema => {
-            const fields = Object.keys(_schema).map(key => _schema[key]);
-            return {
-                entityId
-                , fields
-            }
-        });
+        const entity = this._entities.filter(({entity}) => entity.id === entityId)[0].entity;
+        return entity.schema().then(mapResponse(entityId));
 
     }
 
@@ -103,7 +109,9 @@ module.exports = class ContentsManager {
 
     get entities() {
 
-        return this._entities;
+        return this._entities.map(({entity, name}) => {
+            return Object.assign({}, entity, {name});
+        });
     }
 
     save(files, body) {

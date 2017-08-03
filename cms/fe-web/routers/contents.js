@@ -30,7 +30,8 @@ router.get('/', function (req, res) {
 });
 router.get('/:entityId/:recordId', function (req, res) {
     contentsManager.fromId(req.params.entityId, req.params.recordId).then(data => {
-        res.render("new-contents", data);
+
+        res.render("new-contents", {data});
     })
 });
 router.get('/:entityId', function (req, res) {
@@ -46,7 +47,7 @@ router.get('/search/:id', function (req, res) {
 router.post("/save", upload.any(), function (req, res) {
     contentsManager.save(req.files, req.body).then(recordId => {
 
-        res.redirect(`/contents/new/${req.body.entityId}/${recordId}`);
+        res.redirect(`/contents/${req.body.entityId}/${recordId}`);
     });
 
 

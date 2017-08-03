@@ -1,5 +1,8 @@
 <form name="newContent" method="post" action="/contents/save" enctype="multipart/form-data">
     <input type="hidden" name="entityId" value="{{entityId}}">
+    {{#if recordId}}
+        <input type="hidden" name="recordId" value="{{recordId}}">
+    {{/if}}
     <div class="fields">
         {{#fields}}
             {{> field-builder this}}
