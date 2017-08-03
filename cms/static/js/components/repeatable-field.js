@@ -12,7 +12,7 @@ define(function (require) {
         var fields = node.querySelector("[data-json]").innerHTML;
         var container = node.querySelector(".js-fields-ctr");
         try {
-            fields = JSON.parse(fields)
+            fields = [JSON.parse(fields)]
         } catch (e) {
             fields = [];
         }

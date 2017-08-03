@@ -2,12 +2,12 @@
     <h2 class="entity__name">{{name}}</h2>
     <ul class="content__actions">
         <li>
-            <a href="/contents/new/{{_id}}">
+            <a href="/contents/{{id}}">
                 add new
             </a>
         </li>
         <li>
-            <a href="/contents/search/{{_id}}">
+            <a href="/contents/search/{{id}}">
                 search
             </a>
         </li>
@@ -15,7 +15,7 @@
     <ul class="entities">
         {{#each data}}
             <li class="entity">
-                <a href="/contents/{{id}}" class="entity__item">
+                <a href="/contents/{{@../id}}/{{id}}" class="entity__item">
                     {{name}}
                 </a>
                 <ul class="entity__item content__actions entity__actions">

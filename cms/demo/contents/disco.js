@@ -63,10 +63,7 @@ module.exports = {
                     , to: "gruppi"
                     , label: ""
                     , options: getRelation("gruppi", v)
-                    , value: {
-                        value: v
-                        , label: "Chronics"
-                    }
+                    , value: 5432
 
                 }
             })

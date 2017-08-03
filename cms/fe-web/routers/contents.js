@@ -1,9 +1,10 @@
 const express = require('express');
-const contents = require('./manager/contents');
+const ContentsManager = require('./manager/contents');
 var multer = require('multer');
 var path = require('path');
 var crypto = require('crypto');
 
+const contentsManager = new ContentsManager();
 
 var storage = multer.diskStorage({
     destination: './uploads/',
@@ -16,33 +17,36 @@ var storage = multer.diskStorage({
     }
 })
 
-var upload = multer({storage: storage})
+var upload = multer({storage: storage});
 const router = express.Router();
 // define the detail route
 router.get('/', function (req, res) {
-    contents.getData().then(data => {
-        res.render("contents", data);
-    })
+    res.render("contents", {
+        data: {
+            entities: contentsManager.entities
+        }
+    });
+
 });
-router.get('/new/:collectionId/:entityId', function (req, res) {
-    contents.fromId(req.params.collectionId,req.params.entityId).then(data => {
+router.get('/:entityId/:recordId', function (req, res) {
+    contentsManager.fromId(req.params.entityId, req.params.recordId).then(data => {
         res.render("new-contents", data);
     })
 });
-router.get('/new/:id', function (req, res) {
-    contents.setNew(req.params.id).then(data => {
-        res.render("new-contents", data);
+router.get('/:entityId', function (req, res) {
+    contentsManager.create(req.params.entityId).then(data => {
+        res.render("new-contents", {data});
     })
 });
 router.get('/search/:id', function (req, res) {
-    contents.search(req.params.id).then(data => {
+    contentsManager.search(req.params.id).then(data => {
         res.render("search-contents", data);
     })
 });
 router.post("/save", upload.any(), function (req, res) {
-    contents.save(req.files, req.body).then(contentId => {
-        contentId = "contentId";
-        res.redirect(`/contents/new/${req.body.contentId}/${contentId}`);
+    contentsManager.save(req.files, req.body).then(recordId => {
+
+        res.redirect(`/contents/new/${req.body.entityId}/${recordId}`);
     });
 
 

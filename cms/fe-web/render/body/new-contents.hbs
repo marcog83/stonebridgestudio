@@ -1,5 +1,5 @@
 <form name="newContent" method="post" action="/contents/save" enctype="multipart/form-data">
-    <input type="hidden" name="contentId" value="{{contentId}}">
+    <input type="hidden" name="entityId" value="{{entityId}}">
     <div class="fields">
         {{#fields}}
             {{> field-builder this}}
