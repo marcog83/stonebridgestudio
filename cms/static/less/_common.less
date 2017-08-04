@@ -80,10 +80,43 @@ legend {
 textarea {
   min-height: 150px;
 }
-.document-ctr{
+
+.document-ctr {
   display: flex;
   align-items: center;
-  img{
-    width:200px;
+  img {
+    width: 200px;
   }
+}
+
+.relation-field {
+  display: flex;
+  align-items: center;
+  margin-right: 5px;
+
+  .detail-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    background: silver;
+    color: white;
+    border-radius: 50%;
+    font-size: 12px;
+    flex-grow: 1;
+    width: 22px;
+    height: 22px;
+    border: none;
+  }
+}
+
+.hidden {
+  display: none !important;
+}
+.disabled{
+  opacity: 0.5;
+  pointer-events: none;
+}
+.invisible {
+  visibility: hidden !important;
 }

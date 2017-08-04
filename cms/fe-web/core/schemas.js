@@ -118,7 +118,7 @@ exports.RelationSchema = class  extends Schema {
         return this.toEntity.findAll()
             .then(response => {
                 return response.map(record => {
-                    console.log(record);
+
                     return {
                         label: record.name.value || ""
                         , value: record._id

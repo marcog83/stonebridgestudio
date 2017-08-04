@@ -1,24 +1,28 @@
-<li class="content">
-    <h2 class="entity__name">{{name}}</h2>
-    <ul class="content__actions">
-        <li>
-            <a href="/contents/{{id}}">
-                add new
-            </a>
-        </li>
-        <li>
-            <a href="/contents/search/{{id}}">
-                search
-            </a>
-        </li>
-    </ul>
-    <ul class="entities">
+<li class="entity">
+    <div class="entity__header">
+
+        <ul class="entity__actions">
+            <li class="entity__action">
+                <a href="/contents/{{id}}" class="entity__action--btn">
+                    <span class="typcn typcn-plus"></span>
+                </a>
+            </li>
+            <li class="entity__action">
+                <a href="/contents/search/{{id}}" class="entity__action--btn">
+                    <span class="typcn typcn-zoom"></span>
+                </a>
+            </li>
+        </ul>
+        <h2 class="entity__name">{{name}}</h2>
+    </div>
+
+    <ul class="records">
         {{#each data}}
-            <li class="entity">
-                <a href="/contents/{{@../id}}/{{id}}" class="entity__item">
+            <li class="record">
+                <a href="/contents/{{@../id}}/{{id}}" class="record__item">
                     {{name}}
                 </a>
-                <ul class="entity__item content__actions entity__actions">
+                <ul class="record__item entity__actions">
                     <li>
                         <button>edit</button>
                     </li>
