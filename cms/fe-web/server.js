@@ -15,7 +15,10 @@ app.use('/static', express.static(__dirname + '/../static', {
     maxAge: '5d'
     , etag: "strong"
 }));
-
+app.use('/uploads', express.static(__dirname + '/../uploads', {
+    maxAge: '5d'
+    , etag: "strong"
+}));
 app.use('/', index);
 app.use('/contents', contents);
 

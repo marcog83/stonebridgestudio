@@ -1,6 +1,10 @@
 <div class="field">
     <fieldset>
-        {{#if label}}<legend>{{label}}</legend>{{/if}}
-        <input type="file" name="{{name}}" value="{{value}}" accept="{{mimetype}}">
+        {{#if label}}
+            <legend>{{label}}</legend>{{/if}}
+        <div class="document-ctr">
+            <img src="/{{value}}">
+            <input type="file" name="{{name}}" accept="{{mimetype}}">
+        </div>
     </fieldset>
 </div>

@@ -5,6 +5,8 @@ const dbManager = require("./db-manager");
 class Entity {
     constructor(id) {
         this.id = id;
+        this._schema = {};
+
     }
 
     findAll() {
@@ -17,13 +19,13 @@ class Entity {
 
         return this.schema().then(_schema => {
             const promises = Object.keys(_schema).map(key => {
-                return _schema[key].mergeValue(record[key]);
+                return _schema[key].mergeValue( record[key]);
             });
             return Promise.all(promises).then(response => {
-                return response.reduce((prev, record) => {
-                    prev[record.name] = record;
+                return response.reduce((prev, _record) => {
+                    prev[_record.name] = _record;
                     return prev;
-                }, {});
+                }, { _id:record._id.toString()});
             });
         })
 
@@ -34,7 +36,20 @@ class Entity {
     }
 
     schema() {
-        return Promise.resolve({})
+        const promises = Object.keys(this._schema).map(key => {
+            return this._schema[key].resolve().then(schema => {
+                return {
+                    key,
+                    schema
+                }
+            })
+        });
+        return Promise.all(promises).then(response => {
+            return response.reduce((prev, curr) => {
+                prev[curr.key] = curr.schema;
+                return prev;
+            }, {})
+        });
     }
 }
 

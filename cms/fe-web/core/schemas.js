@@ -22,6 +22,10 @@ class Schema {
         return Promise.resolve(Object.assign({}, this, {value}));
     }
 
+    resolve() {
+        return Promise.resolve(this);
+    }
+
     save(value) {
 //
     }
@@ -72,6 +76,10 @@ exports.RepeatableSchema = class  extends Schema {
         this.field.name = `${this.name}[]`;
     }
 
+    resolve() {
+        return this.field.resolve().then(_ => this);
+    }
+
     mergeValue(values) {
         let promises = [];
         if (values) {
@@ -96,6 +104,10 @@ exports.RelationSchema = class  extends Schema {
         this.options;//= this.getRelation();
     }
 
+    resolve() {
+        return this.getRelation().then(_ => this);
+    }
+
     mergeValue(value) {
         return this.toEntity.findById(value).then(value => {
             return Object.assign({}, this, {value});
@@ -109,7 +121,7 @@ exports.RelationSchema = class  extends Schema {
                     console.log(record);
                     return {
                         label: record.name.value || ""
-                        , id: record._id
+                        , value: record._id
                     };
                 })
             })

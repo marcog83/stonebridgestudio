@@ -1581,3 +1581,10 @@ legend a {
 textarea {
   min-height: 150px;
 }
+.document-ctr {
+  display: flex;
+  align-items: center;
+}
+.document-ctr img {
+  width: 200px;
+}
