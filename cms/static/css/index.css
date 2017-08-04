@@ -1549,6 +1549,9 @@ legend a {
   border-radius: 50%;
   font-size: 12px;
 }
+legend a:hover {
+  transform: scale(1.1);
+}
 [data-json] {
   display: none !important;
 }
@@ -1569,6 +1572,9 @@ legend a {
   width: 22px;
   height: 22px;
   border: none;
+}
+.fields--repeatable > div .js-delete:hover {
+  transform: scale(1.1);
 }
 .field {
   width: 100%;
@@ -1601,6 +1607,9 @@ textarea {
   width: 22px;
   height: 22px;
   border: none;
+}
+.relation-field .detail-btn:hover {
+  transform: scale(1.1);
 }
 .hidden {
   display: none !important;
@@ -1678,6 +1687,9 @@ textarea {
   font-size: 16px;
   flex-grow: 1;
   border: none;
+}
+.entity__action--btn:hover {
+  transform: scale(1.1);
 }
 .entity__action--btn.delete {
   background: indianred;

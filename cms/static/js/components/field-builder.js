@@ -17,7 +17,7 @@ define(function (require) {
         Handlebars.registerPartial(name, node.innerHTML);
     });
     return function (data) {
-        var template = Handlebars.compile("{{#fields}} {{> field-builder this}}<a href='javascript:void(0);' class='js-delete'> <span class='typcn typcn-minus'></span></a> {{/fields}}");
+        var template = Handlebars.compile("{{#fields}} {{> field-builder this}}<a href='javascript:void(0);' class='js-delete'> <span class='typcn typcn-trash'></span></a> {{/fields}}");
         return template(data)
     };
 });
