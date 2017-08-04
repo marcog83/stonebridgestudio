@@ -107,11 +107,25 @@ module.exports = class ContentsManager {
 
     }
 
-    get entities() {
-
-        return this._entities.map(({entity, name}) => {
-            return Object.assign({}, entity, {name});
+    entities() {
+        // const entities= this._entities.map(({entity, name}) => {
+        //     return   Object.assign({}, entity, {name});
+        // });
+        const promises = this._entities.map(({entity, name}) => {
+            return entity.findAll().then(records=>{
+                return Object.assign({}, entity, {name,records});
+            })
         });
+        return Promise.all(promises).then(entities=>{
+            return {
+                entities
+            }
+        }).catch(e=>{
+            console.log(e);
+            return {
+                entities:[]
+            }
+        })
     }
 
     save(files, body) {

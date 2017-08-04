@@ -21,11 +21,10 @@ var upload = multer({storage: storage});
 const router = express.Router();
 // define the detail route
 router.get('/', function (req, res) {
-    res.render("contents", {
-        data: {
-            entities: contentsManager.entities
-        }
-    });
+    contentsManager.entities().then(data=>{
+        res.render("contents", { data });
+    })
+
 
 });
 router.get('/:entityId/:recordId', function (req, res) {

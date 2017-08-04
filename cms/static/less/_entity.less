@@ -1,10 +1,10 @@
-.entity{
+.entity {
   padding: 20px 0;
   border-top: 1px silver solid;
-  &:last-child{
+  &:last-child {
     border-bottom: 1px silver solid;
   }
-  &__header{
+  &__header {
     display: flex;
 
   }
@@ -14,10 +14,10 @@
   }
   &__action {
     margin-right: 4px;
-    &s{
+    &s {
       display: flex;
     }
-    &--btn{
+    &--btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -33,4 +33,21 @@
     }
   }
 
+}
+
+.record {
+  display: flex;
+  //justify-content: space-between;
+  padding: 10px 20px 10px 55px;
+  &:first-child{
+    padding-top: 20px;
+  }
+  &:last-child {
+    padding-bottom: 0;
+  }
+  a {
+
+    text-decoration: none;
+    color: black;
+  }
 }

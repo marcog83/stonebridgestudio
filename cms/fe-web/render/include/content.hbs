@@ -17,19 +17,24 @@
     </div>
 
     <ul class="records hidden" data-accordion-expand>
-        {{#each data}}
+        {{#each records}}
             <li class="record">
-                <a href="/contents/{{@../id}}/{{id}}" class="record__item">
-                    {{name}}
-                </a>
                 <ul class="record__item entity__actions">
                     <li>
-                        <button>edit</button>
+                        <a href="/contents/{{../id}}/{{_id}}" class="record__item" title="Vai al dettaglio e modifica">
+                            <span class="typcn typcn-arrow-right-thick"></span>
+                        </a>
                     </li>
                     <li>
-                        <button>delete</button>
+                        <a href="/contents/delete/{{../id}}/{{_id}}" class="record__item" title="Elimina il record">
+                            <span class="typcn typcn-minus"></span>
+                        </a>
                     </li>
                 </ul>
+                <a href="/contents/{{../id}}/{{_id}}" class="record__item" title="Vai al dettaglio e modifica">
+                    {{name.value}}
+                </a>
+
             </li>
         {{/each}}
     </ul>
