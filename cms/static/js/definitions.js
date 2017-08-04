@@ -5,6 +5,7 @@ define(function () {
     return {
         "repeatable-field":"./components/repeatable-field"
        , "relation-field":"./components/relation-field"
+       , "document-field":"./components/document-field"
        , "menu-principale":"./components/menu-principale"
        , "accordion":"./components/accordion"
     };

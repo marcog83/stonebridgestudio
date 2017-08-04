@@ -1,12 +1,13 @@
 .entity {
-  padding: 20px 0;
+
   border-top: 1px silver solid;
   &:last-child {
     border-bottom: 1px silver solid;
   }
   &__header {
     display: flex;
-
+    align-items: center;
+    padding: 20px 0;
   }
   &__name {
     font-size: 25px;
@@ -25,25 +26,38 @@
       background: silver;
       color: white;
       border-radius: 50%;
-      font-size: 12px;
+      font-size: 16px;
       flex-grow: 1;
-      width: 22px;
-      height: 22px;
+
       border: none;
+      &.delete {
+        background: indianred;
+      }
+      &.edit {
+        background: mediumseagreen;
+      }
     }
   }
 
 }
 
+a.entity__action--btn.record__item {
+  margin-right: 5px;
+  color: white;
+}
+
 .record {
   display: flex;
-  //justify-content: space-between;
-  padding: 10px 20px 10px 55px;
-  &:first-child{
-    padding-top: 20px;
+  align-items: center;
+  padding: 10px 0;
+  &__item{
+
+    &.name{
+      margin-left:10px;
+    }
   }
-  &:last-child {
-    padding-bottom: 0;
+  &s {
+    padding: 0 0 0 60px;
   }
   a {
 

@@ -9,13 +9,13 @@
             </a>
             <span>{{label}}</span>
         </legend>
-        <div class="js-fields-ctr fields">
+        <div class="js-fields-ctr fields fields--repeatable">
             {{#if value}}
                 {{#value}}
                     <div>
                     {{> field-builder this}}
                     <a href="javascript:void(0);" class='js-delete' title="Elimina il record">
-                        <span class="typcn typcn-minus"></span>
+                        <span class="typcn typcn-trash"></span>
                     </a>
                     </div>
                 {{/value}}

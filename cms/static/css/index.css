@@ -1497,6 +1497,9 @@ table {
   content: '\e14f';
   /* '' */
 }
+body {
+  overflow-y: scroll;
+}
 body,
 html {
   font-family: 'Roboto', sans-serif;
@@ -1504,6 +1507,9 @@ html {
 .content-wrapper {
   max-width: 1280px;
   margin: 0 auto;
+}
+.body-ctr {
+  padding: 0 16px;
 }
 fieldset {
   background: lightcyan;
@@ -1546,11 +1552,11 @@ legend a {
 [data-json] {
   display: none !important;
 }
-.fields > div {
+.fields--repeatable > div {
   display: flex;
   align-items: center;
 }
-.fields > div .js-delete {
+.fields--repeatable > div .js-delete {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1610,18 +1616,15 @@ textarea {
   cursor: pointer;
   user-select: none;
 }
-.contents-title {
-  padding: 20px 48px;
-  font-size: 40px;
-}
 .menu {
   position: fixed;
   width: 150px;
   height: 100vh;
   background: silver;
   transform: translateX(-150px);
-  top: 0;
+  top: 68px;
   left: 0;
+  transition: transform 0.5s ease-out;
   z-index: 1;
   padding: 60px 20px 0;
 }
@@ -1630,19 +1633,20 @@ textarea {
 }
 .menu.opened {
   transform: translateX(0);
-  transition: all 0.5s ease-out;
 }
 .menu-trigger-btn {
-  position: relative;
+  position: fixed;
   z-index: 2;
   border: none;
   padding: 10px;
   border-radius: 50%;
   color: white;
   font-size: 14px;
+  margin: 16px;
+  top: 0;
+  left: 0;
 }
 .entity {
-  padding: 20px 0;
   border-top: 1px silver solid;
 }
 .entity:last-child {
@@ -1650,6 +1654,8 @@ textarea {
 }
 .entity__header {
   display: flex;
+  align-items: center;
+  padding: 20px 0;
 }
 .entity__name {
   font-size: 25px;
@@ -1669,23 +1675,51 @@ textarea {
   background: silver;
   color: white;
   border-radius: 50%;
-  font-size: 12px;
+  font-size: 16px;
   flex-grow: 1;
-  width: 22px;
-  height: 22px;
   border: none;
+}
+.entity__action--btn.delete {
+  background: indianred;
+}
+.entity__action--btn.edit {
+  background: mediumseagreen;
+}
+a.entity__action--btn.record__item {
+  margin-right: 5px;
+  color: white;
 }
 .record {
   display: flex;
-  padding: 10px 20px 10px 55px;
+  align-items: center;
+  padding: 10px 0;
 }
-.record:first-child {
-  padding-top: 20px;
+.record__item.name {
+  margin-left: 10px;
 }
-.record:last-child {
-  padding-bottom: 0;
+.records {
+  padding: 0 0 0 60px;
 }
 .record a {
   text-decoration: none;
   color: black;
+}
+.contents {
+  padding-top: 68px;
+}
+.contents-title {
+  font-size: 28px;
+  font-weight: bold;
+}
+.contents__header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 20px 20px 65px;
+  border-bottom: 1px silver solid;
 }

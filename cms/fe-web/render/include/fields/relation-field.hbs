@@ -1,6 +1,6 @@
-<div class="relation-field" data-mediator="relation-field">
+<div class="field relation-field" data-mediator="relation-field">
     {{#if label}}<legend>{{label}}</legend>{{/if}}
-    <select name="{{name}}" class="js-select" >
+    <select name="{{name}}" class="js-select" autocomplete="off">
         <option value="">select an option</option>
 
         {{#each options}}
@@ -9,6 +9,6 @@
         {{/each}}
     </select>
     <a href="javascript:void(0);" title="Vai al dettaglio" data-pattern-url="/contents/{{toEntity.id}}/" class="detail-btn js-detail-btn">
-        <span class="typcn typcn-arrow-right-thick"></span>
+        <span class="  typcn typcn-edit"></span>
     </a>
 </div>

@@ -7,8 +7,8 @@
     "build-css": "lessc static/less/index.less > static/css/index.css",
     "watch-css": "catw -w 'static/less/**/*.less' -c 'npm run build-css'",
     "build-css-prod": "postcss  static/css/index.css --use autoprefixer --autoprefixer.browsers '> 5%' -o static/css/index.css",
-    "mongo-win": "cd mongo-db & \"C:/Program Files/MongoDB/Server/3.4/bin/mongod.exe\" --dbpath C:/Users/marcogobbi/WebstormProjects/stonebridgestudio/mongo-db"
-    ,"mongo-win-office": "cd mongo-db & \"C:/Program Files/MongoDB/Server/3.4/bin/mongod.exe\" --dbpath C:/workspace/experiments/stonebridgestudio/mongo-db"
+    "mongo-win": "cd mongo-db & \"C:/Program Files/MongoDB/Server/3.4/bin/mongod.exe\" --dbpath C:/Users/marcogobbi/WebstormProjects/stonebridgestudio/mongo-db",
+    "mongo-win-office": "cd mongo-db & \"C:/Program Files/MongoDB/Server/3.4/bin/mongod.exe\" --dbpath C:/workspace/experiments/stonebridgestudio/mongo-db"
   },
   "repository": {
     "type": "git",

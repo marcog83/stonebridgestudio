@@ -18,7 +18,7 @@ module.exports = class MembriGruppo extends Entity {
                 , name: "biography"
             })
             , birth: new DateSchema({
-                name: "publication_date"
+                name: "birth"
                 , label: "Anno di nascita"
             })
             , profileImage: new DocumentSchema({

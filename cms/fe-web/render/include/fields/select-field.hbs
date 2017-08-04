@@ -1,7 +1,7 @@
 <div class="field">
     <fieldset>
         {{#if label}}<legend>{{label}}</legend>{{/if}}
-        <select name="{{name}}">
+        <select name="{{name}}" autocomplete="off">
             <option value="" disabled>select an option</option>
             {{#each options}}
                 <option value="{{value}}" {{#if selected}}selected{{/if}}>{{label}}</option>

@@ -1,14 +1,21 @@
 <form name="newContent" method="post" action="/contents/save" enctype="multipart/form-data">
-    <input type="hidden" name="entityId" value="{{entityId}}">
-    {{#if recordId}}
-        <input type="hidden" name="recordId" value="{{recordId}}">
-    {{/if}}
-    <div class="fields">
-        {{#fields}}
-            {{> field-builder this}}
-        {{/fields}}
+    <header class="contents__header">
+        <h2 class="contents-title">{{name}}</h2>
+        <div class="actions">
+            <button type="submit" title="Salva le modifiche">SAVE</button>
+            <a href="/contents" title="torna ai contenuti">BACK</a>
+        </div>
+    </header>
+    <section class="contents">
+        <input type="hidden" name="entityId" value="{{entityId}}">
+        {{#if recordId}}
+            <input type="hidden" name="recordId" value="{{recordId}}">
+        {{/if}}
+        <div class="fields">
+            {{#fields}}
+                {{> field-builder this}}
+            {{/fields}}
 
-    </div>
-    <button type="submit" title="Salva le modifiche">SAVE</button>
-    <a href="/contents" title="torna ai contenuti">BACK</a>
+        </div>
+    </section>
 </form>

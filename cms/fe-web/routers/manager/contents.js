@@ -1,74 +1,10 @@
 /**
  * Created by marcogobbi on 31/07/2017.
  */
-const Schemas = require("../../../demo/schemas/schemas");
-const contentsManager = require("../../../demo/contents/manager");
 const dbManager = require("../../core/db-manager");
 const Gruppi = require("../../entities/Gruppi");
 const Dischi = require("../../entities/Dischi");
 const MembriGruppo = require("../../entities/MembriGruppo");
-// function getData() {
-//     var data = {
-//         data: {
-//             entities: [
-//                 {
-//                     name: "dischi"
-//                     , _id: "dischi"
-//                     , data: []
-//                 },
-//                 {
-//                     name: "gruppi"
-//                     , _id: "gruppi"
-//                     , data: []
-//                 }
-//                 , {
-//                     name: "membro-gruppo"
-//                     , _id: "membro_gruppo"
-//                     , data: []
-//                 }
-//             ]
-//         }
-//     };
-//     return Promise.resolve(data)
-// }
-// function setNew(contentId) {
-//     console.log(contentId);
-//     const response = {
-//         data: Schemas(contentId)
-//     };
-//     return Promise.resolve(response);
-// }
-// function search(contentId) {
-//     console.log(contentId)
-//
-// }
-// function save(files, body) {
-//
-//     files.forEach(file => {
-//         body[file.fieldname] = {
-//             path: file.path
-//             , mimetype: file.mimetype
-//             , filename: file.filename
-//         }
-//     });
-//     console.log(body);
-//     console.log(files);
-//     return Promise.resolve(1)
-// }
-//
-//
-// function fromId(collectionId, entityId) {
-//     return new Promise(resolve => {
-//         resolve(contentsManager.fromId(collectionId, entityId))
-//     })
-// }
-//
-//
-// exports.fromId = fromId;
-// exports.setNew = setNew;
-// exports.search = search;
-// exports.getData = getData;
-// exports.save = save;
 
 function mapResponse(entityId, recordId) {
     return record => {
@@ -92,8 +28,14 @@ module.exports = class ContentsManager {
 
     fromId(entityId, recordId) {
         console.log(entityId);
-        const entity = this._entities.filter(({entity}) => entity.id === entityId)[0].entity;
-        return entity.findById(recordId).then(mapResponse(entityId, recordId));
+        const item = this._entities.filter(({entity}) => entity.id === entityId)[0]
+        ;
+        return item.entity.findById(recordId)
+            .then(mapResponse(entityId, recordId))
+            .then(response => {
+                response.name = item.name;
+                return response;
+            })
     }
 
     create(entityId) {
@@ -108,22 +50,20 @@ module.exports = class ContentsManager {
     }
 
     entities() {
-        // const entities= this._entities.map(({entity, name}) => {
-        //     return   Object.assign({}, entity, {name});
-        // });
+
         const promises = this._entities.map(({entity, name}) => {
-            return entity.findAll().then(records=>{
-                return Object.assign({}, entity, {name,records});
+            return entity.findAll().then(records => {
+                return Object.assign({}, entity, {name, records});
             })
         });
-        return Promise.all(promises).then(entities=>{
+        return Promise.all(promises).then(entities => {
             return {
                 entities
             }
-        }).catch(e=>{
+        }).catch(e => {
             console.log(e);
             return {
-                entities:[]
+                entities: []
             }
         })
     }
