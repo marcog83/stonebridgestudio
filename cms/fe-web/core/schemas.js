@@ -19,6 +19,7 @@ class Schema {
     }
 
     mergeValue(value) {
+        this.value = value;
         return Promise.resolve(Object.assign({}, this, {value}));
     }
 
@@ -26,54 +27,86 @@ class Schema {
         return Promise.resolve(this);
     }
 
+    clone() {
+
+    }
+
     save(value) {
 //
     }
 }
-exports.TextSchema = class  extends Schema {
+exports.TextSchema = class TextSchema extends Schema {
     constructor({name, label} = {}) {
         super(name, label);
         this.type = TEXT_SCHEMA;
     }
+
+    clone() {
+        return new TextSchema(this);
+    }
 };
-exports.HtmlSchema = class  extends Schema {
+exports.HtmlSchema = class HtmlSchema extends Schema {
     constructor({name, label} = {}) {
         super(name, label);
         this.type = HTML_SCHEMA;
     }
+
+    clone() {
+        return new HtmlSchema(this);
+    }
 };
-exports.NumberSchema = class  extends Schema {
+exports.NumberSchema = class NumberSchema extends Schema {
     constructor({name, label} = {}) {
         super(name, label);
         this.type = NUMBER_SCHEMA;
     }
+
+    clone() {
+        return new NumberSchema(this);
+    }
 };
-exports.LinkSchema = class  extends Schema {
+exports.LinkSchema = class LinkSchema extends Schema {
     constructor({name, label} = {}) {
         super(name, label);
         this.type = LINK_SCHEMA;
     }
+
+    clone() {
+        return new LinkSchema(this);
+    }
 };
-exports.DocumentSchema = class  extends Schema {
+exports.DocumentSchema = class DocumentSchema extends Schema {
     constructor({name, label, mimetype} = {}) {
         super(name, label);
         this.type = DOCUMENT_SCHEMA;
         this.mimetype = mimetype;
     }
+
+    clone() {
+        return new DocumentSchema(this);
+    }
 };
-exports.DateSchema = class  extends Schema {
+exports.DateSchema = class DateSchema extends Schema {
     constructor({name, label, date_type = 'date'} = {}) {
         super(name, label);
         this.type = DATE_SCHEMA;
         this.date_type = date_type;
     }
+
+    clone() {
+        return new DateSchema(this);
+    }
 };
-exports.RepeatableSchema = class  extends Schema {
+exports.RepeatableSchema = class RepeatableSchema extends Schema {
     constructor({name, label, field} = {}) {
         super(name, label);
         this.type = REPEATABLE_SCHEMA;
         this.field = field;
         this.field.name = `${this.name}[]`;
+    }
+
+    clone() {
+        return new RepeatableSchema(this);
     }
 
     resolve() {
@@ -84,7 +117,7 @@ exports.RepeatableSchema = class  extends Schema {
         let promises = [];
         if (values) {
             promises = values.map(v => {
-                return this.field.mergeValue(v);
+                return this.field.clone().mergeValue(v);
             })
         }
         return Promise.all(promises)
@@ -96,20 +129,35 @@ exports.RepeatableSchema = class  extends Schema {
 
     }
 };
-exports.RelationSchema = class  extends Schema {
-    constructor({name, label, toEntity} = {}) {
+exports.RelationSchema = class RelationSchema extends Schema {
+    constructor({name, label, toEntity, options} = {}) {
         super(name, label);
         this.type = RELATION_SCHEMA;
         this.toEntity = toEntity;
-        this.options;//= this.getRelation();
+        this.options = options || [];//= this.getRelation();
+    }
+
+    clone() {
+        return new RelationSchema(Object.assign({},this));
     }
 
     resolve() {
         return this.getRelation().then(_ => this);
     }
 
-    mergeValue(value) {
-        return this.toEntity.findById(value).then(value => {
+    updateOptions(recordId) {
+        this.options = this.options.map(option => {
+
+            option.selected = option.value === recordId;
+            option.selected && console.log(option.label,option.value,recordId)
+            return option
+        })
+    }
+
+    mergeValue(recordId) {
+
+        return this.toEntity.findById(recordId).then(value => {
+           // this.updateOptions(value._id);
             return Object.assign({}, this, {value});
         })
     }
@@ -122,6 +170,7 @@ exports.RelationSchema = class  extends Schema {
                     return {
                         label: record.name.value || ""
                         , value: record._id
+
                     };
                 })
             })

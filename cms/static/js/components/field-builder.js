@@ -6,9 +6,12 @@ define(function (require) {
     var jsonHelper = require("../libs/hbs/json-helper");
     var rawHelper = require("../libs/hbs/raw-helper");
     var switchHelper = require("../libs/hbs/switch-helper");
+    var ifCondHelper = require("../libs/hbs/if-cond-helper");
     jsonHelper(Handlebars);
     rawHelper(Handlebars);
     switchHelper(Handlebars);
+
+    ifCondHelper(Handlebars);
     [].slice.call(document.querySelectorAll("script[type='text/x-handlebars']"), 0).forEach(function (node) {
         var name = node.id.replace("-tpl", "");
         Handlebars.registerPartial(name, node.innerHTML);

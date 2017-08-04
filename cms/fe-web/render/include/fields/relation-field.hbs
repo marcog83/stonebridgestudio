@@ -2,11 +2,13 @@
     {{#if label}}<legend>{{label}}</legend>{{/if}}
     <select name="{{name}}" class="js-select" >
         <option value="">select an option</option>
+
         {{#each options}}
-            <option value="{{value}}" {{#if selected}}selected{{/if}}>{{label}}</option>
+
+            <option value="{{value}}" {{#ifCond ../value._id '==' value}}selected{{/ifCond}}>{{label}}</option>
         {{/each}}
     </select>
-    <a href="javascript:void(0);" data-pattern-url="/contents/{{toEntity/id}}/" class="detail-btn js-detail-btn">
+    <a href="javascript:void(0);" title="Vai al dettaglio" data-pattern-url="/contents/{{toEntity.id}}/" class="detail-btn js-detail-btn">
         <span class="typcn typcn-arrow-right-thick"></span>
     </a>
 </div>

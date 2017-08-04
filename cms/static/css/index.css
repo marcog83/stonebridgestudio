@@ -1538,7 +1538,7 @@ legend a {
   align-items: center;
   justify-content: center;
   padding: 5px;
-  background: silver;
+  background: mediumseagreen;
   color: white;
   border-radius: 50%;
   font-size: 12px;
@@ -1555,7 +1555,7 @@ legend a {
   align-items: center;
   justify-content: center;
   padding: 5px;
-  background: silver;
+  background: indianred;
   color: white;
   border-radius: 50%;
   font-size: 12px;
@@ -1587,7 +1587,7 @@ textarea {
   align-items: center;
   justify-content: center;
   padding: 5px;
-  background: silver;
+  background: cornflowerblue;
   color: white;
   border-radius: 50%;
   font-size: 12px;
@@ -1622,7 +1622,6 @@ textarea {
   transform: translateX(-150px);
   top: 0;
   left: 0;
-  transition: all 0.5s ease-out;
   z-index: 1;
   padding: 60px 20px 0;
 }
@@ -1631,6 +1630,7 @@ textarea {
 }
 .menu.opened {
   transform: translateX(0);
+  transition: all 0.5s ease-out;
 }
 .menu-trigger-btn {
   position: relative;

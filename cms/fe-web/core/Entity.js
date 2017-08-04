@@ -19,7 +19,7 @@ class Entity {
 
         return this.schema().then(_schema => {
             const promises = Object.keys(_schema).map(key => {
-                return _schema[key].mergeValue( record[key]);
+                return _schema[key].mergeValue(record[key]);
             });
             return Promise.all(promises).then(response => {
                 return response.reduce((prev, _record) => {

@@ -3,6 +3,7 @@ const mergeDeep = require('./merge-deep');
 const switchHelper = require('./switch-helper');
 const jsonHelper = require('./json-helper');
 const rawHelper = require('./raw-helper');
+const ifCondHelper = require('./if-cond-helper');
 var glob = require("glob");
 var path = require("path");
 var Handlebars = require("handlebars");
@@ -14,6 +15,7 @@ const BODY_DIR = `fe-web/render/body/`;
 switchHelper(Handlebars);
 jsonHelper(Handlebars);
 rawHelper(Handlebars);
+ifCondHelper(Handlebars);
 function getFile(filePath) {
     return new Promise(function (resolve, reject) {
         fs.readFile(filePath, function (err, content) {
