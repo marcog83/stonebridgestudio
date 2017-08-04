@@ -1606,6 +1606,14 @@ textarea {
 .invisible {
   visibility: hidden !important;
 }
+[data-accordion-button] {
+  cursor: pointer;
+  user-select: none;
+}
+.contents-title {
+  padding: 20px 48px;
+  font-size: 40px;
+}
 .menu {
   position: fixed;
   width: 150px;
@@ -1635,6 +1643,10 @@ textarea {
 }
 .entity {
   padding: 20px 0;
+  border-top: 1px silver solid;
+}
+.entity:last-child {
+  border-bottom: 1px silver solid;
 }
 .entity__header {
   display: flex;

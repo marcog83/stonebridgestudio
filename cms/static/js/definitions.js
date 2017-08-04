@@ -6,5 +6,6 @@ define(function () {
         "repeatable-field":"./components/repeatable-field"
        , "relation-field":"./components/relation-field"
        , "menu-principale":"./components/menu-principale"
+       , "accordion":"./components/accordion"
     };
 });

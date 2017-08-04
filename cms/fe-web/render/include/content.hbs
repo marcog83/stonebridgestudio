@@ -1,4 +1,4 @@
-<li class="entity">
+<li class="entity" data-mediator="accordion">
     <div class="entity__header">
 
         <ul class="entity__actions">
@@ -13,10 +13,10 @@
                 </a>
             </li>
         </ul>
-        <h2 class="entity__name">{{name}}</h2>
+        <h2 class="entity__name" data-accordion-button>{{name}}</h2>
     </div>
 
-    <ul class="records">
+    <ul class="records hidden" data-accordion-expand>
         {{#each data}}
             <li class="record">
                 <a href="/contents/{{@../id}}/{{id}}" class="record__item">
