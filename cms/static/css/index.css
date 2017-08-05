@@ -1640,6 +1640,11 @@ textarea {
 .menu-ctr {
   position: relative;
 }
+.menu a {
+  color: white;
+  text-transform: uppercase;
+  text-decoration: none;
+}
 .menu.opened {
   transform: translateX(0);
 }
