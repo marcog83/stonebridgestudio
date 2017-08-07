@@ -1,18 +1,16 @@
 const express = require('express');
-
+const manager=require("./managers/artists");
 const router = express.Router();
 // define the detail route
 router.get('/', function (req, res) {
+    manager.getData().then(data=>{
+        res.render("artists",data);
+    })
 
-    res.render("artists",{
-        data:{
-            title:"Artists | Stonebridge Studio"
-        }
-    });
 
 });
 // define the detail route
-router.get('/detail/:id', function (req, res) {
+router.get('/:id', function (req, res) {
 
     res.render("artist-detail",{
         data:{

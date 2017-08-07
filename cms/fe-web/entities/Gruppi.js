@@ -17,6 +17,11 @@ class Gruppi extends Entity {
                 label: "Biografia"
                 , name: "biography"
             })
+            , informations: new TextSchema({
+                label: "Informazioni"
+                , name: "informations"
+                ,maxlength:"140"
+            })
             , location: new TextSchema({
                 label: "Luogo"
                 , name: "location"

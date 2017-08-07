@@ -13,59 +13,62 @@
                 Last Artists
             </h2>
             <div class="last-artists">
-                <div class="artist-thumb">
-                    <a href="https://www.facebook.com/noisiamomarrano/" target="_blank">
-                        <div class="artist__image line-effect"
-                             style="background-image: url('https://scontent-mxp1-1.xx.fbcdn.net/v/t1.0-9/19145918_1540397579335333_1443098179944804143_n.jpg?oh=6dfe15093b454fba4910c80ebe53e91a&oe=59FAB799')">
-                            <div class="line-1"><i></i></div>
-                            <div class="line-2"><i></i></div>
-                            <div class="line-3"><i></i></div>
-                            <div class="line-4"><i></i></div>
-                        </div>
-                        <div class="artist__name">
-                            <p>MARRANO</p>
-                        </div>
-                        <div class="artist__description">
-                            <p>Marrano nascono a giugno 2015
-                                fanno roba tirata, quasi punk</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="artist-thumb">
-                    <a href="https://www.facebook.com/chronicsripoff/" target="_blank">
+                {{#gruppi}}
 
-                        <div class="artist__image line-effect"
-                             style="background-image: url('https://scontent-mxp1-1.xx.fbcdn.net/v/t1.0-9/1901266_747418388680270_1098705486875239760_n.jpg?oh=5f43c373637a3030958ee0656ef726da&oe=59FBC2E6')">
-                            <div class="line-1"><i></i></div>
-                            <div class="line-2"><i></i></div>
-                            <div class="line-3"><i></i></div>
-                            <div class="line-4"><i></i></div>
-                        </div>
-                        <div class="artist__name">
-                            <p>Chronics</p>
-                        </div>
-                        <div class="artist__description">
-                            <p>Power Pop with a toilet sound effect</p>
-                        </div>
-                    </a>
-                </div>
                 <div class="artist-thumb">
-                    <a href="https://www.facebook.com/solongmovida/" target="_blank">
+                    <a href="/artists/{{_id}}" target="_blank">
                         <div class="artist__image line-effect"
-                             style="background-image: url('https://scontent-mxp1-1.xx.fbcdn.net/v/t1.0-9/19598729_1098660526902736_5221147871428306101_n.jpg?oh=95070fe040262101707c316e2f1cf22c&oe=5A36D573')">
+                             style="background-image: url('{{coverImage}}')">
                             <div class="line-1"><i></i></div>
                             <div class="line-2"><i></i></div>
                             <div class="line-3"><i></i></div>
                             <div class="line-4"><i></i></div>
                         </div>
                         <div class="artist__name">
-                            <p>So Long</p>
+                            <p>{{name}}</p>
                         </div>
                         <div class="artist__description">
-                            <p>Punk emotivo </p>
+                            <p>{{informations}}</p>
                         </div>
                     </a>
                 </div>
+
+                {{/gruppi}}
+                <!--<div class="artist-thumb">-->
+                    <!--<a href="https://www.facebook.com/chronicsripoff/" target="_blank">-->
+
+                        <!--<div class="artist__image line-effect"-->
+                             <!--style="background-image: url('https://scontent-mxp1-1.xx.fbcdn.net/v/t1.0-9/1901266_747418388680270_1098705486875239760_n.jpg?oh=5f43c373637a3030958ee0656ef726da&oe=59FBC2E6')">-->
+                            <!--<div class="line-1"><i></i></div>-->
+                            <!--<div class="line-2"><i></i></div>-->
+                            <!--<div class="line-3"><i></i></div>-->
+                            <!--<div class="line-4"><i></i></div>-->
+                        <!--</div>-->
+                        <!--<div class="artist__name">-->
+                            <!--<p>Chronics</p>-->
+                        <!--</div>-->
+                        <!--<div class="artist__description">-->
+                            <!--<p>Power Pop with a toilet sound effect</p>-->
+                        <!--</div>-->
+                    <!--</a>-->
+                <!--</div>-->
+                <!--<div class="artist-thumb">-->
+                    <!--<a href="https://www.facebook.com/solongmovida/" target="_blank">-->
+                        <!--<div class="artist__image line-effect"-->
+                             <!--style="background-image: url('https://scontent-mxp1-1.xx.fbcdn.net/v/t1.0-9/19598729_1098660526902736_5221147871428306101_n.jpg?oh=95070fe040262101707c316e2f1cf22c&oe=5A36D573')">-->
+                            <!--<div class="line-1"><i></i></div>-->
+                            <!--<div class="line-2"><i></i></div>-->
+                            <!--<div class="line-3"><i></i></div>-->
+                            <!--<div class="line-4"><i></i></div>-->
+                        <!--</div>-->
+                        <!--<div class="artist__name">-->
+                            <!--<p>So Long</p>-->
+                        <!--</div>-->
+                        <!--<div class="artist__description">-->
+                            <!--<p>Punk emotivo </p>-->
+                        <!--</div>-->
+                    <!--</a>-->
+                <!--</div>-->
             </div>
             <div class="btn-ctr">
 

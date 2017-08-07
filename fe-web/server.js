@@ -17,14 +17,17 @@ app.use('/static', express.static(__dirname + '/../static', {
     maxAge: '5d'
     , etag: "strong"
 }));
-
+app.use('/uploads', express.static(__dirname + '/../uploads', {
+    maxAge: '5d'
+    , etag: "strong"
+}));
 app.use('/', homepage);
 app.use('/contacts', contacts);
 app.use('/photo-gallery', photoGallery);
 app.use('/who-we-are', whoWeAre);
 app.use('/artists', artists);
 //
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 4900;
 
 const options = {
     key: fs.readFileSync('./fe-web/server.key'),
@@ -33,7 +36,7 @@ const options = {
 
 // http2.createServer(options, app)
 app.listen(PORT, () => {
-            console.log(`Server is listening on https://localhost:${PORT}.
+            console.log(`Server is listening on http://localhost:${PORT}.
 You can open the URL in the browser.`)
         }
     );

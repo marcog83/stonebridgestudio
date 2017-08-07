@@ -9,8 +9,9 @@ class Entity {
 
     }
 
-    findAll() {
+    findAll(exclude_merge = false) {
         return dbManager.findAll(this.id).then(records => {
+            if (exclude_merge)return records;
             return Promise.all(records.map(this._mergeRecordSchema.bind(this)))
         })
     }
@@ -25,14 +26,17 @@ class Entity {
                 return response.reduce((prev, _record) => {
                     prev[_record.name] = _record;
                     return prev;
-                }, { _id:record._id.toString()});
+                }, {_id: record._id.toString()});
             });
         })
 
     }
 
-    findById(recordId) {
-        return dbManager.findOne(this.id, recordId).then(this._mergeRecordSchema.bind(this))
+    findById(recordId, exclude_merge = false) {
+        return dbManager.findOne(this.id, recordId).then(response => {
+            if (exclude_merge)return response;
+            return this._mergeRecordSchema(response);
+        })
     }
 
     schema() {
