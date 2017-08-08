@@ -70,14 +70,14 @@ module.exports = class ContentsManager {
 
     save(files, body) {
         files.forEach(file => {
-            body[file.fieldname] = file.path.replace("\\", "/");
+            body[file.fieldname] =`${file.destination}/${file.filename}`;
         });
         const {entityId} = body;
         return dbManager.save(entityId, body);
     }
 
     deleteOne(entityId, recordId) {
-console.log(entityId, recordId)
-        return dbManager.deleteOne(entityId,recordId);
+        console.log(entityId, recordId)
+        return dbManager.deleteOne(entityId, recordId);
     }
 }
