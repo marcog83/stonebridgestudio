@@ -17,10 +17,7 @@ app.use('/static', express.static(__dirname + '/../static', {
     maxAge: '5d'
     , etag: "strong"
 }));
-app.use('/uploads', express.static(__dirname + '/../uploads', {
-    maxAge: '5d'
-    , etag: "strong"
-}));
+app.use('/uploads', express.static(__dirname + '/../uploads'));
 app.use('/', homepage);
 app.use('/contacts', contacts);
 app.use('/photo-gallery', photoGallery);

@@ -38,7 +38,12 @@ class Entity {
             return this._mergeRecordSchema(response);
         })
     }
-
+    deleteRecord(recordId){
+        return dbManager.deleteOne(this.id, recordId).then(response => {
+            if (exclude_merge)return response;
+            return this._mergeRecordSchema(response);
+        })
+    }
     schema() {
         const promises = Object.keys(this._schema).map(key => {
             return this._schema[key].resolve().then(schema => {

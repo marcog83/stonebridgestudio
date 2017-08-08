@@ -19,7 +19,7 @@ class Schema {
     }
 
     mergeValue(value) {
-        this.value = value;
+
         return Promise.resolve(Object.assign({}, this, {value}));
     }
 
@@ -122,9 +122,8 @@ exports.RepeatableSchema = class RepeatableSchema extends Schema {
         }
         return Promise.all(promises)
             .then(values => {
-                return Object.assign({}, this, {
-                    value: values
-                });
+
+                return Object.assign({}, this, {value: values})
             });
 
     }
@@ -138,27 +137,19 @@ exports.RelationSchema = class RelationSchema extends Schema {
     }
 
     clone() {
-        return new RelationSchema(Object.assign({},this));
+        return new RelationSchema(Object.assign({}, this));
     }
 
     resolve() {
         return this.getRelation().then(_ => this);
     }
 
-    updateOptions(recordId) {
-        this.options = this.options.map(option => {
-
-            option.selected = option.value === recordId;
-            option.selected && console.log(option.label,option.value,recordId)
-            return option
-        })
-    }
 
     mergeValue(recordId) {
 
         return this.toEntity.findById(recordId).then(value => {
-           // this.updateOptions(value._id);
-            return Object.assign({}, this, {value});
+
+            return Object.assign({},this,{  value});
         })
     }
 

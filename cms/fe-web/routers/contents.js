@@ -45,10 +45,12 @@ router.get('/search/:id', function (req, res) {
 });
 router.post("/save", upload.any(), function (req, res) {
     contentsManager.save(req.files, req.body).then(recordId => {
-
         res.redirect(`/contents/${req.body.entityId}/${recordId}`);
     });
-
-
+});
+router.get('/delete/:entityId/:recordId', function (req, res) {
+    contentsManager.deleteOne(req.params.entityId, req.params.recordId).then(data => {
+        res.redirect(`/contents/${req.params.entityId}`);
+    })
 });
 module.exports = router;

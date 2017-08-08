@@ -49,4 +49,18 @@ module.exports = {
                 connection.db.close();
             }))
     }
+    ,deleteOne(collectionId, recordId){
+        //deve salvare su db
+        const connection = new Connection();
+        connection.connect();
+        return connection.collection(collectionId).then(collection => {
+                return collection.deleteOne({_id:ObjectId(recordId)});
+            })
+
+            .then(tap(_ => {
+                connection.db.close();
+            })).catch(tap(_ => {
+                connection.db.close();
+            }))
+    }
 };

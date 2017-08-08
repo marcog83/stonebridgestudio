@@ -75,4 +75,9 @@ module.exports = class ContentsManager {
         const {entityId} = body;
         return dbManager.save(entityId, body);
     }
+
+    deleteOne(entityId, recordId) {
+console.log(entityId, recordId)
+        return dbManager.deleteOne(entityId,recordId);
+    }
 }
