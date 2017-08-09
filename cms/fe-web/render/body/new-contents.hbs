@@ -1,4 +1,7 @@
-<form name="{{recordId}}" method="post" action="/contents/save" enctype="multipart/form-data">
+<form name="{{recordId}}" method="post"
+      action="/contents/save/{{entityId}}{{#if recordId}}/{{recordId}}{{/if}}"
+
+      enctype="multipart/form-data">
     <header class="contents__header">
         <h2 class="contents-title">{{name}}</h2>
         <div class="actions">
@@ -7,10 +10,10 @@
         </div>
     </header>
     <section class="contents">
-        <input type="hidden" name="entityId" value="{{entityId}}">
-        {{#if recordId}}
-            <input type="hidden" name="recordId" value="{{recordId}}">
-        {{/if}}
+        <!--<input type="hidden" name="entityId" value="{{entityId}}">-->
+        <!--{{#if recordId}}-->
+            <!--<input type="hidden" name="recordId" value="{{recordId}}">-->
+        <!--{{/if}}-->
         <div class="fields">
             {{#fields}}
                 {{> field-builder this}}

@@ -9,8 +9,9 @@ const DOCUMENT_SCHEMA = "document";
 const LINK_SCHEMA = "link";
 const DATE_SCHEMA = "date";
 const REPEATABLE_SCHEMA = "repeatable";
+const INVERSE_RELATION_SCHEMA = "inverse-relation";
 const RELATION_SCHEMA = "relation";
-
+const dbManager = require("./db-manager");
 class Schema {
     constructor(name, label) {
         this.name = name;
@@ -97,7 +98,7 @@ exports.DateSchema = class DateSchema extends Schema {
         return new DateSchema(this);
     }
 };
-exports.RepeatableSchema = class RepeatableSchema extends Schema {
+class RepeatableSchema extends Schema {
     constructor({name, label, field} = {}) {
         super(name, label);
         this.type = REPEATABLE_SCHEMA;
@@ -127,8 +128,10 @@ exports.RepeatableSchema = class RepeatableSchema extends Schema {
             });
 
     }
-};
-exports.RelationSchema = class RelationSchema extends Schema {
+}
+;
+
+class RelationSchema extends Schema {
     constructor({name, label, toEntity, options} = {}) {
         super(name, label);
         this.type = RELATION_SCHEMA;
@@ -149,7 +152,7 @@ exports.RelationSchema = class RelationSchema extends Schema {
 
         return this.toEntity.findById(recordId).then(value => {
 
-            return Object.assign({},this,{  value});
+            return Object.assign({}, this, {value});
         })
     }
 
@@ -170,4 +173,55 @@ exports.RelationSchema = class RelationSchema extends Schema {
                 return response;
             });
     }
-};
+}
+;
+class InverseRelationSchema extends RepeatableSchema {
+    constructor({name, label, entityName} = {}) {
+        super(name, label, {});
+        this.type = INVERSE_RELATION_SCHEMA;
+        this.entityName = entityName;
+        this.field = this;
+        this.field.name = this.name;
+    }
+
+    clone() {
+        return new InverseRelationSchema(Object.assign({}, this));
+    }
+
+    resolve() {
+        return this.getRelation().then(_ => this);
+    }
+
+    mergeValue(recordId) {
+        return dbManager.findOne(this.entityName, recordId).then(value => {
+            return Object.assign({}, this, {value});
+        });
+        // return this.toEntity.findById(recordId).then(value => {
+        //
+        //     return Object.assign({}, this, {value});
+        // })
+    }
+    getRelation() {
+        return this.toEntity.findAll()
+            .then(response => {
+                return response.map(record => {
+
+                    return {
+                        label: record.name.value || ""
+                        , value: record._id
+
+                    };
+                })
+            })
+            .then(response => {
+                this.options = response;
+                return response;
+            });
+    }
+
+}
+;
+
+exports.RelationSchema = RelationSchema;
+exports.RepeatableSchema = RepeatableSchema;
+exports.InverseRelationSchema = InverseRelationSchema;

@@ -38,12 +38,21 @@ class Entity {
             return this._mergeRecordSchema(response);
         })
     }
-    deleteRecord(recordId){
-        return dbManager.deleteOne(this.id, recordId).then(response => {
-            if (exclude_merge)return response;
-            return this._mergeRecordSchema(response);
-        })
+
+    deleteOne(recordId) {
+        return dbManager.deleteOne(this.id, recordId)
     }
+
+    save(body) {
+        const schema = this._mergeRecordSchema(body);
+        return dbManager.save(this.id, body);
+    }
+
+    update(recordId, body) {
+        //
+        return dbManager.save(this.id, body, recordId);
+    }
+
     schema() {
         const promises = Object.keys(this._schema).map(key => {
             return this._schema[key].resolve().then(schema => {
@@ -54,8 +63,8 @@ class Entity {
             })
         });
         return Promise.all(promises).then(response => {
-            return response.reduce((prev, curr) => {
-                prev[curr.key] = curr.schema;
+            return response.reduce((prev, {key, schema}) => {
+                prev[key] = schema;
                 return prev;
             }, {})
         });

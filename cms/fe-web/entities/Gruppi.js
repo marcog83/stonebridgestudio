@@ -4,6 +4,7 @@
 const Entity = require("../core/Entity");
 const Dischi = require("./Dischi");
 const MembriGruppo = require("./MembriGruppo");
+const GruppiMembriGruppo = require("./GruppiMembriGruppo");
 const {TextSchema, HtmlSchema, DocumentSchema, LinkSchema, RepeatableSchema, RelationSchema} = require("../core/schemas");
 class Gruppi extends Entity {
     constructor() {
@@ -53,7 +54,7 @@ class Gruppi extends Entity {
                 label: "componente gruppo"
                 , name: "membri"
                 , field: new RelationSchema({
-                    toEntity: new MembriGruppo()
+                    toEntity: new GruppiMembriGruppo()
                 })
             })
             , dischi: new RepeatableSchema({
@@ -68,9 +69,7 @@ class Gruppi extends Entity {
 
 
 
-    save() {
 
-    }
 }
 ;
 module.exports = Gruppi;
