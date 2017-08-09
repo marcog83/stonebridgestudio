@@ -1,13 +1,11 @@
 /**
- * Created by mgobbi on 03/08/2017.
+ * Created by mgobbi on 09/08/2017.
  */
-const RelationEntity = require("../core/RelationEntity");
-
-
-
-class GruppiMembriGruppo extends RelationEntity {
-    constructor({relationTo = "gruppi"} = {}) {
-        super("gruppi-membri-gruppo");
+const Entity = require("./Entity");
+const dbManager = require("./db-manager");
+class RelationEntity extends Entity {
+    constructor({relationTo = "gruppi", id} = {}) {
+        super(id);
         this.relationTo = relationTo;
         // this._schema = _buildRelationTo(relationTo);
     }
@@ -24,6 +22,5 @@ class GruppiMembriGruppo extends RelationEntity {
                 console.log(e);
             })
     }
-
 }
-module.exports = GruppiMembriGruppo;
+module.exports = RelationEntity;

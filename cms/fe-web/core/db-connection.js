@@ -3,8 +3,11 @@
  */
 var MongoClient = require('mongodb').MongoClient;
 
-// var url = 'mongodb://localhost:27017/stonebridgestudio';
-var url = `mongodb://marcogobbi:m4rc0g0bb1@ds039261.mlab.com:39261/stonebridgestudio`;
+var url = 'mongodb://localhost:27017/stonebridgestudio';
+if(process.env.NODE_ENV=="production"){
+    url = `mongodb://marcogobbi:m4rc0g0bb1@ds039261.mlab.com:39261/stonebridgestudio`;
+}
+
 
 
 var Deferred = function () {

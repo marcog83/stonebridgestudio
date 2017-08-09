@@ -4,7 +4,7 @@
 const Entity = require("../core/Entity");
 const Dischi = require("./Dischi");
 const MembriGruppo = require("./MembriGruppo");
-const GruppiMembriGruppo = require("./GruppiMembriGruppo");
+const RelationEntity = require("../core/RelationEntity");
 const {TextSchema, HtmlSchema, DocumentSchema, LinkSchema, RepeatableSchema, RelationSchema} = require("../core/schemas");
 class Gruppi extends Entity {
     constructor() {
@@ -21,7 +21,7 @@ class Gruppi extends Entity {
             , informations: new TextSchema({
                 label: "Informazioni"
                 , name: "informations"
-                ,maxlength:"140"
+                , maxlength: "140"
             })
             , location: new TextSchema({
                 label: "Luogo"
@@ -54,7 +54,7 @@ class Gruppi extends Entity {
                 label: "componente gruppo"
                 , name: "membri"
                 , field: new RelationSchema({
-                    toEntity: new GruppiMembriGruppo()
+                    toEntity: new RelationEntity({relationTo: "membri-gruppo", id: "gruppi-membri-gruppo"})
                 })
             })
             , dischi: new RepeatableSchema({
@@ -66,8 +66,6 @@ class Gruppi extends Entity {
             })
         }
     }
-
-
 
 
 }

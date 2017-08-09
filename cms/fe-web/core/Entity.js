@@ -69,6 +69,10 @@ class Entity {
             }, {})
         });
     }
+
+    getRelation() {
+        return Promise.resolve([]);
+    }
 }
 
 module.exports = Entity;

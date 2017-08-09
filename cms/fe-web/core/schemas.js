@@ -157,12 +157,12 @@ class RelationSchema extends Schema {
     }
 
     getRelation() {
-        return this.toEntity.findAll()
+        return this.toEntity.getRelation()
             .then(response => {
                 return response.map(record => {
 
                     return {
-                        label: record.name.value || ""
+                        label: record.name || ""
                         , value: record._id
 
                     };
@@ -171,7 +171,10 @@ class RelationSchema extends Schema {
             .then(response => {
                 this.options = response;
                 return response;
-            });
+            })
+            .catch(e=>{
+                console.log(e);
+            })
     }
 }
 ;
