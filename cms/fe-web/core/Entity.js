@@ -2,6 +2,27 @@
  * Created by mgobbi on 03/08/2017.
  */
 const dbManager = require("./db-manager");
+function isObject(x) {
+    return Object.prototype.toString.call(x) === '[object Object]';
+};
+function isArray(val) {
+    return (val != null &&
+    val.length >= 0 &&
+    Object.prototype.toString.call(val) === '[object Array]');
+};
+function _excludeEmptyFields(obj) {
+    Object.keys(obj).forEach(function (key) {
+        if (obj[key] && isObject(obj[key])) {
+            _excludeEmptyFields(obj[key])
+        }
+        else if (obj[key] && isArray(obj[key])) {
+            obj[key] = obj[key].filter(v => v);
+        } else if (obj[key] == null || obj[key] == "") {
+            delete obj[key]
+        }
+    });
+    return obj;
+};
 class Entity {
     constructor(id) {
         this.id = id;
@@ -12,7 +33,9 @@ class Entity {
     findAll(exclude_merge = false) {
         return dbManager.findAll(this.id).then(records => {
             if (exclude_merge)return records;
-            return Promise.all(records.map(this._mergeRecordSchema.bind(this)))
+            return Promise.all(records
+                .filter(r => r)
+                .map(this._mergeRecordSchema.bind(this)))
         })
     }
 
@@ -35,6 +58,7 @@ class Entity {
     findById(recordId, exclude_merge = false) {
         return dbManager.findOne(this.id, recordId).then(response => {
             if (exclude_merge)return response;
+            if (!response)return {};
             return this._mergeRecordSchema(response);
         })
     }
@@ -44,13 +68,27 @@ class Entity {
     }
 
     save(body) {
-        const schema = this._mergeRecordSchema(body);
-        return dbManager.save(this.id, body);
+        const _fieldsToSave = _excludeEmptyFields(body);
+        const promises = Object.keys(this._schema).map(key => {
+            return this._schema[key].save(_fieldsToSave[key]).then(schema => {
+                return {
+                    key,
+                    schema
+                }
+            })
+        });
+        return Promise.all(promises).then(response => {
+            return response.reduce((prev, {key, schema}) => {
+                prev[key] = schema;
+                return prev;
+            }, {})
+        });
+        return dbManager.save(this.id, _fieldsToSave);
     }
 
     update(recordId, body) {
-        //
-        return dbManager.save(this.id, body, recordId);
+        const _fieldsToSave = _excludeEmptyFields(body);
+        return dbManager.save(this.id, _fieldsToSave, recordId);
     }
 
     schema() {

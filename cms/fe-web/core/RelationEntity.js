@@ -4,10 +4,10 @@
 const Entity = require("./Entity");
 const dbManager = require("./db-manager");
 class RelationEntity extends Entity {
-    constructor({relationTo = "gruppi", id} = {}) {
+    constructor({relationFrom,relationTo , id} = {}) {
         super(id);
         this.relationTo = relationTo;
-        // this._schema = _buildRelationTo(relationTo);
+        this.relationFrom = relationFrom;
     }
 
     schema() {

@@ -33,7 +33,7 @@ class Schema {
     }
 
     save(value) {
-//
+        return Promise.resolve(value);
     }
 }
 exports.TextSchema = class TextSchema extends Schema {
@@ -117,9 +117,11 @@ class RepeatableSchema extends Schema {
     mergeValue(values) {
         let promises = [];
         if (values) {
-            promises = values.map(v => {
-                return this.field.clone().mergeValue(v);
-            })
+            promises = values
+                .filter(v => v)
+                .map(v => {
+                    return this.field.clone().mergeValue(v);
+                })
         }
         return Promise.all(promises)
             .then(values => {
@@ -172,7 +174,7 @@ class RelationSchema extends Schema {
                 this.options = response;
                 return response;
             })
-            .catch(e=>{
+            .catch(e => {
                 console.log(e);
             })
     }
@@ -204,6 +206,7 @@ class InverseRelationSchema extends RepeatableSchema {
         //     return Object.assign({}, this, {value});
         // })
     }
+
     getRelation() {
         return this.toEntity.findAll()
             .then(response => {

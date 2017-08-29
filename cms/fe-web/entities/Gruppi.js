@@ -54,7 +54,11 @@ class Gruppi extends Entity {
                 label: "componente gruppo"
                 , name: "membri"
                 , field: new RelationSchema({
-                    toEntity: new RelationEntity({relationTo: "membri-gruppo", id: "gruppi-membri-gruppo"})
+                    toEntity: new RelationEntity({
+                        relationFrom: "gruppi",
+                        relationTo: "membri-gruppo",
+                        id: "gruppi-membri-gruppo"
+                    })
                 })
             })
             , dischi: new RepeatableSchema({

@@ -28,8 +28,8 @@ module.exports = class ContentsManager {
 
     fromId(entityId, recordId) {
         console.log(entityId);
-        const item = this._entities.filter(({entity}) => entity.id === entityId)[0]
-        ;
+        const item = this._entities.filter(({entity}) => entity.id === entityId)[0];
+
         return item.entity.findById(recordId)
             .then(mapResponse(entityId, recordId))
             .then(response => response)
