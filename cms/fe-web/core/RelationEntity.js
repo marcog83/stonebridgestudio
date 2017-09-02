@@ -3,8 +3,9 @@
  */
 const Entity = require("./Entity");
 const dbManager = require("./db-manager");
+const {ObjectId} = require("mongodb");
 class RelationEntity extends Entity {
-    constructor({relationFrom,relationTo , id} = {}) {
+    constructor({relationFrom, relationTo, id} = {}) {
         super(id);
         this.relationTo = relationTo;
         this.relationFrom = relationFrom;
@@ -14,13 +15,53 @@ class RelationEntity extends Entity {
         return Promise.resolve({})
     }
 
-    getRelation() {
-        return dbManager.findAll(this.relationTo).then(records => {
-                return Promise.all(records);
+    findById(recordId) {
+        return dbManager.findOne(this.id, recordId)
+            .then((joinResponse = {}) => {
+                return joinResponse !== null ? joinResponse[this.relationTo] : null;
             })
             .catch(e => {
                 console.log(e);
+                return null;
             })
+    }
+
+    getRelation() {
+        return dbManager.findAll(this.relationTo)
+            .catch(e => {
+                console.log(e);
+                return [];
+            })
+    }
+
+    update(recordId, body) {
+    // update(fromValue, toValue, recordId) {
+
+        return dbManager.save(this.id, body, recordId).then(id=>id.toString())
+
+    }
+
+    updateOrSave(relationFrom, relationTo) {
+        const valueToSearch = {
+            [this.relationFrom]: relationFrom
+            , [this.relationTo]: relationTo
+        };
+        return dbManager.queryOne(this.id, valueToSearch)
+            .then(response => {
+                if (!response) {
+                    return this.save(valueToSearch)
+                } else {
+                    return this.update(response._id.toString(), valueToSearch)
+                }
+            })
+    }
+
+    save(value) {
+        const recordId = new ObjectId();
+
+        return dbManager.save(this.id, value, recordId).then(id=>id.toString())
+
+
     }
 }
 module.exports = RelationEntity;

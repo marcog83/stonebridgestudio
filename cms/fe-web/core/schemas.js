@@ -35,6 +35,10 @@ class Schema {
     save(value) {
         return Promise.resolve(value);
     }
+
+    update(value) {
+        return Promise.resolve(value);
+    }
 }
 exports.TextSchema = class TextSchema extends Schema {
     constructor({name, label} = {}) {
@@ -130,6 +134,31 @@ class RepeatableSchema extends Schema {
             });
 
     }
+
+    save(values) {
+        let promises = [];
+        if (values) {
+            promises = values
+                .filter(v => v)
+                .map(v => {
+                    return this.field.save(v);
+                })
+        }
+        return Promise.all(promises)
+    }
+
+    update(values, recordId) {
+        let promises = [];
+        if (values) {
+            promises = values
+                .filter(v => v)
+                .map(v => {
+                    return this.field.update(v, recordId)
+                })
+        }
+        return Promise.all(promises)
+
+    }
 }
 ;
 
@@ -178,8 +207,16 @@ class RelationSchema extends Schema {
                 console.log(e);
             })
     }
+
+    save(value) {
+        return this.toEntity.save(value);
+    }
+
+    update(value, recordId) {
+        return this.toEntity.updateOrSave(recordId, value);
+    }
 }
-;
+
 class InverseRelationSchema extends RepeatableSchema {
     constructor({name, label, entityName} = {}) {
         super(name, label, {});

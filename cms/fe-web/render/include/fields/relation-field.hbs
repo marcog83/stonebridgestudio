@@ -4,7 +4,7 @@
         <option value="">select an option</option>
 
         {{#each options}}
-            <option value="{{value}}" {{#ifCond ../value._id '==' value}}selected{{/ifCond}}>{{label}}</option>
+            <option value="{{value}}" {{#ifCond ../value '==' value}}selected{{/ifCond}}>{{label}}</option>
         {{/each}}
     </select>
     <a href="javascript:void(0);" title="Vai al dettaglio" data-pattern-url="/contents/{{toEntity.relationTo}}/" class="detail-btn js-detail-btn">

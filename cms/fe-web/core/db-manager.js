@@ -40,17 +40,31 @@ module.exports = {
             connection.db.close();
         }))
     }
+    , queryOne(collectionId, query={}){
+        const connection = new Connection();
+        connection.connect();
+        return connection.collection(collectionId).then(collection => {
+            return collection.findOne(query);
+        }).then(tap(_ => {
+            connection.db.close();
+        })).catch(tap(_ => {
+            connection.db.close();
+        }))
+    }
     , save(collectionId, record, recordId = undefined){
         //deve salvare su db
         const connection = new Connection();
         connection.connect();
         return connection.collection(collectionId).then(collection => {
-                if (recordId) {
-                    return collection.findOneAndUpdate({_id: ObjectId(recordId)}, {$set: record}, {upsert: true});
-                } else {
-                    return collection.insertOne(record);
-                }
-            })
+
+            if (typeof recordId === "string") {
+
+                return collection.findOneAndUpdate({_id: ObjectId(recordId)}, {$set: record}, {upsert: true});
+            } else {
+                record._id = recordId;
+                return collection.insertOne(record);
+            }
+        })
             .then(({insertedId = recordId}) => {
                 return insertedId;
             })
@@ -65,8 +79,8 @@ module.exports = {
         const connection = new Connection();
         connection.connect();
         return connection.collection(collectionId).then(collection => {
-                return collection.deleteOne({_id: ObjectId(recordId)});
-            })
+            return collection.deleteOne({_id: ObjectId(recordId)});
+        })
 
             .then(tap(_ => {
                 connection.db.close();

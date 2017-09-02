@@ -10,7 +10,7 @@ function isArray(val) {
     val.length >= 0 &&
     Object.prototype.toString.call(val) === '[object Array]');
 };
-function _excludeEmptyFields(obj) {
+function _excludeEmptyFields(obj={}) {
     Object.keys(obj).forEach(function (key) {
         if (obj[key] && isObject(obj[key])) {
             _excludeEmptyFields(obj[key])
@@ -23,6 +23,23 @@ function _excludeEmptyFields(obj) {
     });
     return obj;
 };
+function parseSchema(schema, method, initialValue, values, recordId = undefined) {
+    const promises = Object.keys(schema).map(key => {
+        return schema[key][method](values[key], recordId).then(value => {
+            return {
+                key,
+                value
+            }
+        })
+    });
+    return Promise.all(promises).then(response => {
+        return response.reduce((prev, {key, value}) => {
+            prev[key] = value;
+            return prev;
+        }, initialValue);
+
+    });
+}
 class Entity {
     constructor(id) {
         this.id = id;
@@ -42,15 +59,16 @@ class Entity {
     _mergeRecordSchema(record) {
 
         return this.schema().then(_schema => {
-            const promises = Object.keys(_schema).map(key => {
-                return _schema[key].mergeValue(record[key]);
-            });
-            return Promise.all(promises).then(response => {
-                return response.reduce((prev, _record) => {
-                    prev[_record.name] = _record;
-                    return prev;
-                }, {_id: record._id.toString()});
-            });
+            return parseSchema(_schema, "mergeValue", {_id: record._id.toString()}, record);
+            // const promises = Object.keys(_schema).map(key => {
+            //     return _schema[key].mergeValue(record[key]);
+            // });
+            // return Promise.all(promises).then(response => {
+            //     return response.reduce((prev, _record) => {
+            //         prev[_record.name] = _record;
+            //         return prev;
+            //     },);
+            // });
         })
 
     }
@@ -69,43 +87,55 @@ class Entity {
 
     save(body) {
         const _fieldsToSave = _excludeEmptyFields(body);
-        const promises = Object.keys(this._schema).map(key => {
-            return this._schema[key].save(_fieldsToSave[key]).then(schema => {
-                return {
-                    key,
-                    schema
-                }
-            })
-        });
-        return Promise.all(promises).then(response => {
-            return response.reduce((prev, {key, schema}) => {
-                prev[key] = schema;
-                return prev;
-            }, {})
-        });
-        return dbManager.save(this.id, _fieldsToSave);
+        return parseSchema(this._schema, "save", {}, _fieldsToSave)
+            .then(_normalizedValues => {
+                return dbManager.save(this.id, _normalizedValues);
+            });
+
+        // const promises = Object.keys(this._schema).map(key => {
+        //     return this._schema[key].save(_fieldsToSave[key]).then(value => {
+        //         return {
+        //             key,
+        //             value
+        //         }
+        //     })
+        // });
+        // return Promise.all(promises).then(response => {
+        //     const _normalizedValues = response.reduce((prev, {key, value}) => {
+        //         prev[key] = value;
+        //         return prev;
+        //     }, {});
+        //     return dbManager.save(this.id, _normalizedValues);
+        // });
+
     }
 
     update(recordId, body) {
         const _fieldsToSave = _excludeEmptyFields(body);
-        return dbManager.save(this.id, _fieldsToSave, recordId);
+        return parseSchema(this._schema, "update", {}, _fieldsToSave, recordId)
+            .then(_normalizedValues => {
+                return dbManager.save(this.id, _normalizedValues, recordId);
+            });
+
     }
 
     schema() {
-        const promises = Object.keys(this._schema).map(key => {
-            return this._schema[key].resolve().then(schema => {
-                return {
-                    key,
-                    schema
-                }
-            })
-        });
-        return Promise.all(promises).then(response => {
-            return response.reduce((prev, {key, schema}) => {
-                prev[key] = schema;
-                return prev;
-            }, {})
-        });
+        return parseSchema(this._schema, "resolve", {}, {});
+
+        // const promises = Object.keys(this._schema).map(key => {
+        //     return this._schema[key].resolve().then(schema => {
+        //         return {
+        //             key,
+        //             schema
+        //         }
+        //     })
+        // });
+        // return Promise.all(promises).then(response => {
+        //     return response.reduce((prev, {key, schema}) => {
+        //         prev[key] = schema;
+        //         return prev;
+        //     }, {})
+        // });
     }
 
     getRelation() {

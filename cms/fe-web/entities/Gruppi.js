@@ -65,7 +65,11 @@ class Gruppi extends Entity {
                 label: "Dischi"
                 , name: "dischi"
                 , field: new RelationSchema({
-                    toEntity: new Dischi()
+                    toEntity: new RelationEntity({
+                        relationFrom: "gruppi",
+                        relationTo: "dischi",
+                        id: "gruppi-dischi"
+                    })
                 })
             })
         }
