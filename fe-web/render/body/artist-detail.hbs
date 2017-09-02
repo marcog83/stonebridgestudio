@@ -1,4 +1,34 @@
 <div class="artist-detail">
+    <h1>{{gruppo.name}}</h1>
+    <p>{{gruppo.biography}}</p>
+    <p>{{gruppo.informations}}</p>
+    <p>{{gruppo.location}}</p>
+    <p>{{gruppo.email}}</p>
+    <p>{{gruppo.website}}</p>
+    <p>{{gruppo.genere}}</p>
+    <p>{{gruppo.coverImage}}</p>
+    <p>{{gruppo.profileImage}}</p>
+    <div>
+        {{#each gruppo.membri}}
+            <div>
+            {{@index}}:
+            {{#each this}}
+               <p> {{@key}}: {{this}}</p>
+            {{/each}}
+            </div>
+        {{/each}}
+    </div>
+    <div>
+        {{#each gruppo.dischi}}
+            <div>
+                {{@index}}:
+                {{#each this}}
+                    <p> {{@key}}: {{this}}</p>
+                {{/each}}
+            </div>
+        {{/each}}
+    </div>
+
     <div class="empty">
         <p> we are working on it! </p>
     </div>

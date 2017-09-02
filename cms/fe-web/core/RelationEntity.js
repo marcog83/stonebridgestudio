@@ -18,7 +18,13 @@ class RelationEntity extends Entity {
     findById(recordId) {
         return dbManager.findOne(this.id, recordId)
             .then((joinResponse = {}) => {
-                return joinResponse !== null ? joinResponse[this.relationTo] : null;
+                if (joinResponse !== null) {
+                    const _id = joinResponse[this.relationTo];
+                    return dbManager.findOne(this.relationTo, _id)
+                } else {
+                    return null;
+                }
+
             })
             .catch(e => {
                 console.log(e);
@@ -35,9 +41,9 @@ class RelationEntity extends Entity {
     }
 
     update(recordId, body) {
-    // update(fromValue, toValue, recordId) {
+        // update(fromValue, toValue, recordId) {
 
-        return dbManager.save(this.id, body, recordId).then(id=>id.toString())
+        return dbManager.save(this.id, body, recordId).then(id => id.toString())
 
     }
 
@@ -59,7 +65,7 @@ class RelationEntity extends Entity {
     save(value) {
         const recordId = new ObjectId();
 
-        return dbManager.save(this.id, value, recordId).then(id=>id.toString())
+        return dbManager.save(this.id, value, recordId).then(id => id.toString())
 
 
     }

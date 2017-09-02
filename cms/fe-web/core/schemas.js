@@ -182,7 +182,7 @@ class RelationSchema extends Schema {
     mergeValue(recordId) {
 
         return this.toEntity.findById(recordId).then(value => {
-
+            value._id = value._id.toString();
             return Object.assign({}, this, {value});
         })
     }
@@ -194,7 +194,7 @@ class RelationSchema extends Schema {
 
                     return {
                         label: record.name || ""
-                        , value: record._id
+                        , value: record._id.toString()
 
                     };
                 })

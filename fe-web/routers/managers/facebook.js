@@ -75,7 +75,25 @@ function getAlbumImages(id) {
         })
     });
 }
-function _getPosts(id,limit=30) {
+function _getInfo(id) {
+    return new Promise(function (resolve, reject) {
+        FB.api(id, {
+            fields: [`cover,description`]
+        }, function (res) {
+
+            if (!res || res.error) {
+                console.log("no", res, id);
+                resolve({cover: {source: "/static/img/bg.jpg"}, description: ""});
+
+                return;
+            }
+
+            console.log("si posts");
+            resolve(res);
+        })
+    });
+}
+function _getPosts(id, limit = 30) {
 
     return new Promise(function (resolve, reject) {
         FB.api(id, {
@@ -110,13 +128,20 @@ function getPhotos() {
 function getPosts(limit) {
     return getAccessToken()
         .then(_ => {
-            return _getPosts(STONEBRIDGE_ID,limit)
+            return _getPosts(STONEBRIDGE_ID, limit)
+        })
+}
+function getInfo() {
+    return getAccessToken()
+        .then(_ => {
+            return _getInfo(STONEBRIDGE_ID)
         })
 }
 
 module.exports = {
     getPosts
     , getPhotos
+    , getInfo
 }
 
 //

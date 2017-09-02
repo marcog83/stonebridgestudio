@@ -1,8 +1,8 @@
 <div class="homepage">
-    <div class="homepage__visual">
+    <div class="homepage__visual" style="background-image: url('{{info.cover.source}}')">
         <div class="content-wrapper">
             <div class="visual__text">
-                <p>This place got something</p>
+                <p>{{info.description}}</p>
             </div>
         </div>
 
@@ -15,59 +15,43 @@
             <div class="last-artists">
                 {{#gruppi}}
 
-                <div class="artist-thumb">
-                    <a href="/artists/{{_id}}" target="_blank">
-                        <div class="artist__image line-effect"
-                             style="background-image: url('{{coverImage}}')">
-                            <div class="line-1"><i></i></div>
-                            <div class="line-2"><i></i></div>
-                            <div class="line-3"><i></i></div>
-                            <div class="line-4"><i></i></div>
-                        </div>
-                        <div class="artist__name">
-                            <p>{{name}}</p>
-                        </div>
-                        <div class="artist__description">
-                            <p>{{informations}}</p>
-                        </div>
-                    </a>
-                </div>
+                    {{> artist-thumb}}
 
                 {{/gruppi}}
                 <!--<div class="artist-thumb">-->
-                    <!--<a href="https://www.facebook.com/chronicsripoff/" target="_blank">-->
+                <!--<a href="https://www.facebook.com/chronicsripoff/" target="_blank">-->
 
-                        <!--<div class="artist__image line-effect"-->
-                             <!--style="background-image: url('https://scontent-mxp1-1.xx.fbcdn.net/v/t1.0-9/1901266_747418388680270_1098705486875239760_n.jpg?oh=5f43c373637a3030958ee0656ef726da&oe=59FBC2E6')">-->
-                            <!--<div class="line-1"><i></i></div>-->
-                            <!--<div class="line-2"><i></i></div>-->
-                            <!--<div class="line-3"><i></i></div>-->
-                            <!--<div class="line-4"><i></i></div>-->
-                        <!--</div>-->
-                        <!--<div class="artist__name">-->
-                            <!--<p>Chronics</p>-->
-                        <!--</div>-->
-                        <!--<div class="artist__description">-->
-                            <!--<p>Power Pop with a toilet sound effect</p>-->
-                        <!--</div>-->
-                    <!--</a>-->
+                <!--<div class="artist__image line-effect"-->
+                <!--style="background-image: url('https://scontent-mxp1-1.xx.fbcdn.net/v/t1.0-9/1901266_747418388680270_1098705486875239760_n.jpg?oh=5f43c373637a3030958ee0656ef726da&oe=59FBC2E6')">-->
+                <!--<div class="line-1"><i></i></div>-->
+                <!--<div class="line-2"><i></i></div>-->
+                <!--<div class="line-3"><i></i></div>-->
+                <!--<div class="line-4"><i></i></div>-->
+                <!--</div>-->
+                <!--<div class="artist__name">-->
+                <!--<p>Chronics</p>-->
+                <!--</div>-->
+                <!--<div class="artist__description">-->
+                <!--<p>Power Pop with a toilet sound effect</p>-->
+                <!--</div>-->
+                <!--</a>-->
                 <!--</div>-->
                 <!--<div class="artist-thumb">-->
-                    <!--<a href="https://www.facebook.com/solongmovida/" target="_blank">-->
-                        <!--<div class="artist__image line-effect"-->
-                             <!--style="background-image: url('https://scontent-mxp1-1.xx.fbcdn.net/v/t1.0-9/19598729_1098660526902736_5221147871428306101_n.jpg?oh=95070fe040262101707c316e2f1cf22c&oe=5A36D573')">-->
-                            <!--<div class="line-1"><i></i></div>-->
-                            <!--<div class="line-2"><i></i></div>-->
-                            <!--<div class="line-3"><i></i></div>-->
-                            <!--<div class="line-4"><i></i></div>-->
-                        <!--</div>-->
-                        <!--<div class="artist__name">-->
-                            <!--<p>So Long</p>-->
-                        <!--</div>-->
-                        <!--<div class="artist__description">-->
-                            <!--<p>Punk emotivo </p>-->
-                        <!--</div>-->
-                    <!--</a>-->
+                <!--<a href="https://www.facebook.com/solongmovida/" target="_blank">-->
+                <!--<div class="artist__image line-effect"-->
+                <!--style="background-image: url('https://scontent-mxp1-1.xx.fbcdn.net/v/t1.0-9/19598729_1098660526902736_5221147871428306101_n.jpg?oh=95070fe040262101707c316e2f1cf22c&oe=5A36D573')">-->
+                <!--<div class="line-1"><i></i></div>-->
+                <!--<div class="line-2"><i></i></div>-->
+                <!--<div class="line-3"><i></i></div>-->
+                <!--<div class="line-4"><i></i></div>-->
+                <!--</div>-->
+                <!--<div class="artist__name">-->
+                <!--<p>So Long</p>-->
+                <!--</div>-->
+                <!--<div class="artist__description">-->
+                <!--<p>Punk emotivo </p>-->
+                <!--</div>-->
+                <!--</a>-->
                 <!--</div>-->
             </div>
             <div class="btn-ctr">

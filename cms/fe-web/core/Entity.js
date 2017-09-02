@@ -60,15 +60,7 @@ class Entity {
 
         return this.schema().then(_schema => {
             return parseSchema(_schema, "mergeValue", {_id: record._id.toString()}, record);
-            // const promises = Object.keys(_schema).map(key => {
-            //     return _schema[key].mergeValue(record[key]);
-            // });
-            // return Promise.all(promises).then(response => {
-            //     return response.reduce((prev, _record) => {
-            //         prev[_record.name] = _record;
-            //         return prev;
-            //     },);
-            // });
+
         })
 
     }
