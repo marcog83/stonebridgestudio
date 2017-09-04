@@ -182,7 +182,9 @@ class RelationSchema extends Schema {
     mergeValue(recordId) {
 
         return this.toEntity.findById(recordId).then(value => {
-            value._id = value._id.toString();
+           if(value){
+               value._id = value._id.toString();
+           }
             return Object.assign({}, this, {value});
         })
     }
