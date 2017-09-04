@@ -3,6 +3,16 @@
  */
 const Gruppi = require("../../../cms/fe-web/entities/Gruppi");
 const gruppi = new Gruppi();
+if (!Object.entries)
+    Object.entries = function( obj ){
+        var ownProps = Object.keys( obj ),
+            i = ownProps.length,
+            resArray = new Array(i); // preallocate the Array
+        while (i--)
+            resArray[i] = [ownProps[i], obj[ownProps[i]]];
+
+        return resArray;
+    };
 function getGruppi() {
     return gruppi.findAll(true)
 

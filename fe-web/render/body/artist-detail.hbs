@@ -1,20 +1,45 @@
 <div class="artist-detail">
-    <h1>{{gruppo.name}}</h1>
-    <p>{{gruppo.biography}}</p>
-    <p>{{gruppo.informations}}</p>
-    <p>{{gruppo.location}}</p>
-    <p>{{gruppo.email}}</p>
-    <p>{{gruppo.website}}</p>
-    <p>{{gruppo.genere}}</p>
-    <p>{{gruppo.coverImage}}</p>
-    <p>{{gruppo.profileImage}}</p>
+
+    <div class="artist-detail__cover" style="background-image: url('{{gruppo.coverImage}}')">
+        <div class="content-wrapper">
+            <div class="visual__text">
+                <p>{{gruppo.name}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="content-wrapper">
+        <div class="artist-detail__block">
+
+
+            <div class="artist-detail__label">info</div>
+            <p>{{gruppo.biography}}</p>
+            <p>{{gruppo.informations}}</p>
+
+        </div>
+        <div class="artist-detail__block artist-detail__flex">
+            <div class="artist-detail__profile-image" style="background-image: url('{{gruppo.profileImage}}')"></div>
+            <div class="artist-detail__info-block">
+                <h3 class="block-title textblock-title">Navigating with cutting stripes</h3>
+                <p>{{gruppo.location}}</p>
+                <p>{{gruppo.email}}</p>
+                <p>{{gruppo.website}}</p>
+                <p>{{gruppo.genere}}</p>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <!--<p>{{gruppo.coverImage}}</p>-->
+    <!--<p>{{gruppo.profileImage}}</p>-->
     <div>
         {{#each gruppo.membri}}
             <div>
-            {{@index}}:
-            {{#each this}}
-               <p> {{@key}}: {{this}}</p>
-            {{/each}}
+                {{@index}}:
+                {{#each this}}
+                    <p> {{@key}}: {{this}}</p>
+                {{/each}}
             </div>
         {{/each}}
     </div>

@@ -872,6 +872,80 @@ table {
     margin-bottom: 0;
   }
 }
+.artist-detail__cover {
+  background-size: cover;
+  width: 100%;
+  height: calc(100vh - 254px);
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+}
+.artist-detail__cover .content-wrapper {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+.artist-detail__cover .visual__text {
+  color: white;
+  padding: 50px 0;
+  font-size: 52px;
+  font-family: "Raleway";
+}
+.artist-detail__label {
+  position: relative;
+  margin: 0 0 20px;
+  font-size: 14px;
+  line-height: 20px;
+  color: #1d1d1b;
+}
+.artist-detail__block {
+  padding-top: 110px;
+  padding-bottom: 130px;
+  text-align: center;
+}
+.artist-detail__block p {
+  font-size: 30px;
+  line-height: 40px;
+}
+.artist-detail__flex {
+  display: flex;
+  padding-top: 150px;
+}
+.artist-detail__profile-image {
+  width: 50%;
+  height: 400px;
+  background-size: cover;
+  background-position: center;
+  transform: translateY(-150px);
+}
+.artist-detail__info-block {
+  background: #422030;
+  padding: 90px;
+  height: 400px;
+  width: 50%;
+  color: white;
+}
+.artist-detail .textblock-title {
+  position: relative;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 26px;
+  color: #fff;
+  letter-spacing: .05em;
+  margin: 0 0 20px;
+  padding: 0 30px;
+}
+.artist-detail .textblock-title:before {
+  position: absolute;
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+  top: 12px;
+  width: 30px;
+  height: 1px;
+  margin-left: -44px;
+  background-color: #fff;
+}
 ::selection {
   background: #CCA684;
   color: white;
