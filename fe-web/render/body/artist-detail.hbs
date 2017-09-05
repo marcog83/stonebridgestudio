@@ -11,50 +11,87 @@
         <div class="artist-detail__block">
 
 
-            <div class="artist-detail__label">info</div>
             <p>{{gruppo.biography}}</p>
-            <p>{{gruppo.informations}}</p>
+
 
         </div>
         <div class="artist-detail__block artist-detail__flex">
             <div class="artist-detail__profile-image" style="background-image: url('{{gruppo.profileImage}}')"></div>
-            <div class="artist-detail__info-block">
-                <h3 class="block-title textblock-title">Navigating with cutting stripes</h3>
-                <p>{{gruppo.location}}</p>
-                <p>{{gruppo.email}}</p>
-                <p>{{gruppo.website}}</p>
-                <p>{{gruppo.genere}}</p>
+            <div class="artist-detail__info-blocks">
+                <div class="artist-detail__info-block">
+                    <h3 class="block-title textblock-title">About</h3>
+                    <p>{{gruppo.informations}}</p>
+                    <p class="artist-detail__info-block__text-small">
+                        <span>genere: </span>{{gruppo.genere}}</p>
+                    <p class="artist-detail__info-block__text-small">{{gruppo.location}}</p>
+
+                    <ul class="membri">
+                        {{#each gruppo.membri}}
+                            <li class="membro__thumb">
+                                <figure class="membro__thumb-image">
+                                    <img src="{{this.profileImage}}">
+                                </figure>
+                                <div class="text-ctr">
+                                    <p class="membro__thumb-name">{{this.name}}</p>
+                                    <ul class="strumenti">
+                                        {{#each this.strumenti}}
+                                            <li class="strumento">
+                                                <p>{{this}}</p>
+                                            </li>
+                                        {{/each}}
+                                    </ul>
+                                </div>
+
+
+                            </li>
+                        {{/each}}
+                    </ul>
+                </div>
+                <div class="artist-detail__info-block artist-detail__info-block--ligher">
+
+
+                    <h3 class="block-title textblock-title">Contacts</h3>
+
+                    <a href="mailto:{{gruppo.email}}"><p class="artist-detail__info-block__text-small">mail</p></a>
+                    <a href="{{gruppo.website}}"><p class="artist-detail__info-block__text-small">site</p></a>
+
+                </div>
             </div>
         </div>
+<div class="">
+    <div class="artist-detail__label">discografia</div>
+    <div class="discografia-ctr">
+        <div class="discografia">
 
+            {{#each gruppo.dischi}}
+                <div class="disco">
+                    <a href="/disco/{{_id}}">
+                        <img src="{{this.coverImage}}">
+                        <div class="disco-text-ctr">
+                            <p> {{this.name}}</p>
+                            <p> {{this.publication_date}}</p>
+                        </div>
+                    </a>
+                </div>
+            {{/each}}
+        </div>
     </div>
-
+</div>
+    </div>
 
 
     <!--<p>{{gruppo.coverImage}}</p>-->
     <!--<p>{{gruppo.profileImage}}</p>-->
-    <div>
-        {{#each gruppo.membri}}
-            <div>
-                {{@index}}:
-                {{#each this}}
-                    <p> {{@key}}: {{this}}</p>
-                {{/each}}
-            </div>
-        {{/each}}
-    </div>
-    <div>
-        {{#each gruppo.dischi}}
-            <div>
-                {{@index}}:
-                {{#each this}}
-                    <p> {{@key}}: {{this}}</p>
-                {{/each}}
-            </div>
-        {{/each}}
-    </div>
+    <!--<div>-->
+        <!--{{#each gruppo.membri}}-->
+    <!--<div>-->
+    <!--{{@index}}:-->
+        <!--{{#each this}}-->
+        <!--<p> {{@key}}: {{this}}</p>-->
+            <!--{{/each}}-->
+    <!--</div>-->
+        <!--{{/each}}-->
+    <!--</div>-->
 
-    <div class="empty">
-        <p> we are working on it! </p>
-    </div>
+
 </div>
