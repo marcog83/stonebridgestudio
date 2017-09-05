@@ -1006,6 +1006,14 @@ table {
   color: #422030;
   line-height: 1;
 }
+.disco-info__by {
+  font-size: 12px;
+  margin-top: 10px;
+  text-align: right;
+}
+.disco-info__by a {
+  font-weight: bold;
+}
 ::selection {
   background: #CCA684;
   color: white;
