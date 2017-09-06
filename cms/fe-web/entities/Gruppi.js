@@ -72,6 +72,16 @@ class Gruppi extends Entity {
                     })
                 })
             })
+            , videos_embed: new RepeatableSchema({
+                label: "Video Embed"
+                , name: "videos_embed"
+                , field: new HtmlSchema()
+            })
+            , tracks_embed: new RepeatableSchema({
+                label: "Traccia musicale Embed"
+                , name: "tracks_embed"
+                , field: new HtmlSchema()
+            })
         }
     }
 

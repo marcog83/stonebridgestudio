@@ -12,6 +12,10 @@ module.exports = class Dischi extends Entity {
                 label: "Nome"
                 , name: "name"
             })
+            , description: new HtmlSchema({
+                label: "Embed dell'album"
+                , name: "description"
+            })
             , coverImage: new DocumentSchema({
                 label: "Cover Image"
                 , name: "coverImage"
@@ -21,6 +25,15 @@ module.exports = class Dischi extends Entity {
                 name: "publication_date"
                 , label: "Data di Pubblicazione"
                 , date_type: "month"
+            })
+            , videos_embed: new RepeatableSchema({
+                label: "Video Embed"
+                , name: "videos_embed"
+                , field: new HtmlSchema()
+            })
+            , album_tracks_embed: new HtmlSchema({
+                label: "Embed dell'album"
+                , name: "album_tracks_embed"
             })
 
         }
