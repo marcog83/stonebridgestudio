@@ -4,13 +4,27 @@
   position: relative;
   cursor: pointer;
   overflow: hidden;
+  &s {
 
+    &-ctr {
+      .visual__text {
+        color: white;
+        padding: 50px 0;
+        font-size: 52px;
+        font-family: "Raleway";
+      }
+      .posts__wrapper {
+        margin-top: 50px;
+
+      }
+    }
+  }
   &__cnt {
 
     position: relative;
     font-size: 0;
   }
-  &-image-zoomed{
+  &-image-zoomed {
     position: fixed;
     top: 0;
     left: 0;
@@ -22,7 +36,7 @@
     display: flex;
     align-items: flex-end;
     justify-content: flex-start;
-    &__text-panel{
+    &__text-panel {
       position: relative;
       color: white;
       z-index: 2;
@@ -66,7 +80,7 @@
     }
     &__over {
       z-index: 1;
-      position:absolute;
+      position: absolute;
       filter: inherit;
     }
   }
@@ -92,7 +106,7 @@
       overflow: hidden;
     }
   }
-  &s-title{
+  &s-title {
     font-family: Raleway;
     font-weight: 800;
     margin-bottom: 20px;
@@ -107,7 +121,7 @@
     &s {
       column-count: 2;
     }
-    &s-title{
+    &s-title {
       margin-bottom: 30px;
 
     }
