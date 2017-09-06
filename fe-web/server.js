@@ -10,6 +10,7 @@ const contacts = require("./routers/contacts");
 const whoWeAre = require("./routers/who-we-are");
 const artists = require("./routers/artists");
 const disco = require("./routers/disco");
+const posts = require("./routers/posts");
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.use('/photo-gallery', photoGallery);
 app.use('/who-we-are', whoWeAre);
 app.use('/artists', artists);
 app.use('/disco', disco);
+app.use('/posts', posts);
 //
 const PORT = process.env.PORT || 4900;
 

@@ -2,12 +2,30 @@
   &s {
     display: flex;
     justify-content: space-around;
+    .content-wrapper{
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+    &-ctr{
+      .last-artists {
+
+        &-title{
+          font-family: Raleway;
+          font-weight: 800;
+          margin-bottom: 20px;
+          color: #422030;
+          text-transform: uppercase;
+        }
+
+      }
+    }
   }
   &-thumb {
-    flex-grow: 1;
-    max-width: 32.5%;
+    width: 31.5%;
     display: flex;
     flex-direction: column;
+    margin-right: 1%;
     &:hover {
       .artist__image {
         filter: saturate(1);
@@ -35,6 +53,7 @@
     height: 2.4em;
   }
 }
+
 
 @media (max-width: 767px) {
   .artist {
