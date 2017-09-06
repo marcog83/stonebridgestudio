@@ -9,4 +9,9 @@ router.get('/', function (req, res) {
     res.render("disco-detail", {});
 
 });
+
+ router.get('/:id', function (req, res) {
+    res.render("disco-detail", {});
+
+});
 module.exports = router;

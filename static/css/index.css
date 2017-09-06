@@ -879,7 +879,7 @@ table {
 .artist-detail__cover {
   background-size: cover;
   width: 100%;
-  height: calc(100vh - 54px);
+  height: calc(100vh - 155px);
   position: relative;
   display: flex;
   align-items: flex-end;
@@ -892,8 +892,10 @@ table {
 .artist-detail__cover .visual__text {
   color: white;
   padding: 50px 0;
-  font-size: 52px;
   font-family: "Raleway";
+}
+.artist-detail__cover .visual__text h1 {
+  font-size: 52px;
 }
 .artist-detail__cover::after {
   content: "";
@@ -1005,15 +1007,48 @@ p.artist-detail__info-block__text-small {
   font-size: 12px;
   line-height: 1;
 }
+.artist-detail .more-info {
+  margin-top: 30px;
+}
 .discografia {
   display: flex;
+  justify-content: center;
+}
+.discografia-ctr {
+  padding: 50px 0;
+  background: rgba(204, 166, 132, 0.1);
+  margin: 50px 0 0;
 }
 .discografia .disco {
-  width: 150px;
-  margin-right: 15px;
+  width: 300px;
+  margin-right: 45px;
+  overflow: hidden;
+  position: relative;
 }
 .discografia .disco img {
   width: 100%;
+}
+.discografia .disco:hover .disco__text-ctr {
+  transform: translateY(0);
+}
+.discografia .disco__text-ctr {
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  padding: 20px;
+  color: white;
+  background: rgba(0, 0, 0, 0.3);
+  transform: translateY(100%);
+  transition: all 0.4s ease-out;
+}
+.discografia .disco__title {
+  font-family: Raleway;
+  font-weight: bold;
+  margin: 15px 0 0;
+}
+.discografia .disco__date {
+  font-size: 12px;
 }
 .disco-image {
   background-position: center;
@@ -1029,13 +1064,13 @@ p.artist-detail__info-block__text-small {
 .disco-image .content-wrapper {
   width: 100%;
   color: white;
-  font-size: 52px;
   font-family: "Raleway";
   position: relative;
   z-index: 1;
+  padding: 50px 13px;
 }
 .disco-image__title {
-  padding: 50px 0;
+  font-size: 52px;
 }
 .disco-image:after {
   content: "";
