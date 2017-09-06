@@ -3,4 +3,3 @@ node_modules
 .idea
 mongo-db
 _*.css
-uploads
