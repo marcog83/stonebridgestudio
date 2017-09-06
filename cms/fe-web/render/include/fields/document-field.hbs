@@ -4,7 +4,11 @@
             <legend>{{label}}</legend>{{/if}}
         <div class="document-ctr" data-mediator="document-field">
             <img class="js-img" src="{{value}}" alt="Image preview...">
-            <input class="js-input" autocomplete="off" type="file" name="{{name}}" accept="{{mimetype}}">
+            {{#if value}}
+                <input type="hidden" value="{{value}}" name="{{name}}">
+            {{/if}}
+
+            <input class="js-input"  autocomplete="off" type="file" name="{{name}}" accept="{{mimetype}}">
         </div>
     </fieldset>
 </div>

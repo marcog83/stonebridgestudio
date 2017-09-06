@@ -13,7 +13,7 @@ module.exports = class Dischi extends Entity {
                 , name: "name"
             })
             , description: new HtmlSchema({
-                label: "Embed dell'album"
+                label: "Descrizione dell'album"
                 , name: "description"
             })
             , coverImage: new DocumentSchema({
