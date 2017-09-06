@@ -60,11 +60,11 @@ if (posts) {
             });
             var isMobile = window.innerWidth < 768;
             TweenMax.to(cloneThumb, 0.8, {
-                top: scrollTop + 54 + (isMobile ? (window.innerHeight - 54 - nextHeight) / 2 : 0),
+                top: scrollTop  + (isMobile ? (window.innerHeight - 54 - nextHeight) / 2 : 0),
                 // left: 0,
 
-                left: "50%",
-                x: "-50%",
+                left: "0",
+                x: "0",
                 width: isMobile ? "100%" : "auto",
                 height: isMobile ? "auto" : window.innerHeight - 54
             });
