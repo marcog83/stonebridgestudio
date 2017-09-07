@@ -5,12 +5,12 @@ const Entity = require("../core/Entity");
 const Dischi = require("./Dischi");
 const MembriGruppo = require("./MembriGruppo");
 const RelationEntity = require("../core/RelationEntity");
-const {TextSchema, HtmlSchema, DocumentSchema, LinkSchema, RepeatableSchema, RelationSchema} = require("../core/schemas");
+const {TextSchema, HtmlSchema, DocumentSchema,NumberSchema, LinkSchema, RepeatableSchema, RelationSchema} = require("../core/schemas");
 class Gruppi extends Entity {
     constructor() {
         super("gruppi");
         this._schema = {
-            name: new TextSchema({
+             name: new TextSchema({
                 label: "Nome"
                 , name: "name"
             })
@@ -82,6 +82,11 @@ class Gruppi extends Entity {
                 , name: "tracks_embed"
                 , field: new HtmlSchema()
             })
+            ,_sortOrder: new NumberSchema({
+                label: "Ordinamento"
+                , name: "_sortOrder"
+            })
+
         }
     }
 

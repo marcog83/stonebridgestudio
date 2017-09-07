@@ -9,7 +9,7 @@ module.exports = {
         const connection = new Connection();
         connection.connect();
         return connection.collection(collectionId).then(collection => {
-            return collection.find({}).toArray();
+            return collection.find({}).sort({_sortOrder:1}).toArray();
         }).then(tap(_ => {
             connection.db.close();
         })).catch(tap(_ => {

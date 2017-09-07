@@ -2,7 +2,7 @@
  * Created by mgobbi on 03/08/2017.
  */
 const Entity = require("../core/Entity");
-const {TextSchema, DateSchema, HtmlSchema, DocumentSchema, LinkSchema, RepeatableSchema, RelationSchema} = require("../core/schemas");
+const {TextSchema, DateSchema, HtmlSchema, DocumentSchema, NumberSchema, LinkSchema, RepeatableSchema, RelationSchema} = require("../core/schemas");
 
 module.exports = class Dischi extends Entity {
     constructor() {
@@ -35,7 +35,10 @@ module.exports = class Dischi extends Entity {
                 label: "Embed dell'album"
                 , name: "album_tracks_embed"
             })
-
+            , _sortOrder: new NumberSchema({
+                label: "Ordinamento"
+                , name: "_sortOrder"
+            })
         }
     }
 
