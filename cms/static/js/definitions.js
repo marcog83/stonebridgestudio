@@ -6,6 +6,7 @@ define(function () {
         "repeatable-field":"./components/repeatable-field"
        , "relation-field":"./components/relation-field"
        , "document-field":"./components/document-field"
+       , "html-field":"./components/html-field"
        , "menu-principale":"./components/menu-principale"
        , "accordion":"./components/accordion"
     };

@@ -1,6 +1,8 @@
-<div class="field">
+<div class="field" data-mediator="html-field">
     <fieldset>
-        {{#if label}}<legend>{{label}}</legend>{{/if}}
+        {{#if label}}
+            <legend>{{label}}</legend>{{/if}}
+
         <textarea name="{{name}}" autocomplete="off">{{value}}</textarea>
     </fieldset>
 </div>

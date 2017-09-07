@@ -5,6 +5,7 @@ requirejs.config({
     paths: {
         "robojs": "./libs/robojs.min"
         ,"handlebars": "./libs/handlebars"
+
     }
 });
 require(["./application"], function (main) {
