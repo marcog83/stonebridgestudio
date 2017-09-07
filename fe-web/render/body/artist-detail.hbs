@@ -16,35 +16,50 @@
                     <div class="disco-info__text">
                         {{{gruppo.biography}}}</div>
                     <div class="more-info">
-                        <p><strong>genere:</strong> {{gruppo.genere}}</p>
-                        <p><strong>location:</strong> {{gruppo.location}}</p>
-                        <p><a href="mailto:{{gruppo.email}}"><strong>email</strong></a></p>
-                        <p><a href="{{gruppo.website}}"><strong>site</strong></a></p>
+                        {{#if gruppo.genere}}
+                            <p><strong>genere:</strong> {{gruppo.genere}}</p>
+                        {{/if}}
+                        {{#if gruppo.location}}
+                            <p><strong>location:</strong> {{gruppo.location}}</p>
+                        {{/if}}
+                        {{#if gruppo.email}}
+                            <p><a href="mailto:{{gruppo.email}}">
+                                <strong>email</strong></a>
+                            </p>
+                        {{/if}}
+                        {{#if gruppo.website}}
+                            <p>
+                                <a href="{{gruppo.website}}"><strong>site</strong></a>
+                            </p>
+                        {{/if}}
                     </div>
 
 
                 </div>
-                <h2 class="disco-info__title">GROUP MEMBERS</h2>
-                <ul>
-                    {{#each gruppo.membri}}
-                        <li class="membro__thumb">
+                {{#if gruppo.membri}}
+                    <h2 class="disco-info__title">GROUP MEMBERS</h2>
+                    <ul>
+                        {{#each gruppo.membri}}
+                            <li class="membro__thumb">
 
-                            <div class="text-ctr">
-                                <a href="/group-member/{{this._id}}"><p class="membro__thumb-name">{{this.name}}</p></a>
-                                <ul class="strumenti">
-                                    {{#each this.strumenti}}
-                                        <li class="strumento">
-                                            <p>{{this}}</p>
-                                        </li>
-                                    {{/each}}
-                                </ul>
-                            </div>
+                                <div class="text-ctr">
+                                    <a href="/group-member/{{this._id}}"><p class="membro__thumb-name">{{this.name}}</p>
+                                    </a>
+                                    <ul class="strumenti">
+                                        {{#each this.strumenti}}
+                                            <li class="strumento">
+                                                <p>{{this}}</p>
+                                            </li>
+                                        {{/each}}
+                                    </ul>
+                                </div>
 
 
-                        </li>
-                    {{/each}}
+                            </li>
+                        {{/each}}
 
-                </ul>
+                    </ul>
+                {{/if}}
                 {{#if gruppo.videos_embed}}
                     <div>
 
@@ -84,27 +99,28 @@
     <div class="content-wrapper">
 
     </div>
-    <div class="discografia-ctr">
-        <div class="content-wrapper">
-            <h2 class="disco-info__title">DISCOGRAFIA</h2>
-            <div class="">
-                <div class="discografia">
+    {{#if gruppo.dischi}}
+        <div class="discografia-ctr">
+            <div class="content-wrapper">
+                <h2 class="disco-info__title">DISCOGRAFIA</h2>
+                <div class="">
+                    <div class="discografia">
 
-                    {{#each gruppo.dischi}}
-                        <div class="disco">
-                            <a href="/disco/{{_id}}">
-                                <img src="{{this.coverImage}}">
-                                <div class="disco__text-ctr">
-                                    <p class="disco__title"> {{this.name}}</p>
-                                    <p class="disco__date"> {{this.publication_date}}</p>
-                                </div>
-                            </a>
-                        </div>
-                    {{/each}}
+                        {{#each gruppo.dischi}}
+                            <div class="disco">
+                                <a href="/dischi/{{_id}}">
+                                    <img src="{{this.coverImage}}">
+                                    <div class="disco__text-ctr">
+                                        <p class="disco__title"> {{this.name}}</p>
+                                        <p class="disco__date"> {{this.publication_date}}</p>
+                                    </div>
+                                </a>
+                            </div>
+                        {{/each}}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
+    {{/if}}
 
 </div>

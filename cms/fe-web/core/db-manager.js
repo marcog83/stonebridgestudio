@@ -5,11 +5,14 @@ const {Connection} = require("./db-connection");
 const {ObjectId} = require("mongodb");
 const tap = require("./tap");
 module.exports = {
-    findAll(collectionId){
+    findAll(collectionId,limit=100){
         const connection = new Connection();
         connection.connect();
         return connection.collection(collectionId).then(collection => {
-            return collection.find({}).sort({_sortOrder:1}).toArray();
+            return collection.find({})
+                .sort({_sortOrder: 1})
+                .limit(limit)
+                .toArray();
         }).then(tap(_ => {
             connection.db.close();
         })).catch(tap(_ => {

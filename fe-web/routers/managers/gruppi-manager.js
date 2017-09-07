@@ -13,8 +13,8 @@ if (!Object.entries)
 
         return resArray;
     };
-function getGruppi() {
-    return gruppi.findAll(true)
+function getGruppi(limit=100) {
+    return gruppi.findAll(limit,true)
 
 }
 function _helper(data) {

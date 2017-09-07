@@ -3,7 +3,7 @@ const {getGruppi} = require("./gruppi-manager");
 
 exports.getData = () => {
     return Promise.all([
-        getGruppi()
+        getGruppi(3)
        , getPosts()
        , getInfo()
     ]).then(([gruppi,posts,info]) => {

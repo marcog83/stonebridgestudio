@@ -10,7 +10,7 @@ function isArray(val) {
     val.length >= 0 &&
     Object.prototype.toString.call(val) === '[object Array]');
 };
-function _excludeEmptyFields(obj={}) {
+function _excludeEmptyFields(obj = {}) {
     Object.keys(obj).forEach(function (key) {
         if (obj[key] && isObject(obj[key])) {
             _excludeEmptyFields(obj[key])
@@ -47,13 +47,15 @@ class Entity {
 
     }
 
-    findAll(exclude_merge = false) {
-        return dbManager.findAll(this.id).then(records => {
-            if (exclude_merge)return records;
-            return Promise.all(records
-                .filter(r => r)
-                .map(this._mergeRecordSchema.bind(this)))
-        })
+    findAll(limit,exclude_merge = false) {
+        return dbManager.findAll(this.id,limit)
+
+            .then(records => {
+                if (exclude_merge)return records;
+                return Promise.all(records
+                    .filter(r => r)
+                    .map(this._mergeRecordSchema.bind(this)))
+            })
     }
 
     _mergeRecordSchema(record) {
