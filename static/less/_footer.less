@@ -1,8 +1,9 @@
 @import "_variables";
-.footer {
-  background:@dark-olive-green;
-  height: 300px;
 
+.footer {
+  background: @dark-olive-green;
+  height: 300px;
+  margin-top: 30px;
   .buttons {
     display: flex;
     justify-content: flex-end;
@@ -13,7 +14,7 @@
   .footer-button {
 
     text-align: right;
-    &.text-only{
+    &.text-only {
       margin: 0 10px;
     }
     a {
@@ -22,7 +23,7 @@
       color: @tan;
       font-size: 12px;
       transition: color .4s ease-out;
-      &:hover{
+      &:hover {
         color: @dim-gray;
       }
     }
@@ -42,27 +43,28 @@
     background: @tan;
     transition: background .5s ease-out;
     margin: 0 10px;
-    &:hover{
+    &:hover {
       background: @dim-gray;
     }
   }
-  .social-buttons{
+  .social-buttons {
     display: flex;
     justify-content: flex-end;
     padding: 0;
     margin-top: 10px;
   }
 }
- @media (max-width:767px) {
-   .footer{
-     .buttons{
-       display: block;
-     }
-     &-button{
-       padding: 5px 0;
-     }
-     .social-buttons{
-        margin-top: 10px;
-     }
-   }
- }
+
+@media (max-width: 767px) {
+  .footer {
+    .buttons {
+      display: block;
+    }
+    &-button {
+      padding: 5px 0;
+    }
+    .social-buttons {
+      margin-top: 10px;
+    }
+  }
+}
