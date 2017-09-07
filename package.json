@@ -4,9 +4,10 @@
   "description": "prova",
   "main": "index.js",
   "scripts": {
-    "build-css": "lessc static/less/index.less > static/css/index.css",
+    "build-css": "lessc static/less/index.less > static/css/index.css ",
+    "filerev":"node build-scripts/filerev.js",
     "watch-css": "catw -w 'static/less/**/*.less' -c 'npm run build-css'",
-    "build-css-prod": "postcss  static/css/index.css --use autoprefixer --autoprefixer.browsers '> 5%' -o static/css/index.css",
+    "build-css-prod": "postcss  static/css/index.css --use autoprefixer --autoprefixer.browsers '> 5%' -o static/css/index.css && npm run filerev",
     "mongo-win": "cd mongo-db & \"C:/Program Files/MongoDB/Server/3.4/bin/mongod.exe\" --dbpath C:/Users/marcogobbi/WebstormProjects/stonebridgestudio/mongo-db",
     "mongo-win-office": "cd mongo-db & \"C:/Program Files/MongoDB/Server/3.4/bin/mongod.exe\" --dbpath C:/workspace/experiments/stonebridgestudio/mongo-db"
   },
@@ -42,6 +43,11 @@
   "devDependencies": {
     "autoprefixer": "^7.1.2",
     "catw": "^1.0.1",
+    "chalk": "^2.1.0",
+    "convert-source-map": "^1.5.0",
+    "each-async": "^1.1.1",
+    "glob": "^7.1.2",
+    "mkdirp": "^0.5.1",
     "postcss-cli": "^4.1.0",
     "watchify": "^3.9.0"
   }

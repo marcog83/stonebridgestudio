@@ -129,13 +129,13 @@ var config = {
         length: 8
     },
     src: [
-        dist(CSS) + "**/*.css",
-        `${getDistFolder()}${data.js_name_production}`
+        "static/css/index.css"
+        // ,        `${getDistFolder()}${data.js_name_production}`
     ]
 };
 var replace_options = {
     assets_root: DIST_FOLDER
-    , src: [`${DIST_FOLDER}/**/*.html`]
+    , src: [`fe-web/render/include/stylesheet.hbs`]
 }
 revFiles(config)
     .then(replaceFiles.bind(null, replace_options))
