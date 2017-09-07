@@ -7,22 +7,37 @@ var crypto = require('crypto');
 
 const contentsManager = new ContentsManager();
 
-var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, '/uploads', function (destination, filename) {
-            return path.join("../uploads", filename);
-        })
-    },
-
+// var storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//         cb(null, '/uploads', function (destination, filename) {
+//             return path.join("../uploads", filename);
+//         })
+//     },
+//
+//     filename: function (req, file, cb) {
+//         crypto.pseudoRandomBytes(16, function (err, raw) {
+//             if (err) return cb(err);
+//
+//             cb(null, raw.toString('hex') + path.extname(file.originalname))
+//         })
+//     }
+// });
+process.env.CLOUDINARY_URL='cloudinary://789157418757621:-HG0AR_widkwOQQMyEigP5QrPNQ@ditqnz8c3';
+var cloudinary = require('cloudinary');
+var cloudinaryStorage = require('multer-storage-cloudinary');
+var storage = cloudinaryStorage({
+    cloudinary: cloudinary,
+    folder: 'folder-name',
+    allowedFormats: ['jpg', 'png'],
     filename: function (req, file, cb) {
         crypto.pseudoRandomBytes(16, function (err, raw) {
             if (err) return cb(err);
 
-            cb(null, raw.toString('hex') + path.extname(file.originalname))
+            cb(null, raw.toString('hex'))
         })
     }
 });
-multerPatch(storage);
+// multerPatch(storage);
 var upload = multer({storage: storage});
 const router = express.Router();
 // define the detail route

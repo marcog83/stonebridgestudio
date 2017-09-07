@@ -23,13 +23,18 @@
   "dependencies": {
     "barba.js": "^1.0.0",
     "body-parser": "^1.17.2",
+    "cloudinary": "^1.9.0",
     "crypto": "0.0.3",
+    "dropbox": "^2.5.7",
+    "dropbox-stream": "^1.0.5",
     "express": "^4.15.3",
+    "express-form-post": "^1.4.0",
     "fb": "^2.0.0",
     "glob": "^7.1.2",
     "handlebars": "^4.0.10",
     "mongodb": "^2.2.30",
     "multer": "^1.3.0",
+    "multer-storage-cloudinary": "^2.2.1",
     "requirejs": "^2.3.4",
     "robojs": "^5.2.0",
     "spdy": "^3.4.7"

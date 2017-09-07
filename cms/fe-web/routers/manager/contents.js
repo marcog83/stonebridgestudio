@@ -73,7 +73,7 @@ module.exports = class ContentsManager {
         const entity = this._entities.filter(({entity}) => entity.id === entityId)[0].entity;
 
         files.forEach(file => {
-            body[file.fieldname] = `${file.destination}/${file.filename}`;
+            body[file.fieldname] =file.secure_url; //`${file.destination}/${file.filename}`;
         });
 
         return entity.save(body);
@@ -84,7 +84,7 @@ module.exports = class ContentsManager {
         const entity = this._entities.filter(({entity}) => entity.id === entityId)[0].entity;
 
         files.forEach(file => {
-            body[file.fieldname] = `${file.destination}/${file.filename}`;
+            body[file.fieldname] = file.secure_url;//`${file.destination}/${file.filename}`;
         });
 
         return entity.update(recordId, body);
