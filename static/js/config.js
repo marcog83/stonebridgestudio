@@ -3,10 +3,12 @@
  */
 requirejs.config({
     paths: {
-        "robojs": "./libs/robojs.min"
+        "libraries": "./libs/libraries"
 
     }
 });
-require(["./application"], function (main) {
-    main();
-})
+require(["require", "libraries"], function (require) {
+    require(["./application"], function (main) {
+        main();
+    })
+});

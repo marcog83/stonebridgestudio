@@ -11,14 +11,18 @@ module.exports = {
 
             , "@most/create": "../node_modules/@most/create/dist/create"
             , "@most/multicast": "../node_modules/@most/multicast/dist/multicast"
-            , "@most/prelude": "../node_modules/@most/prelude/dist/prelude"
+            , "@most/prelude": "../node_modules/@most/prelude/dist/index"
             , "most": "../node_modules/most/dist/most"
+            , "gsap": "../node_modules/gsap/src/uncompressed/TweenMax"
+            ,barba:"../node_modules/barba.js/dist/barba"
 
 
         },
 
         shim: {
-
+            gsap:{
+                exports:"TweenMax"
+            }
 
         }
         , map: {

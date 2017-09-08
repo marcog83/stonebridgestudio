@@ -1,5 +1,6 @@
 @import "_equalizer";
 @import "_variables";
+
 .header {
   height: 54px;
   position: fixed;
@@ -8,6 +9,7 @@
   background: @dark-olive-green;
   display: flex;
   justify-content: center;
+
   .text-ctr {
 
     font-size: 20px;
@@ -23,6 +25,11 @@
 
 @media (max-width: 767px) {
   .header {
+    transition: transform 0.5s ease-out;
+    transform: translateY(0);
+    &.closed {
+      transform: translateY(-90px);
+    }
     .text-ctr {
       font-size: 15px;
     }
