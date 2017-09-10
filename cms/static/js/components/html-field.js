@@ -6,9 +6,7 @@ define(function () {
     return function (node) {
         tinymce.init({
             target: node.querySelector("textarea"),
-            plugins: "code",
-            toolbar: "code",
-            menubar: "tools"
+            plugins: "code link"
         });
     }
 });
