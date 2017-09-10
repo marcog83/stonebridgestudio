@@ -12,10 +12,11 @@ const LAYOUT_DIR = 'cms/fe-web/render/layout/';
 const DATA_DIR = 'cms/fe-web/render/data/';
 const INCLUDE_DIR = 'cms/fe-web/render/include/';
 const BODY_DIR = `cms/fe-web/render/body/`;
-switchHelper(Handlebars);
-jsonHelper(Handlebars);
-rawHelper(Handlebars);
-ifCondHelper(Handlebars);
+var OtherHandlebars = Handlebars.create();
+switchHelper(OtherHandlebars);
+jsonHelper(OtherHandlebars);
+rawHelper(OtherHandlebars);
+ifCondHelper(OtherHandlebars);
 function getFile(filePath) {
     return new Promise(function (resolve, reject) {
         fs.readFile(filePath, function (err, content) {
@@ -53,7 +54,7 @@ function registerIncludes() {
         return Promise.all(promises)
     }).then(includes => {
         includes.forEach(({include, name}) => {
-            Handlebars.registerPartial(name, include);
+            OtherHandlebars.registerPartial(name, include);
         })
     })
 
@@ -75,7 +76,7 @@ module.exports = function (options) {
                 getFile(`${LAYOUT_DIR}${layout}.hbs`)
                 , getFile(`${BODY_DIR}${body}.hbs`)
             ]).then(([layout, body]) => {
-                const precompiled =Handlebars.compile(layout)// Handlebars.precompile(layout);
+                const precompiled =OtherHandlebars.compile(layout)// Handlebars.precompile(layout);
                 return {
                     template: precompiled//Handlebars.template((new Function('return ' + precompiled))())
                     , body
@@ -84,7 +85,7 @@ module.exports = function (options) {
 
         }
         includes.then(_ => cache[key]).then(({template, body}) => {
-            Handlebars.registerPartial('body', body);
+            OtherHandlebars.registerPartial('body', body);
             const {data = {}} = options || {};
             data.__pagename__ = key;
             return callback(null, template(data));
