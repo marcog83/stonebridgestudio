@@ -1,1 +1,1 @@
-web: node fe-web/server.js
+web: node cms/fe-web/server.js
