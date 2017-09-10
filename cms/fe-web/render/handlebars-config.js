@@ -2,6 +2,7 @@
 
  // const exphbs = require("express-handlebars");
 const hbs = require("../handlebars-engine/handlebars-engine");
+const path = require("path");
 
 module.exports=function(app){
     
@@ -11,7 +12,7 @@ module.exports=function(app){
         }
     }));
 
-    app.set('views', 'fe-web/render/body/');
+    app.set('views', path.join(__dirname, 'body/'));
     app.set('view engine', 'hbs');
     app.enable('view cache');
 };

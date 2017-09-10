@@ -11,6 +11,7 @@ const whoWeAre = require("./routers/who-we-are");
 const artists = require("./routers/artists");
 const disco = require("./routers/disco");
 const posts = require("./routers/posts");
+const cms = require("../cms/fe-web/server").cms;
 
 const app = express();
 
@@ -30,6 +31,7 @@ function  cacheMiddleware(seconds){
 
 
 
+app.use("/cms",cms);
 app.use(compression());
 app.use(cacheMiddleware(3600));
 app.use('/static', express.static(__dirname + '/../static', {

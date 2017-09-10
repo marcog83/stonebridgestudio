@@ -1,12 +1,12 @@
 <form name="{{recordId}}" method="post"
-      action="/contents/save/{{entityId}}{{#if recordId}}/{{recordId}}{{/if}}"
+      action="/cms/contents/save/{{entityId}}{{#if recordId}}/{{recordId}}{{/if}}"
 
       enctype="multipart/form-data">
     <header class="contents__header">
         <h2 class="contents-title">{{name}}</h2>
         <div class="actions">
             <button type="submit" title="Salva le modifiche">SAVE</button>
-            <a href="/contents" title="torna ai contenuti">BACK</a>
+            <a href="/cms/contents" title="torna ai contenuti">BACK</a>
         </div>
     </header>
     <section class="contents">

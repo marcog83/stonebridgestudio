@@ -41,9 +41,4 @@ const PORT = process.env.PORT || 5000;
 //     cert: fs.readFileSync('./fe-web/server.crt')
 // };
 
-// http2.createServer(options, app)
-app.listen(PORT, () => {
-            console.log(`Server is listening on http://localhost:${PORT}.
-You can open the URL in the browser.`)
-        }
-    );
+exports.cms=app;

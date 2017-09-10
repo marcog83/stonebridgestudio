@@ -66,17 +66,17 @@ router.get('/search/:id', function (req, res) {
 });
 router.post("/save/:entityId", upload.any(), function (req, res) {
     contentsManager.save(req.params.entityId, req.files, req.body).then(recordId => {
-        res.redirect(`/contents/${req.params.entityId}/${recordId}`);
+        res.redirect(`/cms/contents/${req.params.entityId}/${recordId}`);
     });
 });
 router.post("/save/:entityId/:recordId", upload.any(), function (req, res) {
     contentsManager.update(req.params.entityId, req.params.recordId, req.files, req.body).then(recordId => {
-        res.redirect(`/contents/${req.params.entityId}/${recordId}`);
+        res.redirect(`/cms/contents/${req.params.entityId}/${recordId}`);
     });
 });
 router.get('/delete/:entityId/:recordId', function (req, res) {
     contentsManager.deleteOne(req.params.entityId, req.params.recordId).then(data => {
-        res.redirect(`/contents/${req.params.entityId}`);
+        res.redirect(`/cms/contents`);
     })
 });
 module.exports = router;
