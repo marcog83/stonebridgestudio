@@ -19,11 +19,11 @@ define(function (require) {
                 , delay: 0.3
                 , onComplete: function () {
                     posts.style.visibility = "hidden";
-                    posts.innerHTML = `<div class="content-wrapper js-thumb-ctr">
-                        <div class="post-image-zoomed__text-panel">
-                        <p class="text-js"></p>
-                        </div>
-                        </div>`
+                    posts.innerHTML = '<div class="content-wrapper js-thumb-ctr">' +
+                        '<div class="post-image-zoomed__text-panel">' +
+                        '<p class="text-js"></p>' +
+                        '</div>' +
+                        '</div>'
                     // document.body.classList.remove("fixed")
                 }
             })
