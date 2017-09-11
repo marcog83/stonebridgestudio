@@ -14,7 +14,7 @@ module.exports = {
             , "@most/prelude": "../node_modules/@most/prelude/dist/index"
             , "most": "../node_modules/most/dist/most"
             , "gsap": "../node_modules/gsap/src/uncompressed/TweenMax"
-            ,Barba:"../node_modules/barba.js/dist/barba"
+            ,jquery:"../node_modules/jquery/dist/jquery"
 
 
         },

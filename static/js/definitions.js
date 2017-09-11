@@ -16,6 +16,8 @@
     return {
         "menu-visibility": "modules/menu/topbar-menu-visibility"
         , "bg-image": "modules/effects/bg-image"
-        , "page-transitions": "modules/effects/page-transitions"
+        , "menu": "modules/menu"
+        , "post-thumbnail": "modules/posts/post-thumbnail"
+        , "post-image-zoomed": "modules/posts/post-image-zoomed"
     };
 });
