@@ -1,16 +1,19 @@
 <div class="artist-detail">
-
-    <div class="artist-detail__cover" style="background-image: url('{{gruppo.coverImage}}')">
+    <div class="bg-image-ctr">
+    <div class="artist-detail__cover"
+         data-mediator="bg-image"
+         data-image="{{gruppo.coverImage}}">
         <div class="content-wrapper">
-            <div class="retroshadow visual__text">
+            <div class="slidein-05  retroshadow visual__text">
                 <h1>{{gruppo.name}}</h1>
                 <p>{{gruppo.informations}}</p>
             </div>
         </div>
     </div>
+    </div>
     <div class="disco-info">
         <div class="content-wrapper disco-info__wrapper">
-            <div class="disco-text-ctr">
+            <div class="disco-text-ctr fadeIn">
                 <div class="disco-text__wrapper">
                     <h2 class="disco-info__title">INTRODUCING</h2>
                     <div class="disco-info__text">
@@ -72,7 +75,7 @@
                     </div>
                 {{/if}}
             </div>
-            <div class="disco__right">
+            <div class="slidein-05-01 disco__right">
                 <figure class="disco-cover">
                     <img src="{{gruppo.profileImage}}">
                 </figure>

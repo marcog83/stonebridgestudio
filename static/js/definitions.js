@@ -15,5 +15,7 @@
 })(this, function () {
     return {
         "menu-visibility": "modules/menu/topbar-menu-visibility"
+        , "bg-image": "modules/effects/bg-image"
+        , "page-transitions": "modules/effects/page-transitions"
     };
 });

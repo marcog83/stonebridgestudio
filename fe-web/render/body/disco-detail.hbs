@@ -1,14 +1,18 @@
 <div class="disco-detail">
-    <div class="disco-image" style="background-image: url('{{disco.coverImage}}')">
-        <div class="retroshadow content-wrapper">
-            <h1 class="disco-image__title">{{disco.name}}</h1>
-            <p>{{disco.publication_date}}</p>
-        </div>
+    <div class="bg-image-ctr">
+        <div class="disco-image"
+             data-mediator="bg-image"
+             data-image="{{disco.coverImage}}">
+            <div class="slidein-05 retroshadow content-wrapper">
+                <h1 class="disco-image__title">{{disco.name}}</h1>
+                <p>{{disco.publication_date}}</p>
+            </div>
 
+        </div>
     </div>
     <div class="disco-info">
         <div class="content-wrapper disco-info__wrapper">
-            <div class="disco-text-ctr">
+            <div class="disco-text-ctr fadeIn">
                 <div class="disco-text__wrapper">
                     <h2 class="disco-info__title">INTRODUCING</h2>
                     <p class="disco-info__text">
@@ -29,7 +33,7 @@
 
 
             </div>
-            <div class="disco__right">
+            <div class="slidein-05-01 disco__right">
                 <figure class="disco-cover">
                     <img src="{{disco.coverImage}}">
                 </figure>
