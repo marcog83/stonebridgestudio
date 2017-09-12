@@ -23,7 +23,18 @@ var getURL = name => {
         .then(R.tap(_ => connection.db.close()))
         .catch(R.tap(_ => connection.db.close()))
 };
+
+var getFromOriginalUrl = orginal_url => {
+    var connection = new Connection();
+    return connection.connect()
+        .then(connection.collection.bind(connection, "SEO_URLS"))
+        .then(coll => coll.findOne({orginal_url}))
+        .then(R.tap(_ => connection.db.close()))
+        .catch(R.tap(_ => connection.db.close()))
+};
+
 exports.getURL = getURL;
+exports.getFromOriginalUrl = getFromOriginalUrl;
 exports.middleware = (req, res, next) => {
     var name = "/" + req.param(0);
     return getURL(name).then(seoItem => {

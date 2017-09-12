@@ -1,5 +1,6 @@
 const fs = require('fs');
-const mergeDeep = require('./merge-deep');
+
+const jsonHelper = require('../../cms/fe-web/handlebars-engine/json-helper');
 var glob = require("glob");
 var path = require("path");
 var Handlebars = require("handlebars");
@@ -8,7 +9,9 @@ const LAYOUT_DIR = 'fe-web/render/layout/';
 const DATA_DIR = 'fe-web/render/data/';
 const INCLUDE_DIR = 'fe-web/render/include/';
 const BODY_DIR = `fe-web/render/body/`;
+
 var OtherHandlebars = Handlebars.create();
+jsonHelper(OtherHandlebars);
 function getFile(filePath) {
     return new Promise(function (resolve, reject) {
         fs.readFile(filePath, function (err, content) {
