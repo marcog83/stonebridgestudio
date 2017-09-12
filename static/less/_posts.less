@@ -1,4 +1,4 @@
-
+@import "_variables";
 .post {
   margin: 0;
   position: relative;
@@ -34,18 +34,25 @@
     visibility: hidden;
     z-index: 10;
     display: flex;
-    align-items: flex-end;
+    align-items: flex-start;
     justify-content: flex-start;
+    .js-thumb-ctr{
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
     &__text-panel {
       position: relative;
-      color: white;
+      color: @dim-gray;
       z-index: 2;
-      width: 100%;
+      width: 50%;
       line-height: 1.4;
-      padding: 54px 20%;
+      padding: 0 40px 40px;
       font-size: 18px;
-      text-align: center;
-      background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0.8) 100%);
+      text-align: left;
+      height: ~"calc(100vh - 110px)";
+      overflow: auto;
+      margin-top: 90px;
     }
   }
   &s {
@@ -82,6 +89,19 @@
       z-index: 1;
       position: absolute;
       filter: inherit;
+      text-align: right;
+      img {
+        max-height: ~"calc(100vh - 100px)";
+        max-width: 100%;
+        width: auto;
+        display: inline-block;
+        text-align: right;
+      }
+      .zoom-completed & {
+        position: relative;
+        top: 54px;
+      }
+
     }
   }
   &__text {
@@ -101,6 +121,7 @@
     background: rgba(0, 0, 0, 0.4);
     transform: translateY(100%);
     transition: all 0.5s ease-out;
+
     p {
       max-height: 4.2em;
       overflow: hidden;

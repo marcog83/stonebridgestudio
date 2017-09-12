@@ -1,11 +1,15 @@
 <div class="homepage">
-    <div class="homepage__visual" style="background-image: url('{{info.cover.source}}')">
-        <div class="content-wrapper">
-            <div class="visual__text">
-                <p>{{info.description}}</p>
+    <div class="bg-image-ctr">
+        <div class="homepage__visual"
+             data-mediator="bg-image"
+             data-image="{{info.cover.source}}">
+            <div class="content-wrapper">
+                <div class="visual__text slidein-05">
+                    <p>{{info.description}}</p>
+                </div>
             </div>
-        </div>
 
+        </div>
     </div>
     <div class="last-artists-ctr">
         <div class="content-wrapper">
@@ -57,9 +61,11 @@
             </a>
         </div>
     </div>
-    <div class="post-image-zoomed">
-        <div class="post-image-zoomed__text-panel">
-            <p class="text-js"></p>
+    <div data-mediator="post-image-zoomed" class="post-image-zoomed">
+        <div class="content-wrapper js-thumb-ctr">
+            <div class="post-image-zoomed__text-panel">
+                <p class="text-js"></p>
+            </div>
         </div>
     </div>
 

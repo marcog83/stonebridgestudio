@@ -1,11 +1,15 @@
 <div class="posts-ctr">
-    <div class="homepage__visual" style="background-image: url('/static/img/posts-cover.jpg')">
-        <div class="content-wrapper">
-            <div class="visual__text">
-                <p>Posts</p>
+    <div class="bg-image-ctr">
+        <div class="homepage__visual"
+             data-mediator="bg-image"
+             data-image="/static/img/posts-cover.jpg">
+            <div class="content-wrapper">
+                <div class="slidein-05 visual__text">
+                    <p>Posts</p>
+                </div>
             </div>
-        </div>
 
+        </div>
     </div>
     <div class="posts__wrapper content-wrapper">
         <h2 class="title posts-title">
@@ -17,6 +21,14 @@
         {{#each posts}}
             {{> post}}
         {{/each}}
+
+    </div>
+    <div data-mediator="post-image-zoomed" class="post-image-zoomed">
+        <div class="content-wrapper js-thumb-ctr">
+            <div class="post-image-zoomed__text-panel">
+                <p class="text-js"></p>
+            </div>
+        </div>
 
     </div>
 </div>

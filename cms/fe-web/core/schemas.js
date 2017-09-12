@@ -65,7 +65,9 @@ exports.NumberSchema = class NumberSchema extends Schema {
         super(name, label);
         this.type = NUMBER_SCHEMA;
     }
-
+    save(value) {
+        return Promise.resolve(Number(value));
+    }
     clone() {
         return new NumberSchema(this);
     }
