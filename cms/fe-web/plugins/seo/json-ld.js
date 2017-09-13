@@ -5,7 +5,7 @@ exports.getGroup = group => {
     var result = {
         "@context": "http://schema.org",
         "@type": "MusicGroup",
-        "@id": group.seo.url,
+        "@id": group.seo.seo_url,
         "name": group.name,
         "sameAs": group.website,
         "foundingLocation": {
@@ -16,15 +16,15 @@ exports.getGroup = group => {
         "genre": (group.generi || "").toString(),
         "album": (group.dischi || []).map(disco => {
             //todo disco.seo!!!
-            disco.seo={};
+
             return {
                 "albumReleaseType": "http://schema.org/AlbumRelease",
                 "@type": "MusicAlbum",
-                "@id": disco.seo.url,
+                "@id": disco.seo.seo_url,
                 "creditedTo": group.name,
                 "byArtist": {
                     "@type": "MusicGroup",
-                    "@id": group.seo.url,
+                    "@id": group.seo.seo_url,
                     "name": group.name
                 },
                 "name": disco.name,

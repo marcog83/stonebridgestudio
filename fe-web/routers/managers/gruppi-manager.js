@@ -28,21 +28,35 @@ function _helper(data) {
     return data.map(i => i.value);
 
 }
-function getGruppo(id) {
-    return gruppi.findById(id).then(response => {
-        return Promise.all([
-            SeoPlugin.fromEntity(response)
-            , response
-        ])
-
-    }).then(([seo, response]) => {
+function extractValue(initialValue){
+    return function(response){
         return Object.entries(response).map(([key, data]) => {
             const value = Array.isArray(data.value) ? _helper(data.value) : data.value;
             return [key, value];
         }).reduce((prev, [key, value]) => {
             prev[key] = value;
             return prev;
-        }, {seo})
+        }, initialValue)
+    }
+
+}
+function getGruppo(id) {
+    return gruppi.findById(id).then(response => {
+        return Promise.all([
+            SeoPlugin.getValueFromRecordId(id)
+                .then(extractValue({}))
+            , response
+        ])
+
+    }).then(([seo, response]) => {
+        return extractValue({seo})(response);
+        // Object.entries(response).map(([key, data]) => {
+        //     const value = Array.isArray(data.value) ? _helper(data.value) : data.value;
+        //     return [key, value];
+        // }).reduce((prev, [key, value]) => {
+        //     prev[key] = value;
+        //     return prev;
+        // }, {seo})
     })
 }
 module.exports = {

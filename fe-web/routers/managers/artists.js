@@ -20,7 +20,7 @@ exports.getDetail = (id) => {
     return Promise.all(
         [getGruppo(id)]
     ).then(([gruppo]) => {
-        gruppo.seo = {};
+
         return {
             data: {
                 _production: process.env.NODE_ENV == "production",

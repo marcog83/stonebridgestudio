@@ -12,6 +12,15 @@ exports.getFromOriginalUrl = seo_original_url => {
     return seoEntity.queryOne({seo_original_url});
 
 };
+exports.getValueFromRecordId = seo_recordId => {
+    return seoEntity.queryOne({seo_recordId}).then(record => {
+        //if (!record.length)return {fields:[]};
+        return record
+       // const fields = Object.keys(record).map(key => record[key]);
+       // return {fields}
+
+    })
+};
 exports.getFromRecordId = seo_recordId => {
     return seoEntity.queryOne({seo_recordId}).then(record => {
         //if (!record.length)return {fields:[]};
