@@ -41,9 +41,10 @@ class Schema {
     }
 }
 exports.TextSchema = class TextSchema extends Schema {
-    constructor({name, label} = {}) {
+    constructor({name, label,readonly} = {}) {
         super(name, label);
         this.type = TEXT_SCHEMA;
+        this.readonly = readonly;
     }
 
     clone() {

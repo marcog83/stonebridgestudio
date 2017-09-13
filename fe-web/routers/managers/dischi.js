@@ -1,30 +1,14 @@
 const {getDisco} = require("./dischi-manager");
+const jsonld = require("../../../cms/fe-web/plugins/seo/json-ld");
 
-// exports.getData = () => {
-//     return Promise.all([
-//         getGruppi()
-//
-//     ]).then(([gruppi]) => {
-//         return {
-//             data: {
-//                 _production: process.env.NODE_ENV == "production",
-//                 title: "Artists | Stonebridge Studio"
-//                 , gruppi
-//
-//             }
-//         }
-//     })
-// };
 exports.getDetail = (id) => {
-    return Promise.all(
-        [getDisco(id)]
-    ).then(([disco]) => {
+    return getDisco(id).then(disco => {
         return {
             data: {
                 _production: process.env.NODE_ENV == "production",
-                title: "Disco Detail | Stonebridge Studio"
+                seoData: disco.seo
                 , disco
-
+                , jsonld: jsonld.getDisco(disco)
             }
         }
     })

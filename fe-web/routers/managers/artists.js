@@ -9,7 +9,12 @@ exports.getData = () => {
         return {
             data: {
                 _production: process.env.NODE_ENV == "production",
-                title: "Artists | Stonebridge Studio"
+                seoData: {
+                    seo_title: "Artists | Stonebridge Studio"
+                    , seo_shareImage: "http://www.stonebridgestudio.it/static/img/profile.jpg"
+                    , seo_description: "This place got something."
+                    , seo_url: "/gruppi"
+                }
                 , gruppi
 
             }
@@ -17,18 +22,16 @@ exports.getData = () => {
     })
 };
 exports.getDetail = (id) => {
-    return Promise.all(
-        [getGruppo(id)]
-    ).then(([gruppo]) => {
+    return getGruppo(id)
+        .then((gruppo) => {
+            return {
+                data: {
+                    _production: process.env.NODE_ENV == "production",
+                    seoData: gruppo.seo
+                    , gruppo
+                    , jsonld: jsonld.getGroup(gruppo)
 
-        return {
-            data: {
-                _production: process.env.NODE_ENV == "production",
-                title: "Artist Detail | Stonebridge Studio"
-                , gruppo
-                , jsonld: jsonld.getGroup(gruppo)
-
+                }
             }
-        }
-    })
+        })
 };

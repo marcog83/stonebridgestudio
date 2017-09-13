@@ -31,7 +31,7 @@ exports.getGroup = group => {
                 "albumProductionType": "http://schema.org/StudioAlbum"
             }
         }),
-        "member":(group.membri || []).map(m=>{
+        "member": (group.membri || []).map(m => {
             return {
                 "@type": "OrganizationRole",
                 "member": {
@@ -44,4 +44,28 @@ exports.getGroup = group => {
         })
     };
     return result;
+};
+exports.getDisco = disco => {
+    const response = {
+        "@context": "http://schema.org",
+        "@type": "MusicAlbum",
+        "@id": disco.seo.seo_url,
+        "name": disco.name,
+
+        "image": disco.coverImage,
+        "albumProductionType": "http://schema.org/StudioAlbum",
+        "albumReleaseType": "http://schema.org/AlbumRelease",
+        // "genre": "rock",
+        // "byArtist": {
+        //     "@type": "MusicGroup",
+        //     "name": "The Beatles",
+        //     "@id": "http://musicbrainz.org/artist/b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+        // },
+        "albumRelease": {
+            "@type": "MusicRelease",
+            "name": disco.name,
+            "@id": disco.seo.seo_url
+        }
+    };
+    return response;
 };

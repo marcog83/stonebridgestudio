@@ -1,65 +1,26 @@
 /**
  * Created by mgobbi on 07/08/2017.
  */
+const getById = require("./libs/get-entity-record-by-id");
 const Gruppi = require("../../../cms/fe-web/entities/Gruppi");
 const gruppi = new Gruppi();
-const SeoPlugin = require("../../../cms/fe-web/plugins/seo/seo-plugin")
-if (!Object.entries)
-    Object.entries = function (obj) {
-        var ownProps = Object.keys(obj),
-            i = ownProps.length,
-            resArray = new Array(i); // preallocate the Array
-        while (i--)
-            resArray[i] = [ownProps[i], obj[ownProps[i]]];
+const SeoPlugin = require("../../../cms/fe-web/plugins/seo/seo-plugin");
 
-        return resArray;
-    };
 function getGruppi(limit = 100) {
     return gruppi.findAll(limit, true)
         .then(response => {
-            return response.map(record => {
-                const seo = SeoPlugin.fromEntity(record);
-                return Object.assign({seo}, record);
-            })
+            const promises = response.map(record => {
+                return SeoPlugin.getValueFromRecordId(record._id, true)
+                    .then(seo => Object.assign({seo}, record))
+
+            });
+            return Promise.all(promises)
         })
 
 }
-function _helper(data) {
-    return data.map(i => i.value);
 
-}
-function extractValue(initialValue){
-    return function(response){
-        return Object.entries(response).map(([key, data]) => {
-            const value = Array.isArray(data.value) ? _helper(data.value) : data.value;
-            return [key, value];
-        }).reduce((prev, [key, value]) => {
-            prev[key] = value;
-            return prev;
-        }, initialValue)
-    }
 
-}
-function getGruppo(id) {
-    return gruppi.findById(id).then(response => {
-        return Promise.all([
-            SeoPlugin.getValueFromRecordId(id)
-                .then(extractValue({}))
-            , response
-        ])
-
-    }).then(([seo, response]) => {
-        return extractValue({seo})(response);
-        // Object.entries(response).map(([key, data]) => {
-        //     const value = Array.isArray(data.value) ? _helper(data.value) : data.value;
-        //     return [key, value];
-        // }).reduce((prev, [key, value]) => {
-        //     prev[key] = value;
-        //     return prev;
-        // }, {seo})
-    })
-}
 module.exports = {
     getGruppi
-    , getGruppo
+    , getGruppo: getById(gruppi)
 };

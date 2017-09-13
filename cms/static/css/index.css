@@ -1721,6 +1721,12 @@ a.entity__action--btn.record__item {
   text-decoration: none;
   color: black;
 }
+.seo__title {
+  text-transform: uppercase;
+  font-weight: bold;
+  margin: 20px 0;
+  font-size: 20px;
+}
 .contents {
   padding-top: 68px;
 }

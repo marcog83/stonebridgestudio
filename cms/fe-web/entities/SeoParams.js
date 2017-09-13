@@ -11,18 +11,22 @@ module.exports = class SeoParams extends Entity {
             seo_original_url: new TextSchema({
                 label: "Url Originale"
                 , name: "seo_original_url"
+                ,readonly:true
             })
             , seo_url: new TextSchema({
                 label: "Friendly Url"
                 , name: "seo_url"
+
             })
             , seo_title: new TextSchema({
                 label: "Page title"
                 , name: "seo_title"
+
             })
             , seo_description: new TextSchema({
                 label: "Page description"
                 , name: "seo_description"
+
             })
             , seo_shareImage: new DocumentSchema({
                 label: "Image to Share"
@@ -32,6 +36,7 @@ module.exports = class SeoParams extends Entity {
             , seo_recordId: new TextSchema({
                 label: "record id"
                 , name: "seo_recordId"
+                ,readonly:true
             })
         }
     }

@@ -88,13 +88,26 @@ class Entity {
         })
 
     }
-    queryOne(query){
+
+    queryOne(query, exclude_merge = false) {
         return dbManager.queryOne(this.id, query).then(response => {
 
-            if (!response)return this.schema();
-            return this._mergeRecordSchema(response);
+            if (!response) {
+                if (exclude_merge) {
+                    return Object.keys(this._schema).reduce((prev, curr) => {
+                        prev[curr] = "";
+                        return prev;
+                    }, {})
+                }
+                return this.schema();
+            } else {
+                if (exclude_merge)return response;
+                return this._mergeRecordSchema(response);
+            }
+
         })
     }
+
     findById(recordId, exclude_merge = false) {
         return dbManager.findOne(this.id, recordId).then(response => {
             if (exclude_merge)return response;
