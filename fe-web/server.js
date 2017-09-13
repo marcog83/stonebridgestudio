@@ -3,7 +3,7 @@ const fs = require('fs');
 const http2 = require('spdy');
 const compression = require("compression");
 const handlebars = require('./render/handlebars-config');
-const SeoUrl = require('./plugins/seo/seo-url');
+// const SeoUrl = require('./plugins/seo/seo-url');
 const photoGallery = require("./routers/photo-gallery");
 const homepage = require("./routers/homepage");
 const contacts = require("./routers/contacts");
@@ -16,7 +16,7 @@ const cms = require("../cms/fe-web/server").cms;
 const app = express();
 
 handlebars(app);
- app.get('/**',SeoUrl.middleware );
+ // app.get('/**',SeoUrl.middleware );
 function  cacheMiddleware(seconds){
     return function(req,res,next){
         var date=new Date();

@@ -3,7 +3,7 @@
  */
 const Gruppi = require("../../../cms/fe-web/entities/Gruppi");
 const gruppi = new Gruppi();
-const SeoPlugin = require("../../plugins/seo/seo-plugin")
+const SeoPlugin = require("../../../cms/fe-web/plugins/seo/seo-plugin")
 if (!Object.entries)
     Object.entries = function (obj) {
         var ownProps = Object.keys(obj),

@@ -5,15 +5,20 @@ const dbManager = require("../../core/db-manager");
 const Gruppi = require("../../entities/Gruppi");
 const Dischi = require("../../entities/Dischi");
 const MembriGruppo = require("../../entities/MembriGruppo");
-
+const SeoPlugin = require("../../plugins/seo/seo-plugin");
 function mapResponse(entityId, recordId) {
     return record => {
         const fields = Object.keys(record).map(key => record[key]);
-        return {
-            entityId
-            , recordId
-            , fields
-        }
+
+        return SeoPlugin.getFromRecordId(recordId).then(seo => {
+            return {
+                entityId
+                , recordId
+                , fields
+                , seo
+            }
+        })
+
     }
 }
 module.exports = class ContentsManager {
@@ -73,10 +78,21 @@ module.exports = class ContentsManager {
         const entity = this._entities.filter(({entity}) => entity.id === entityId)[0].entity;
 
         files.forEach(file => {
-            body[file.fieldname] =file.secure_url; //`${file.destination}/${file.filename}`;
+            body[file.fieldname] = file.secure_url; //`${file.destination}/${file.filename}`;
         });
+        var saveObject = Object.entries(body).reduce((prev, [key, value]) => {
+            if (key.match(/seo_/gi)) {
+                prev.seo[key] = value;
+            } else {
+                prev.body[key] = value;
+            }
+            return prev;
+        }, {seo: {}, body: {}});
 
-        return entity.save(body);
+        return entity.save(saveObject.body).then(recordId => {
+            saveObject.seo.seo_recordId = recordId.toString();
+            return SeoPlugin.save(saveObject.seo);
+        });
         //
     }
 
@@ -86,8 +102,20 @@ module.exports = class ContentsManager {
         files.forEach(file => {
             body[file.fieldname] = file.secure_url;//`${file.destination}/${file.filename}`;
         });
+        var saveObject = Object.entries(body).reduce((prev, [key, value]) => {
+            if (key.match(/seo_/gi)) {
+                prev.seo[key] = value;
+            } else {
+                prev.body[key] = value;
+            }
+            return prev;
+        }, {seo: {}, body: {}});
 
-        return entity.update(recordId, body);
+        return entity.update(recordId,saveObject.body).then(recordId => {
+            saveObject.seo.seo_recordId = recordId.toString();
+            return SeoPlugin.update(recordId,saveObject.seo);
+        });
+      //  return entity.update(recordId, body);
     }
 
     deleteOne(entityId, recordId) {

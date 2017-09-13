@@ -1,5 +1,5 @@
 const {getGruppi, getGruppo} = require("./gruppi-manager");
-const jsonld = require("../../plugins/seo/json-ld");
+const jsonld = require("../../../cms/fe-web/plugins/seo/json-ld");
 
 exports.getData = () => {
     return Promise.all([

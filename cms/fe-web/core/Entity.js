@@ -5,11 +5,31 @@ const dbManager = require("./db-manager");
 function isObject(x) {
     return Object.prototype.toString.call(x) === '[object Object]';
 };
+function isNumeric(obj) {
+
+
+
+
+    // parseFloat NaNs numeric-cast false positives ("")
+    // ...but misinterprets leading-number strings, particularly hex literals ("0x...")
+    // subtraction forces infinities to NaN
+    return !isNaN(obj - parseFloat(obj));
+}
 function isArray(val) {
     return (val != null &&
     val.length >= 0 &&
     Object.prototype.toString.call(val) === '[object Array]');
 };
+function _castValue(value) {
+    if (value === "true") {
+        value = true;
+    } else if (value === "false") {
+        value = false;
+    } else if (isNumeric(value)) {
+        value = Number(value);
+    }
+    return value;
+}
 function _excludeEmptyFields(obj = {}) {
     Object.keys(obj).forEach(function (key) {
         if (obj[key] && isObject(obj[key])) {
@@ -19,6 +39,8 @@ function _excludeEmptyFields(obj = {}) {
             obj[key] = obj[key].filter(v => v);
         } else if (obj[key] == null || obj[key] == "") {
             delete obj[key]
+        } else {
+            obj[key] = _castValue(obj[key])
         }
     });
     return obj;
@@ -47,8 +69,8 @@ class Entity {
 
     }
 
-    findAll(limit,exclude_merge = false) {
-        return dbManager.findAll(this.id,limit)
+    findAll(limit, exclude_merge = false) {
+        return dbManager.findAll(this.id, limit)
 
             .then(records => {
                 if (exclude_merge)return records;
@@ -66,7 +88,13 @@ class Entity {
         })
 
     }
+    queryOne(query){
+        return dbManager.queryOne(this.id, query).then(response => {
 
+            if (!response)return this.schema();
+            return this._mergeRecordSchema(response);
+        })
+    }
     findById(recordId, exclude_merge = false) {
         return dbManager.findOne(this.id, recordId).then(response => {
             if (exclude_merge)return response;
@@ -81,6 +109,7 @@ class Entity {
 
     save(body) {
         const _fieldsToSave = _excludeEmptyFields(body);
+
         return parseSchema(this._schema, "save", {}, _fieldsToSave)
             .then(_normalizedValues => {
                 return dbManager.save(this.id, _normalizedValues);
