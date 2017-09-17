@@ -43,7 +43,11 @@ app.get("/**",SeoPlugin.middleware );
 app.use("/cms",cms);
 app.use(compression());
 app.use(cacheMiddleware(3600));
-app.use('/static', express.static(__dirname + '/../static', {
+let staticPath='/../static';
+if(process.env.NODE_ENV === "production"){
+    staticPath='./static'
+}
+app.use('/static', express.static(__dirname + staticPath, {
     maxAge: '5d'
     , etag: "strong"
 }));
@@ -59,10 +63,7 @@ app.use('/posts', posts);
 
 const PORT = process.env.PORT || 4900;
 
-const options = {
-    key: fs.readFileSync('./fe-web/server.key'),
-    cert: fs.readFileSync('./fe-web/server.crt')
-};
+
 
 // http2.createServer(options, app)
 app.listen(PORT, () => {

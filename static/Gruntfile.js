@@ -18,11 +18,11 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('build', [
-        "clean:dist",//pulisce la cartella dist
+       // "clean:dist",//pulisce la cartella dist
         "build-SVG",//crea le SVG
         "less",//crea i css
         "cssmin:dist"//minifica i css
-        ,"imagemin:dist" //ottimizza le immagini e le copia in dist
+       // ,"imagemin:dist" //ottimizza le immagini e le copia in dist
         ,"copy:dist"//copia tutto in dist
         ,'requirejs:libraries'//crea le librerie JS
         ,'requirejs:dist'// concatene librerie e applicazione JS in un unico file e lo copia in dist
@@ -36,11 +36,7 @@ module.exports = function (grunt) {
     grunt.registerTask('build-SVG', [
         "svg_sprite"
     ]);
-//crea il bundle per i moduli da share-are con altri progetti Milan
-    grunt.registerTask('bundle-shared-modules', [
-        "requirejs:bundle-project",
-        "ac-filerev:bundle-project"
-    ]);
+
 
 
     // crea e sostituisce i files revisionati con HASH

@@ -14,7 +14,7 @@ module.exports =
     PARTIALS: "partials",
 
     _source_pattern: "./{{id}}/",
-    _dest_pattern: "./dist/{{id}}/",
+    _dest_pattern: "../fe-web/static/{{id}}/",
     getSourcePath: function (id) {
         return this._source_pattern.replace("{{id}}", id);
     },
@@ -22,7 +22,7 @@ module.exports =
         return this._dest_pattern.replace("{{id}}", id);
     },
     getHTDOCS: function () {
-        return "./dist/"
+        return "../fe-web/static/"
     },
     getSRC: function () {
         return "./"

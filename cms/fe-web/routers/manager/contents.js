@@ -90,8 +90,9 @@ module.exports = class ContentsManager {
         }, {seo: {}, body: {}});
 
         return entity.save(saveObject.body).then(recordId => {
-            saveObject.seo.seo_recordId = recordId.toString();
-            return SeoPlugin.save(saveObject.seo);
+           const seo= SeoPlugin.createNew(saveObject,entityId,recordId);
+
+            return SeoPlugin.save(seo);
         });
         //
     }
@@ -112,8 +113,9 @@ module.exports = class ContentsManager {
         }, {seo: {}, body: {}});
 
         return entity.update(recordId,saveObject.body).then(recordId => {
-            saveObject.seo.seo_recordId = recordId.toString();
-            return SeoPlugin.update(recordId,saveObject.seo);
+           // saveObject.seo.seo_recordId = recordId.toString();
+            const seo= SeoPlugin.createNew(saveObject,entityId,recordId);
+            return SeoPlugin.update(recordId,seo);
         });
       //  return entity.update(recordId, body);
     }

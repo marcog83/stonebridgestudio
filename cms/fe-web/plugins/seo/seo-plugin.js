@@ -13,8 +13,8 @@ exports.getFromOriginalUrl = seo_original_url => {
 
 };
 
-const getValueFromRecordId = (seo_recordId,exclude_merge) => {
-    return seoEntity.queryOne({seo_recordId:seo_recordId.toString()},exclude_merge);
+const getValueFromRecordId = (seo_recordId, exclude_merge) => {
+    return seoEntity.queryOne({seo_recordId: seo_recordId.toString()}, exclude_merge);
 }
 const getFromRecordId = seo_recordId => {
     return seoEntity.queryOne({seo_recordId}).then(record => {
@@ -33,30 +33,45 @@ exports.update = (recordId, body) => {
     return seoEntity.update(recordId, body);
 };
 exports.middleware = (req, res, next) => {
-    if(req.originalUrl.match(/\/static|\/cms/gim)!=null){
+    if (req.originalUrl.match(/\/static|\/cms/gim) != null) {
         next();
         return;
-    };
-    const seo_url =  req.originalUrl;
-    return seoEntity.queryOne({seo_url},true).then(seoItem => {
-        if (seoItem.seo_original_url!="") {
+    }
+    ;
+    const seo_url = req.originalUrl;
+    return seoEntity.queryOne({seo_url}, true).then(seoItem => {
+        if (seoItem.seo_original_url != "") {
             req.url = seoItem.seo_original_url;
         }
         next();
 
     });
 };
+const createURL = name => {
+    return getSlug(name, {
+        lang: "it"
+    });
+};
+exports.createNew = ({body, seo}, entityId, recordId) => {
+    let result = Object.assign({}, seo);
+    result.seo_recordId = recordId.toString();
+    result.seo_original_url = result.seo_original_url || `/${entityId}/${recordId}`;
+    result.seo_url = result.seo_url || `/${createURL(body.name)}`;
+    result.seo_title = result.seo_title || `Stonebridge Studio :: ${body.name}`;
+
+    return result;
+};
 exports.parseEntity = response => {
     var promises = Object.entries(response).map(([key, schema]) => {
         if (schema.value) {
             if (schema.type === "relation") {
-                return getValueFromRecordId(schema.value._id,true).then(seo => {
+                return getValueFromRecordId(schema.value._id, true).then(seo => {
                     schema.value.seo = seo;
                     return schema;
                 })
             } else if (schema.type === "repeatable" && schema.field.type === "relation") {
                 const repeatPromises = schema.value.map(v => {
-                    return getValueFromRecordId(v.value._id,true)
+                    return getValueFromRecordId(v.value._id, true)
 
                         .then(seo => {
                             v.value.seo = seo;
