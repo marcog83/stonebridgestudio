@@ -1,3 +1,4 @@
+// process.env.NODE_ENV = "production"
 const express = require('express');
 const fs = require('fs');
 const http2 = require('spdy');
@@ -45,7 +46,7 @@ app.use(compression());
 app.use(cacheMiddleware(3600));
 let staticPath='/../static';
 if(process.env.NODE_ENV === "production"){
-    staticPath='./static'
+    staticPath='/static'
 }
 app.use('/static', express.static(__dirname + staticPath, {
     maxAge: '5d'

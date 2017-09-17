@@ -11,15 +11,12 @@ module.exports = {
                 , cwd: utils.getSRC()
                 , src: [
                 'css/font/*'
-                , "static-include/scripts.jsp"
-                , "static-include/stylesheet.jsp"
-                , "img/favicon.ico"
-                , "img/academy/mappa-scopri.jpg"
-                , "gfx/icons/manifest.json"
+                , "static-includes/scripts.hbs"
+                , "static-includes/stylesheet.hbs"
 
-                 , "js/libs/provide.js"
-                 , "js/external-widgets/mixpanel/mixpanel-alias-user.min.js"
-                 , "js/modules/banner/banner-analytics.js"
+                , "gfx/*"
+                , "img/*"
+
             ]
                 , dest: utils.getHTDOCS()
             }

@@ -8,6 +8,11 @@ const DEFINITION_DIR = 'fe-web/render/definitions/';
 const LAYOUT_DIR = 'fe-web/render/layout/';
 const DATA_DIR = 'fe-web/render/data/';
 const INCLUDE_DIR = 'fe-web/render/include/';
+let STATIC_INCLUDE_DIR = 'static/static-includes/';
+if (process.env.NODE_ENV === "production") {
+    STATIC_INCLUDE_DIR = 'fe-web/static/static-includes/';
+}
+
 const BODY_DIR = `fe-web/render/body/`;
 
 var OtherHandlebars = Handlebars.create();
@@ -29,6 +34,15 @@ function registerIncludes() {
         glob(INCLUDE_DIR + "**/*.hbs", {}, (err, files) => {
             if (err) reject(err);
             resolve(files);
+        })
+    }).then(filenames => {
+        return new Promise((resolve, reject) => {
+            // options is optional
+
+            glob(STATIC_INCLUDE_DIR + "**/*.hbs", {}, (err, files) => {
+                if (err) reject(err);
+                resolve(filenames.concat(files));
+            })
         })
     }).then(filenames => {
         const promises = filenames.map(function (filename) {
@@ -72,18 +86,18 @@ module.exports = function (options) {
             ]).then(([layout, body]) => {
                 const precompiled = OtherHandlebars.precompile(layout);
                 return {
-                    template:OtherHandlebars.template((new Function('return ' + precompiled))())
-                    ,body
+                    template: OtherHandlebars.template((new Function('return ' + precompiled))())
+                    , body
                 }
             });
 
         }
-        includes.then(_ => cache[key]).then(({template,body} )=> {
+        includes.then(_ => cache[key]).then(({template, body}) => {
             OtherHandlebars.registerPartial('body', body);
-                const {data = {}} = options || {};
-                data.__pagename__ = key;
-                return callback(null, template(data));
-            })
+            const {data = {}} = options || {};
+            data.__pagename__ = key;
+            return callback(null, template(data));
+        })
             .catch(err => {
                 delete cache[key];
                 callback(err);

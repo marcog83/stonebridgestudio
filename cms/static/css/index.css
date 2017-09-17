@@ -1746,3 +1746,22 @@ a.entity__action--btn.record__item {
   padding: 20px 20px 20px 65px;
   border-bottom: 1px silver solid;
 }
+.js-copy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  background: mediumseagreen;
+  color: white;
+  border-radius: 50%;
+  font-size: 12px;
+  margin-left: 10px;
+}
+.image-url-ctr {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+.img-ctr {
+  margin-left: 10px;
+}

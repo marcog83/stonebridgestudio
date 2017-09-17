@@ -1,7 +1,7 @@
 /**
  * Created by mgobbi on 12/09/2017.
  */
-
+const getSlug = require("speakingurl");
 const SeoParams = require("../../entities/SeoParams");
 const seoEntity = new SeoParams();
 exports.fromEntity = entity => {

@@ -9,8 +9,8 @@ module.exports = {
      
     views: {
         src: [
-            utils.getHTDOCS()+'static-include/scripts.jsp',
-            utils.getHTDOCS()+'static-include/stylesheet.jsp'
+            utils.getHTDOCS()+'static-includes/scripts.hbs',
+            utils.getHTDOCS()+'static-includes/stylesheet.hbs'
         ]
     }
 };
