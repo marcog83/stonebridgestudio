@@ -5,7 +5,12 @@
              data-image="{{disco.coverImage}}">
             <div class="slidein-05 retroshadow content-wrapper">
                 <h1 class="disco-image__title">{{disco.name}}</h1>
-                <p>{{disco.publication_date}}</p>
+                <p>
+                    {{#each disco.gruppi}}
+                        <a class="disco__author" href="{{this.seo.seo_url}}">{{this.name}}</a>
+                    {{/each}}
+
+                    {{disco.publication_date}}</p>
             </div>
 
         </div>
@@ -18,7 +23,13 @@
                     <p class="disco-info__text">
                         {{{disco.description}}}
                     </p>
-                    <!--<p class="disco-info__by"><span>by:</span> <a href="/">Marrano</a></p>-->
+                    {{#each disco.gruppi}}
+                        <p class="disco-info__by">
+                            <span>by:</span> <a href="{{this.seo.seo_url}}">
+                            {{this.name}}</a>
+                        </p>
+
+                    {{/each}}
                 </div>
 
 

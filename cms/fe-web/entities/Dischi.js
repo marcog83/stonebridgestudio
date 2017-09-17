@@ -2,6 +2,8 @@
  * Created by mgobbi on 03/08/2017.
  */
 const Entity = require("../core/Entity");
+
+const RelationEntity = require("../core/RelationEntity");
 const {TextSchema, DateSchema, HtmlSchema, DocumentSchema, NumberSchema, LinkSchema, RepeatableSchema, RelationSchema} = require("../core/schemas");
 
 module.exports = class Dischi extends Entity {
@@ -26,6 +28,17 @@ module.exports = class Dischi extends Entity {
                 , label: "Data di Pubblicazione"
                 , date_type: "month"
             })
+            , gruppi: new RepeatableSchema({
+                label: "gruppi"
+                , name: "gruppi"
+                , field: new RelationSchema({
+                    toEntity: new RelationEntity({
+                        relationFrom: "dischi",
+                        relationTo: "gruppi",
+                        id: "gruppi-dischi"
+                    })
+                })
+            })
             , videos_embed: new RepeatableSchema({
                 label: "Video Embed"
                 , name: "videos_embed"
@@ -42,8 +55,8 @@ module.exports = class Dischi extends Entity {
         }
     }
 
-    schema() {
-        return Promise.resolve(this._schema)
-    }
+    // schema() {
+    //     return Promise.resolve(this._schema)
+    // }
 
 };

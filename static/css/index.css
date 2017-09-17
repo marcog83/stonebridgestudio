@@ -752,9 +752,29 @@ table {
   .posts-title {
     margin-bottom: 30px;
   }
+  .post-image-zoomed.zoom-completed {
+    overflow: auto;
+  }
+  .post-image-zoomed .js-thumb-ctr {
+    display: block;
+  }
+  .post-image-zoomed__text-panel {
+    width: 100%;
+    padding: 0;
+  }
+  .zoom-completed .post__image__over {
+    position: relative;
+    top: 54px!important;
+  }
+  .post-image-zoomed__text-panel {
+    width: 100%;
+    padding: 0;
+    height: auto;
+  }
 }
 .footer {
   background: #422030;
+  min-height: 200px;
 }
 .footer .buttons {
   display: flex;
@@ -1195,6 +1215,11 @@ p.artist-detail__info-block__text-small {
     padding-right: 10px;
     margin-top: 8px;
   }
+}
+.disco__author {
+  color: white;
+  font-weight: bold;
+  margin-right: 5px;
 }
 .disco-image {
   background-position: center;
