@@ -3,7 +3,7 @@
 
         <ul class="entity__actions">
             <li class="entity__action">
-                <a href="/cms/contents/{{id}}" class="entity__action--btn">
+                <a href="/cms/contents/{{id}}" title="Aggiungi un nuovo {{name}}" class="entity__action--btn">
                     <span class="typcn typcn-plus"></span>
                 </a>
             </li>
@@ -21,17 +21,17 @@
             <li class="record">
                 <ul class="record__item entity__actions">
                     <li>
-                        <a href="/cms/contents/{{../id}}/{{_id}}" class=" edit entity__action--btn record__item" title="Vai al dettaglio e modifica">
+                        <a href="/cms/contents/{{../id}}/{{_id}}" class=" edit entity__action--btn record__item" title="Vai al dettaglio e modifica {{name.value}}">
                             <span class="typcn typcn-edit"></span>
                         </a>
                     </li>
                     <li>
-                        <a href="/cms/contents/delete/{{../id}}/{{_id}}" class="entity__action--btn delete record__item" title="Elimina il record">
+                        <a href="/cms/contents/delete/{{../id}}/{{_id}}" class="entity__action--btn delete record__item" title="Elimina definitivamente {{name.value}}">
                             <span class="typcn typcn-trash"></span>
                         </a>
                     </li>
                 </ul>
-                <a href="/cms/contents/{{../id}}/{{_id}}" class="name record__item" title="Vai al dettaglio e modifica">
+                <a href="/cms/contents/{{../id}}/{{_id}}" class="name record__item" title="Vai al dettaglio e modifica {{name.value}}">
                     {{name.value}}
                 </a>
 

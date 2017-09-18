@@ -1634,7 +1634,7 @@ textarea {
   top: 68px;
   left: 0;
   transition: transform 0.5s ease-out;
-  z-index: 1;
+  z-index: 999991;
   padding: 60px 20px 0;
 }
 .menu-ctr {
@@ -1650,7 +1650,7 @@ textarea {
 }
 .menu-trigger-btn {
   position: fixed;
-  z-index: 2;
+  z-index: 999992;
   border: none;
   padding: 10px;
   border-radius: 50%;
@@ -1736,6 +1736,7 @@ a.entity__action--btn.record__item {
 }
 .contents__header {
   position: fixed;
+  z-index: 99999;
   top: 0;
   left: 0;
   width: 100%;
@@ -1745,6 +1746,31 @@ a.entity__action--btn.record__item {
   justify-content: space-between;
   padding: 20px 20px 20px 65px;
   border-bottom: 1px silver solid;
+}
+.contents__header .save-btn {
+  border: none;
+  background: none;
+  color: mediumseagreen;
+  font-size: 20px;
+  margin-left: 10px;
+  padding: 0;
+  line-height: 1;
+  cursor: pointer;
+  outline: none;
+}
+.contents__header .save-btn-cnt {
+  background: mediumseagreen;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+.contents__header .save-btn span {
+  margin: 0px -3px 4px 0;
+  display: block;
+}
+.contents__header .back-btn {
+  font-size: 20px;
+  text-decoration: none;
 }
 .js-copy {
   display: inline-flex;
