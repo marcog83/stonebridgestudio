@@ -33,11 +33,7 @@ exports.update = (recordId, body) => {
     return seoEntity.update(recordId, body);
 };
 exports.middleware = (req, res, next) => {
-    if (req.originalUrl.match(/\/static|\/cms/gim) != null) {
-        next();
-        return;
-    }
-    ;
+
     const seo_url = req.originalUrl;
     return seoEntity.queryOne({seo_url}, true).then(seoItem => {
         if (seoItem.seo_original_url != "") {
