@@ -129,13 +129,13 @@ function getPosts(limit) {
     return getAccessToken()
         .then(_ => {
             return _getPosts(STONEBRIDGE_ID, limit)
-        })
+        }).catch(e => [])
 }
 function getInfo() {
     return getAccessToken()
         .then(_ => {
             return _getInfo(STONEBRIDGE_ID)
-        })
+        }).catch(e => {})
 }
 
 module.exports = {
